@@ -9,10 +9,13 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.16.7",
     "customize-cra": "^1.0.0",
+    "mobx": "^6.3.2",
     "mobx-react": "^7.2.0",
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },

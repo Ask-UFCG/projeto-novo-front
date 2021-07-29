@@ -1,8 +1,8 @@
-.title-login {
+.title {
   font-weight: bold;
 }
 
-.subtitle-login {
+.subtitle {
   font-weight: normal;
 }
 
@@ -42,4 +42,8 @@
   width: 100%;
   background-color: #E63946;
   border-color: #E63946;
+}
+
+.style-button:hover {
+  background-color: #890000;
 }
