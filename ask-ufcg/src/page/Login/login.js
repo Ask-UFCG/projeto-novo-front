@@ -1,8 +1,8 @@
+import { observer } from 'mobx-react';
 import './login.css';
 import React from 'react';
 import { Layout, Row, Input, Button, Form, Col } from 'antd';
 const { Header, Content, Footer } = Layout;
-import { observer } from 'mobx-react';
 
 @observer
 class Login extends React.Component {
@@ -37,7 +37,7 @@ class Login extends React.Component {
               >
                 <Row style={{ textAlign: 'left' }}>
                   <Col span={24}>
-                    <h1 className='title-login'>Sentimos Sua Falta!</h1>
+                    <h1 className='title-login'>Sentimos Sua teste!</h1>
                   </Col>
                 </Row>
                 <Row style={{ textAlign: 'left' }}>
@@ -72,6 +72,7 @@ class Login extends React.Component {
                       type='primary'
                       htmlType='submit'
                       className='style-button'
+                      size={'large'}
                     >
                       Entrar
                     </Button>
