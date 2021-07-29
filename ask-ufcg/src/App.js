@@ -9,8 +9,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Layout style={{ minHeight: '100vh' }}>
-          <Header style={{ backgroundColor: '#A8DADC' }}></Header>
+        <Layout style={{ minHeight: '100vh', backgroundColor: 'white' }}>
+          <Header
+            style={{
+              backgroundColor: '#A8DADC',
+            }}
+          ></Header>
           <Router>
             <Switch>
               <Route path='/login'>
