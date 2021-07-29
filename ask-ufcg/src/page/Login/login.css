@@ -23,3 +23,23 @@
   float: right;
   margin: 16px 0 16px 24px;
 }
+
+.hl-input:disabled {
+  color: #555 !important;
+}
+
+.center-content {
+  position: fixed;
+  width: 500px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px; 
+  margin-left: -250px;
+}
+
+.style-button {
+  width: 100%;
+  background-color: #E63946;
+  border-color: #E63946;
+}
