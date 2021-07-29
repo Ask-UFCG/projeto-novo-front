@@ -11,8 +11,10 @@ class User {
   @observable linkGithub;
 
   constructor(response) {
-    for (let key in this) {
-      this[key] = response[key];
+    if (response) {
+      for (let key in this) {
+        this[key] = response[key];
+      }
     }
   }
 }

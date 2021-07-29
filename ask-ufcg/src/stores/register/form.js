@@ -1,4 +1,5 @@
 import { action, observable } from 'mobx';
+import User from '../../domain/user';
 
 class RegisterFormStore {
   @observable object = null;
@@ -20,7 +21,7 @@ class RegisterFormStore {
   @action
   init(id, callback) {
     this.loading = true;
-    this.object = undefined;
+    this.object = new User();
     if (callback) {
       callback();
     }
