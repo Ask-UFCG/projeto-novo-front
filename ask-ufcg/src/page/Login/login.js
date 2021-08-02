@@ -1,18 +1,19 @@
-import './login.css';
-import React from 'react';
-import { Layout, Row, Input, Button, Form, Col } from 'antd';
-const { Header, Content, Footer } = Layout;
-import { observer } from 'mobx-react';
+import './login.css'
+import React from 'react'
+import Header from '../../components/Header/header'
+import { Layout, Row, Input, Button, Form, Col } from 'antd'
+const { Content, Footer } = Layout
+// import { observer } from 'mobx-react'
 
-@observer
+// @observer
 class Login extends React.Component {
   onFinish = (values) => {
-    console.log('Success:', values);
-  };
+    console.log('Success:', values)
+  }
 
   onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
 
   render() {
     return (
@@ -27,30 +28,18 @@ class Login extends React.Component {
           >
             <Row>
               <Col xs={2} sm={4} md={6} lg={8} xl={9} />
-              <Col
-                xs={20}
-                sm={16}
-                md={12}
-                lg={12}
-                xl={6}
-                className='center-content'
-              >
+              <Col xs={20} sm={16} md={12} lg={12} xl={6} className="center-content">
                 <Row style={{ textAlign: 'left' }}>
                   <Col span={24}>
-                    <h1 className='title-login'>Sentimos Sua Falta!</h1>
+                    <h1 className="title-login">Sentimos Sua Falta!</h1>
                   </Col>
                 </Row>
                 <Row style={{ textAlign: 'left' }}>
                   <Col span={24}>
-                    <h3 className='subtitle-login'>
-                      Vamos em busca do conhecimento coletivo
-                    </h3>
+                    <h3 className="subtitle-login">Vamos em busca do conhecimento coletivo</h3>
                   </Col>
                 </Row>
-                <Form
-                  onFinish={this.onFinish}
-                  onFinishFailed={this.onFinishFailed}
-                >
+                <Form onFinish={this.onFinish} onFinishFailed={this.onFinishFailed}>
                   <Form.Item>
                     <Row>
                       <Col span={24}>
@@ -68,11 +57,7 @@ class Login extends React.Component {
                   </Form.Item>
 
                   <Form.Item>
-                    <Button
-                      type='primary'
-                      htmlType='submit'
-                      className='style-button'
-                    >
+                    <Button type="primary" htmlType="submit" className="style-button">
                       Entrar
                     </Button>
                   </Form.Item>
@@ -86,9 +71,9 @@ class Login extends React.Component {
           </Footer>
         </Layout>
       </>
-    );
+    )
   }
 }
-Login.displayName = 'Login';
+Login.displayName = 'Login'
 
-export default Login;
+export default Login
