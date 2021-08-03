@@ -66,7 +66,7 @@ class LoginForm extends React.Component {
                       <Input
                         placeholder={'E-mail'}
                         onChange={(value) =>
-                          this.store.updateAttributeDecoratorKeyValue(
+                          this.store.updateAttributeDecoratorKeyEventValue(
                             'email',
                             value
                           )
@@ -78,7 +78,15 @@ class LoginForm extends React.Component {
                 <Form.Item>
                   <Row>
                     <Col span={24}>
-                      <Input.Password placeholder={'Senha'} />
+                      <Input.Password
+                        placeholder={'Senha'}
+                        onChange={(value) =>
+                          this.store.updateAttributeDecoratorKeyEventValue(
+                            'password',
+                            value
+                          )
+                        }
+                      />
                     </Col>
                   </Row>
                 </Form.Item>

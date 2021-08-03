@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
-import User from '../../domain/user';
+import Pergunta from '../../domain/pergunta';
 
-class LoginFormStore {
+class PerguntaFormStore {
   @observable object = null;
   @observable loading = false;
 
@@ -27,11 +27,11 @@ class LoginFormStore {
   @action
   init(id, callback) {
     this.loading = true;
-    this.object = new User();
+    this.object = new Pergunta();
     if (callback) {
       callback();
     }
   }
 }
 
-export default LoginFormStore;
+export default PerguntaFormStore;

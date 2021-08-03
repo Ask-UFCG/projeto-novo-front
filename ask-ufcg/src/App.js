@@ -4,6 +4,7 @@ import React from 'react';
 import LoginForm from './page/login/form';
 import RegisterForm from './page/register/form';
 import { observer } from 'mobx-react';
+import PerguntaForm from './page/pergunta/form';
 @observer
 class App extends React.Component {
   render() {
@@ -22,6 +23,9 @@ class App extends React.Component {
               </Route>
               <Route path='/register'>
                 <RegisterForm />
+              </Route>
+              <Route path='/pergunta'>
+                <PerguntaForm />
               </Route>
             </Switch>
           </Router>

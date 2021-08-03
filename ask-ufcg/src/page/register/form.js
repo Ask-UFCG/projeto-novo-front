@@ -5,10 +5,13 @@ import { Layout, Row, Input, Button, Form, Col, Divider } from 'antd';
 import User from '../../domain/user';
 import UserService from '../../services/user';
 import RegisterFormStore from '../../stores/register/form';
+import { observable } from 'mobx';
 const { Content } = Layout;
 
 @observer
 class RegisterForm extends React.Component {
+  @observable store;
+
   constructor() {
     super();
     this.store = new RegisterFormStore(User, UserService, 'User');
@@ -68,7 +71,7 @@ class RegisterForm extends React.Component {
                       <Input
                         placeholder={'Usuário'}
                         onChange={(value) =>
-                          this.store.updateAttributeDecoratorKeyValue(
+                          this.store.updateAttributeDecoratorKeyEventValue(
                             'usuario',
                             value
                           )
@@ -96,14 +99,33 @@ class RegisterForm extends React.Component {
                 <Form.Item>
                   <Row>
                     <Col span={24}>
-                      <Input.Password placeholder={'Senha'} />
+                      <Input.Password
+                        placeholder={'Senha'}
+                        onChange={(value) =>
+                          this.store.updateAttributeDecoratorKeyEventValue(
+                            'password',
+                            value
+                          )
+                        }
+                        maxLength={12}
+                      />
                     </Col>
                   </Row>
                 </Form.Item>
                 <Form.Item>
                   <Row>
                     <Col span={24}>
-                      <Input.Password placeholder={'Repita a senha'} />
+                      <Input.Password
+                        placeholder={'Repita a senha'}
+                        disabled={!this.store.object.password}
+                        onChange={(value) =>
+                          this.store.updateAttributeDecoratorKeyEventValue(
+                            'password',
+                            value
+                          )
+                        }
+                        maxLength={12}
+                      />
                     </Col>
                   </Row>
                 </Form.Item>
