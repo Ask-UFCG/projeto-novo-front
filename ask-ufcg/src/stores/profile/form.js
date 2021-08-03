@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 import User from '../../domain/user';
 
-class RegisterFormStore {
+class ProfileFormStore {
   @observable object = {};
   @observable loading = false;
 
@@ -36,4 +36,4 @@ class RegisterFormStore {
   }
 }
 
-export default RegisterFormStore;
+export default ProfileFormStore;
