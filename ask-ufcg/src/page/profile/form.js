@@ -31,7 +31,7 @@ class ProfileForm extends React.Component {
         <LeftMenu />
         <div className="content">
           <div className="profile-image-content">
-            <Image src={imagePic} alt={`Profile image of ${user.firstName || ''} ${user.lastName || ''}`} className="profile-image" />
+            <Image src={imagePic} alt={`Profile image of ...`} className="profile-image" />
             <button className="button-change">
               <ChangeImageIcon className="image-button-change" /> Alterar Imagem
             </button>

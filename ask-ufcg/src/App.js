@@ -15,25 +15,23 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <InfoProvider>
-          <Layout style={{ minHeight: '100vh', backgroundColor: 'white' }}>
-            <Header />
-            <Switch>
-              <Route path="/login">
-                <LoginForm />
-              </Route>
-              <Route path="/register">
-                <RegisterForm />
-              </Route>
-              <Route path='/profile'>
-                <ProfileForm />
-              </Route>
-            </Switch>
-            <Footer style={{ textAlign: 'center' }}>
-              Ask-UFCG ©2021 Created by a Group of UFCG Students
-            </Footer>
-          </Layout>
-        </InfoProvider>
+        <Layout style={{ minHeight: '100vh', backgroundColor: 'white' }}>
+          <Header />
+          <Switch>
+            <Route path="/login">
+              <LoginForm />
+            </Route>
+            <Route path="/register">
+              <RegisterForm />
+            </Route>
+            <Route path='/profile'>
+              <ProfileForm />
+            </Route>
+          </Switch>
+          <Footer style={{ textAlign: 'center' }}>
+            Ask-UFCG ©2021 Created by a Group of UFCG Students
+          </Footer>
+        </Layout>
       </Router>
     )
   }
