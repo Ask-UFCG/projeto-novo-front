@@ -1,0 +1,41 @@
+.left-bar {
+	width: 20vw;
+	background-color: #FFF;
+}
+
+.menu-left-bar p {
+	margin-top: 4rem;
+	padding-left: 2rem;
+
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #808080;
+}
+
+.ant-menu-item {
+	display: flex;
+	align-items: center;
+
+	padding-left: 2rem !important;
+	border-left: 5px #fff solid !important;
+
+	font-weight: bold;
+	font-size: 1rem;
+	color: #1D3557 !important;
+}
+
+.menu-left-search {
+	margin: 2rem 0 !important;
+}
+
+.ant-menu-item-selected {
+	background-color: #A8DADC !important;
+	border-left: 5px #1D3557 solid !important;
+	color: #1D3557 !important;
+}
+
+.ant-menu-item:hover {
+	background-color: #A8DADC !important;
+	border-left: 5px #A8DADC solid !important;
+}
