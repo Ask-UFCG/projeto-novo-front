@@ -1,9 +1,13 @@
+import React from 'react';
+
 import Layout, { Footer, Header } from 'antd/lib/layout/layout';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import React from 'react';
+import { observer } from 'mobx-react';
+
 import LoginForm from './page/login/form';
 import RegisterForm from './page/register/form';
-import { observer } from 'mobx-react';
+import ProfileForm from './page/profile/form';
+
 @observer
 class App extends React.Component {
   render() {
@@ -14,7 +18,7 @@ class App extends React.Component {
             style={{
               backgroundColor: '#A8DADC',
             }}
-          ></Header>
+          />
           <Router>
             <Switch>
               <Route path='/login'>
@@ -22,6 +26,9 @@ class App extends React.Component {
               </Route>
               <Route path='/register'>
                 <RegisterForm />
+              </Route>
+              <Route path='/profile'>
+                <ProfileForm />
               </Route>
             </Switch>
           </Router>
