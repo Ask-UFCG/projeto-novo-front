@@ -1,5 +1,5 @@
 .rules-page {
-	background-color: #E5E5E5;
+	background-color: #FAFAFA;
 	width: 100%;
 	display: flex;
 }
@@ -16,7 +16,7 @@
 	background-color: #FFF;
 	padding: 0.5rem;
 	border: 1px solid #D8D8D8;
-	border-radius: 5px;
+	border-radius: 8px;
 	font-size: 1rem;
 	max-height: 85vh;
 	overflow: auto;
