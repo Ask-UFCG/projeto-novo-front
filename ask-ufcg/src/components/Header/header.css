@@ -13,6 +13,11 @@
   gap: 1rem;
 }
 
+.logo-header a {
+  padding: 0;
+  margin: 0;
+}
+
 .logo-UFCG {
   font-weight: bold;
 }
@@ -51,6 +56,7 @@
   border-radius: 5px;
   borderColor: #1D3557;
   font-weight: bold;
+  height: 2rem;
 }
 
 .button-user-links:focus {
