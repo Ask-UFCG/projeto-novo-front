@@ -14,7 +14,7 @@ const { Search } = Input;
 class LeftMenu extends React.Component {
   render() {
     return (
-      <div className='left-bar' width='20vw' size='100vh'>
+      <div className='left-bar'>
         <div className='left-menu-search'>
           <Search 
             placeholder='Pesquise uma pergunta' 
