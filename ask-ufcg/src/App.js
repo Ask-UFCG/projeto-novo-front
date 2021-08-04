@@ -23,7 +23,7 @@ class App extends React.Component {
             <Route path='/login' component={LoginForm} />
             <Route path='/register' component={RegisterForm} />
             <Route path='/profile' component={ProfileForm} />
-            <Route path='/pergunta' component={PerguntaForm} />
+            <Route path='/nova-pergunta' component={PerguntaForm} />
             <Route path='/regras' component={RegrasComunidadeForm} />
           </Switch>
           <Footer style={{ textAlign: 'center' }}>
