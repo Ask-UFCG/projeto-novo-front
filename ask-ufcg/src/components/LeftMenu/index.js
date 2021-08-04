@@ -14,12 +14,15 @@ const { Search } = Input;
 class LeftMenu extends React.Component {
   render() {
     return (
-      <Layout.Sider className='left-bar' width='20vw'>
+      <div className='left-bar' width='20vw' size='100vh'>
+        <div className='left-menu-search'>
+          <Search 
+            placeholder='Pesquise uma pergunta' 
+            className='input-search'
+            enterButton 
+          />
+        </div>
         <Menu className='menu-left-bar'>
-          <Menu.Item key='1' className='menu-left-search'>
-            <Search placeholder='Pesquise uma pergunta' enterButton />
-          </Menu.Item>
-
           <p className='menu-left-bar-text'>Menu</p>
           <Menu.Item key='2' icon={<ListIcon />}>
             Questoes
@@ -39,7 +42,7 @@ class LeftMenu extends React.Component {
             Suas curtidas e votos
           </Menu.Item>
         </Menu>
-      </Layout.Sider>
+      </div>
     );
   }
 }
