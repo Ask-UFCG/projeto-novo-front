@@ -1,23 +1,23 @@
 import React from 'react';
+import './index.css';
 
 import { Layout, Menu } from 'antd';
 
-import { ReactComponent as BloomIcon } from '../../assets/bloom.svg';
 import { ReactComponent as ListIcon } from '../../assets/list.svg';
 import { ReactComponent as TagIcon } from '../../assets/tag.svg';
 import { ReactComponent as HeartIcon } from '../../assets/heart.svg';
 import { ReactComponent as HelpIcon } from '../../assets/help-circle.svg';
 import { ReactComponent as MessageIcon } from '../../assets/message-circle.svg';
-
-import './index.css';
+import { Input } from 'antd';
+const { Search } = Input;
 
 class LeftMenu extends React.Component {
   render() {
     return (
       <Layout.Sider className='left-bar' width='20vw'>
         <Menu className='menu-left-bar'>
-          <Menu.Item key='1' className='menu-left-search' icon={<BloomIcon />}>
-            Buscar
+          <Menu.Item key='1' className='menu-left-search'>
+            <Search placeholder='Pesquise uma pergunta' enterButton />
           </Menu.Item>
 
           <p className='menu-left-bar-text'>Menu</p>

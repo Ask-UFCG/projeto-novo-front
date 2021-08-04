@@ -1,17 +1,7 @@
 import { observer } from 'mobx-react';
 import './form.css';
 import React from 'react';
-import {
-  Layout,
-  Row,
-  Input,
-  Button,
-  Form,
-  Col,
-  Card,
-  Select,
-  Option,
-} from 'antd';
+import { Layout, Row, Input, Button, Form, Col, Card, Select } from 'antd';
 import PerguntaFormStore from '../../stores/pergunta/form';
 import Pergunta from '../../domain/pergunta';
 import PerguntaService from '../../services/pergunta';
