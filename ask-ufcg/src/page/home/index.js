@@ -6,17 +6,24 @@ import { observer } from 'mobx-react';
 import './index.css';
 
 import HomeIndexStore from '../../stores/home';
-import LeftMenu from '../../components/LeftMenu/index';
+import LeftMenu from '../../components/LeftMenu/';
+import RightMenu from '../../components/RightMenu/';
+import HomeAskCard from '../../components/HomeAskCard/'
 
 import { ReactComponent as ClockIcon } from '../../assets/clock.svg';
 import { ReactComponent as ArrowUpRightIcon } from '../../assets/arrow-up-right.svg';
 import { ReactComponent as FireIcon } from '../../assets/whh_hot.svg';
 import { ReactComponent as CheckCircleIcon } from '../../assets/check-circle.svg';
-import { ReactComponent as StarIcon } from '../../assets/star.svg';
-import { ReactComponent as LinkIcon } from '../../assets/link.svg';
 
 import photoPic from '../../assets/profile.jpg';
 
+const ask = {
+  userphoto: photoPic,
+  username: 'Aleksandra Zaryanova',
+  title: 'Como levantar um halter na academia?',
+  description: 'To querendo ficar blindão mas não faço a mínima ideia de como levantar uma halter na academia. Qual a densidade de um barra de ferro com volume de 12cm cubicos e massa de 600g?',
+  tags: ['halter', 'academia', 'fitness', 'instagram', 'saudavel']
+}
 
 @observer
 class homeIndex extends React.Component {
@@ -49,128 +56,12 @@ class homeIndex extends React.Component {
             </button>
           </div>
           <div className="home-asks-container">
-            <div className="home-ask-card">
-              <div className="user-home-ask-card">
-                <img 
-                  src={photoPic} 
-                  alt="abc"
-                  className="image-user-ask"
-                />
-                <p>Zarya Volskaya</p>
-              </div>
-              <p className="ask-title">
-                Queria fazer um bolo de chocolate com uma caixa de trigo
-              </p>
-              <p className="ask-description">
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-              </p>
-              <div className="ask-tags">
-                <button className="ask-tag">trigo</button>
-                <button className="ask-tag">bolo</button>
-                <button className="ask-tag">chocolate</button>
-              </div>
-            </div>
-            <div className="home-ask-card">
-              <div className="user-home-ask-card">
-                <img 
-                  src={photoPic} 
-                  alt="abc"
-                  className="image-user-ask"
-                />
-                <p>Zarya Volskaya</p>
-              </div>
-              <p className="ask-title">
-                Queria fazer um bolo de chocolate com uma caixa de trigo
-              </p>
-              <p className="ask-description">
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-              </p>
-              <div className="ask-tags">
-                <button className="ask-tag">trigo</button>
-                <button className="ask-tag">bolo</button>
-                <button className="ask-tag">chocolate</button>
-              </div>
-            </div>
-            <div className="home-ask-card">
-              <div className="user-home-ask-card">
-                <img 
-                  src={photoPic} 
-                  alt="abc"
-                  className="image-user-ask"
-                />
-                <p>Zarya Volskaya</p>
-              </div>
-              <p className="ask-title">
-                Queria fazer um bolo de chocolate com uma caixa de trigo
-              </p>
-              <p className="ask-description">
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-              </p>
-              <div className="ask-tags">
-                <button className="ask-tag">trigo</button>
-                <button className="ask-tag">bolo</button>
-                <button className="ask-tag">chocolate</button>
-              </div>
-          </div>
-            <div className="home-ask-card">
-              <div className="user-home-ask-card">
-                <img 
-                  src={photoPic} 
-                  alt="abc"
-                  className="image-user-ask"
-                />
-                <p>Zarya Volskaya</p>
-              </div>
-              <p className="ask-title">
-                Queria fazer um bolo de chocolate com uma caixa de trigo
-              </p>
-              <p className="ask-description">
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-                O bolo deve ter 5kg, pra toda minha familia comer e deve ...
-              </p>
-              <div className="ask-tags">
-                <button className="ask-tag">trigo</button>
-                <button className="ask-tag">bolo</button>
-                <button className="ask-tag">chocolate</button>
-              </div>
-            </div>
+            {[ask, ask, ask, ask, ask].map((ask2, index) => { 
+              return <HomeAskCard ask={ask2} key={index} /> 
+            })}
           </div>
         </div>
-        <div className="right-menu">
-          <div className="card-right-menu">
-            <div className="section-right-menu">
-              <StarIcon className="right-card-icon" /> 
-              <p>Leituras obrigatórias</p>
-            </div>
-            <Link to="#" className="link-right-menu"> 
-              Leia as regras antes de começar a utilizar a plataforma.
-            </Link>
-            <Link to="#" className="link-right-menu"> 
-              Visão e Estratégia da Ask-UFCG
-            </Link>
-            <div className="horizontal-line" />
-            <div className="section-right-menu">
-              <LinkIcon className="right-card-icon" />
-              <p>Links em destaque</p>
-            </div>
-            <Link to="#" className="link-right-menu"> 
-              Código fonte do Ask-UFCG no GitHub
-            </Link>
-            <Link to="#" className="link-right-menu"> 
-              Práticas recomendadas de Golang
-            </Link>
-            <Link to="#" className="link-right-menu"> 
-              Portal UFCG
-            </Link>
-          </div>
-        </div>
+        <RightMenu />
       </div>
     );
   }

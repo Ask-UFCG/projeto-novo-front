@@ -20,9 +20,9 @@ class App extends React.Component {
           <Header />
           <Switch>
             <Route path='/' exact component={HomeIndex} />
-            <Route path='/login' component={LoginForm} />
-            <Route path='/register' component={RegisterForm} />
-            <Route path='/profile' component={ProfileForm} />
+            <Route path='/entrar' component={LoginForm} />
+            <Route path='/registrar' component={RegisterForm} />
+            <Route path='/perfil' component={ProfileForm} />
             <Route path='/nova-pergunta' component={PerguntaForm} />
             <Route path='/regras' component={RegrasComunidadeForm} />
           </Switch>

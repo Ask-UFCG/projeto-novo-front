@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-	background-color: #E5E5E5;
+	background-color: #FAFAFA;
 }
 
 .new-ask-form {
@@ -27,9 +27,14 @@
 .new-ask-form h4 {
   margin-bottom: 1rem;
   font-size: 1rem;
+  font-weight: bold;
 }
 
 .ant-select {
   border: 1px solid black;
   border-radius: 2px;
+}
+
+.style-button:focus {
+  background-color: #E63946; 
 }
