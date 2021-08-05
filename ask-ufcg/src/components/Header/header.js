@@ -1,5 +1,5 @@
-import { Badge, Button, Avatar } from 'antd';
-import { UserOutlined, BellOutlined } from '@ant-design/icons';
+import { Button, Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import React from 'react';
 import SessionStore from '../../stores/common/indexStore';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,8 @@ import { NEW_ASK } from '../../stores/common/UrlRouter';
 import { ReactComponent as AskUFCGLogo } from '../../assets/logo.svg';
 import './header.css';
 import { observer } from 'mobx-react';
-
+import { userContext } from '../../userContext';
+import DadosEstaticosService from '../../utils/dadosEstaticosService';
 @observer
 class Header extends React.Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class Header extends React.Component {
     );
   };
 
-  _renderUserLinks = () => {
+  _renderUserLinks = (avatar) => {
+    const link = avatar ? { src: avatar } : { icon: <UserOutlined /> };
     return (
       <>
         <Link to={NEW_ASK.route}>
@@ -32,32 +34,39 @@ class Header extends React.Component {
             {NEW_ASK.text}
           </Button>
         </Link>
-        <Badge count={1}>
-          <BellOutlined />
-        </Badge>
-        <Badge count={1}>
-          <Avatar size='large' icon={<UserOutlined />} />
-        </Badge>
+        <Avatar size='large' {...link} />
       </>
     );
   };
 
   render() {
     return (
-      <div className='header'>
-        <div className='logo-header'>
-          <AskUFCGLogo className='logo-ask' />
-          <p>
-            Ask-<span className='logo-UFCG'>UFCG</span>
-          </p>
-        </div>
-        <div className='title-header'>Title Page</div>
-        <div className='user-links'>
-          {this.store.authUser
-            ? this._renderUserLinks()
-            : this._renderButtonsLoginRegister()}
-        </div>
-      </div>
+      <userContext.Consumer>
+        {({ user, logoutUser }) => {
+          return (
+            <div className='header'>
+              <div className='logo-header'>
+                <AskUFCGLogo className='logo-ask' />
+                <p>
+                  Ask-<span className='logo-UFCG'>UFCG</span>
+                </p>
+              </div>
+              <div className='title-header'>
+                {
+                  DadosEstaticosService.getTitlesHeaders().filter((value) => {
+                    return value.route === window.location.pathname ?? value;
+                  })[0].text
+                }
+              </div>
+              <div className='user-links'>
+                {user
+                  ? this._renderUserLinks(user.avatar)
+                  : this._renderButtonsLoginRegister()}
+              </div>
+            </div>
+          );
+        }}
+      </userContext.Consumer>
     );
   }
 }

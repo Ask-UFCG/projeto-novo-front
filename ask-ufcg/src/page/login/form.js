@@ -6,7 +6,6 @@ import User from '../../domain/user';
 import UserService from '../../services/user';
 import LoginFormStore from '../../stores/login/form';
 const { Content } = Layout;
-
 @observer
 class LoginForm extends React.Component {
   constructor() {

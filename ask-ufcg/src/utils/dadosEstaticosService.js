@@ -11,6 +11,17 @@ const DadosEstaticosService = {
       { label: 'ddd', value: '8' },
     ];
   },
+
+  getTitlesHeaders() {
+    return [
+      { route: '/', text: 'Questões' },
+      { route: '/profile', text: 'Perfil' },
+      { route: '/login', text: 'Entrar' },
+      { route: '/register', text: 'Registrar' },
+      { route: '/new-ask', text: 'Faça Uma Pergunta' },
+      { route: '/rules', text: 'Regras da Comunidade' },
+    ];
+  },
 };
 
 export default DadosEstaticosService;

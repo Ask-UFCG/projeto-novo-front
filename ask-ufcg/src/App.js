@@ -10,22 +10,45 @@ import PerguntaForm from './page/pergunta/form';
 import { observer } from 'mobx-react';
 import RegrasComunidadeForm from './page/regras/form';
 import HomeIndex from './page/home/index';
-
+import { userContext } from './userContext';
 @observer
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {
+        name: 'teste',
+        avatar:
+          'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      },
+    };
+
+    this.logout = this.logout.bind(this);
+  }
+
+  logout() {
+    this.setState({ user: undefined });
+  }
+
   render() {
+    const value = {
+      user: this.state.user,
+      logoutUser: this.logout,
+    };
     return (
       <Router>
         <Layout style={{ minHeight: '100vh', backgroundColor: 'white' }}>
-          <Header />
-          <Switch>
-            <Route path='/' exact component={HomeIndex} />
-            <Route path='/login' component={LoginForm} />
-            <Route path='/register' component={RegisterForm} />
-            <Route path='/profile' component={ProfileForm} />
-            <Route path='/pergunta' component={PerguntaForm} />
-            <Route path='/regras' component={RegrasComunidadeForm} />
-          </Switch>
+          <userContext.Provider value={value}>
+            <Header />
+            <Switch>
+              <Route path='/' exact component={HomeIndex} />
+              <Route path='/login' component={LoginForm} />
+              <Route path='/register' component={RegisterForm} />
+              <Route path='/profile' component={ProfileForm} />
+              <Route path='/new-ask' component={PerguntaForm} />
+              <Route path='/rules' component={RegrasComunidadeForm} />
+            </Switch>
+          </userContext.Provider>
           <Footer style={{ textAlign: 'center' }}>
             Ask-UFCG ©2021 Created by a Group of UFCG Students
           </Footer>
