@@ -9,7 +9,7 @@
 	margin-top: 4rem;
 	padding-left: 2rem;
 
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	text-transform: uppercase;
 	font-weight: bold;
 	color: #808080;
@@ -43,6 +43,7 @@
 .ant-input {
 	height: 2rem;
 	border-color: #1D3557 !important;
+	font-size: 0.9rem;
 }
 
 .ant-input:focus
@@ -71,5 +72,5 @@
 
 .ant-menu-item:hover {
 	background-color: #A8DADC !important;
-	border-left: 5px #A8DADC solid !important;
+	border-left: 5px #1D3557 solid !important;
 }
