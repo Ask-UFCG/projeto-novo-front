@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-import { Layout, Menu } from 'antd';
+import { Menu } from 'antd';
 
 import { ReactComponent as ListIcon } from '../../assets/list.svg';
 import { ReactComponent as TagIcon } from '../../assets/tag.svg';

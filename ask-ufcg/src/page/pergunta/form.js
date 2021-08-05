@@ -1,15 +1,13 @@
 import { observer } from 'mobx-react';
 import './form.css';
 import React from 'react';
-import { Layout, Row, Input, Button, Form, Col, Card, Select } from 'antd';
+import { Input, Button, Select } from 'antd';
 import PerguntaFormStore from '../../stores/pergunta/form';
 import Pergunta from '../../domain/pergunta';
 import PerguntaService from '../../services/pergunta';
 import TextArea from 'antd/lib/input/TextArea';
 import DadosEstaticosService from '../../utils/dadosEstaticosService';
 import LeftMenu from '../../components/LeftMenu/index.js'
-
-const { Content } = Layout;
 
 @observer
 class PerguntaForm extends React.Component {
