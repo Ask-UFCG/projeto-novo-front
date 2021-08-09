@@ -5,13 +5,10 @@ import { Layout, Row, Input, Button, Form, Col, Divider } from 'antd';
 import User from '../../domain/user';
 import UserService from '../../services/user';
 import RegisterFormStore from '../../stores/register/form';
-import { observable } from 'mobx';
 const { Content } = Layout;
 
 @observer
 class RegisterForm extends React.Component {
-  @observable store;
-
   constructor() {
     super();
     this.store = new RegisterFormStore(User, UserService, 'User');
