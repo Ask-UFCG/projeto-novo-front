@@ -1,0 +1,56 @@
+.home-ask-card {
+  width: 90%;
+  padding: 1.5rem;
+
+  border-radius: 5px;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+}
+
+.user-home-ask-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-home-ask-card img {
+  height: 4rem;
+  width: auto;
+  border-radius: 50%;
+}
+
+.user-home-ask-card p {
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ask-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.ask-description {
+  font-size: 1rem; 
+}
+
+.ask-tags {
+  display: flex;
+  gap: 1rem;
+}
+
+.ask-tag {
+  display: flex;
+  gap: 0.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  background-color: #457B9D;
+  color: #FFF;
+  border: 0px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}

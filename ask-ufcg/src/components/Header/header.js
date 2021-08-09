@@ -46,7 +46,9 @@ class Header extends React.Component {
           return (
             <div className='header'>
               <div className='logo-header'>
-                <AskUFCGLogo className='logo-ask' />
+                <Link to='/'>
+                  <AskUFCGLogo className='logo-ask' />
+                </Link>
                 <p>
                   Ask-<span className='logo-UFCG'>UFCG</span>
                 </p>

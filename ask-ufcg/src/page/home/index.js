@@ -1,8 +1,28 @@
-import { observer } from 'mobx-react';
-import './index.css';
 import React from 'react';
+
+import { observer } from 'mobx-react';
+
+import './index.css';
+
 import HomeIndexStore from '../../stores/home';
-import LeftMenu from '../../components/LeftMenu/index';
+import LeftMenu from '../../components/LeftMenu/';
+import RightMenu from '../../components/RightMenu/';
+import HomeAskCard from '../../components/HomeAskCard/'
+
+import { ReactComponent as ClockIcon } from '../../assets/clock.svg';
+import { ReactComponent as ArrowUpRightIcon } from '../../assets/arrow-up-right.svg';
+import { ReactComponent as FireIcon } from '../../assets/whh_hot.svg';
+import { ReactComponent as CheckCircleIcon } from '../../assets/check-circle.svg';
+
+import photoPic from '../../assets/profile.jpg';
+
+const ask = {
+  userphoto: photoPic,
+  username: 'Aleksandra Zaryanova',
+  title: 'Como levantar um halter na academia?',
+  description: 'To querendo ficar blindão mas não faço a mínima ideia de como levantar uma halter na academia. Qual a densidade de um barra de ferro com volume de 12cm cubicos e massa de 600g?',
+  tags: ['halter', 'academia', 'fitness', 'instagram', 'saudavel']
+}
 
 @observer
 class homeIndex extends React.Component {
@@ -17,9 +37,31 @@ class homeIndex extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="home-page">
         <LeftMenu />
-      </>
+        <div className="main-home-content">
+          <div className="buttons-home">
+            <button className="home-tag-button new-tag">
+              <ClockIcon className="tag-icon" /> Novo
+            </button>
+            <button className="home-tag-button other-tag">
+              <ArrowUpRightIcon className="tag-icon" /> Mais Votadas
+            </button>
+            <button className="home-tag-button other-tag">
+              <FireIcon className="tag-icon" /> Relevante
+            </button>
+            <button className="home-tag-button other-tag">
+              <CheckCircleIcon className="tag-icon" />Fechadas
+            </button>
+          </div>
+          <div className="home-asks-container">
+            {[ask, ask, ask, ask, ask].map((ask2, index) => { 
+              return <HomeAskCard ask={ask2} key={index} /> 
+            })}
+          </div>
+        </div>
+        <RightMenu />
+      </div>
     );
   }
 }
