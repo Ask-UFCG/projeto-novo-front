@@ -14,7 +14,7 @@ class RegisterForm extends React.Component {
     this.store = new RegisterFormStore(User, UserService, 'User');
   }
   onFinish = (values) => {
-    console.log('Success:', values);
+    this.store.save();
   };
 
   onFinishFailed = (errorInfo) => {
@@ -66,10 +66,25 @@ class RegisterForm extends React.Component {
                   <Row>
                     <Col span={24}>
                       <Input
-                        placeholder={'Usuário'}
+                        placeholder={'Nome'}
                         onChange={(value) =>
                           this.store.updateAttributeDecoratorKeyEventValue(
-                            'usuario',
+                            'firstName',
+                            value
+                          )
+                        }
+                      />
+                    </Col>
+                  </Row>
+                </Form.Item>
+                <Form.Item>
+                  <Row>
+                    <Col span={24}>
+                      <Input
+                        placeholder={'Sobrenome'}
+                        onChange={(value) =>
+                          this.store.updateAttributeDecoratorKeyEventValue(
+                            'lastName',
                             value
                           )
                         }
@@ -83,7 +98,7 @@ class RegisterForm extends React.Component {
                       <Input
                         placeholder={'E-mail'}
                         onChange={(value) =>
-                          this.store.updateAttributeDecoratorKeyValue(
+                          this.store.updateAttributeDecoratorKeyEventValue(
                             'email',
                             value
                           )

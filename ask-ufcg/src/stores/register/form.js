@@ -1,5 +1,7 @@
-import { action, observable } from 'mobx';
+import { action, observable, runInAction } from 'mobx';
 import User from '../../domain/user';
+import UserService from '../../services/user';
+import { showErrorApiNotification } from '../../utils/notification';
 
 class RegisterFormStore {
   @observable object = {};
@@ -33,6 +35,25 @@ class RegisterFormStore {
     if (callback) {
       callback();
     }
+  }
+
+  @action
+  save() {
+    this.loading = true;
+    UserService.registerUser(this.object)
+      .then((response) => {
+        runInAction(`Save User`, () => {
+          debugger;
+          const content = response && response.data;
+          this.loading = false;
+        });
+      })
+      .catch((error) => {
+        runInAction(`error on Save User`, () => {
+          this.loading = false;
+          showErrorApiNotification(error);
+        });
+      });
   }
 }
 

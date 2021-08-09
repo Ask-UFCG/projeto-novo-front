@@ -1,3 +1,11 @@
-class UserService {}
+import axios from 'axios';
 
-export default UserService;
+class UserService {
+  registerUser(body) {
+    return axios.post(`https://api-ask-ufcg.herokuapp.com/login`, body);
+  }
+}
+
+const instance = new UserService();
+
+export default instance;
