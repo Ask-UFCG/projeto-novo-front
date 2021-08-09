@@ -1,0 +1,76 @@
+.left-bar {
+	width: 22vw;
+	background-color: #FFF;
+	height: 100vh;
+	border-right: 1px #DCDCDC solid;
+}
+
+.menu-left-bar p {
+	margin-top: 4rem;
+	padding-left: 2rem;
+
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #808080;
+}
+
+.ant-menu-item {
+	display: flex;
+	align-items: center;
+
+	padding-left: 2rem !important;
+	border-left: 5px #FFF solid !important;
+
+	font-weight: bold;
+	font-size: 1rem;
+	color: #1D3557 !important;
+}
+
+.left-menu-search {
+	margin-top: 3rem !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center;
+	width: 100%;
+}
+
+.ant-input-group {
+	width: 90%;
+	margin: auto;
+}
+
+.ant-input {
+	height: 2rem;
+	border-color: #1D3557 !important;
+	font-size: 0.9rem;
+}
+
+.ant-input:focus
+.ant-input:focused {
+	box-shadow: #FFF;
+}
+
+.ant-input-search-button {
+	background-color: #1D3557 !important;
+	border-color: #1D3557 !important;
+	height: 2rem;
+}
+
+.ant-input-search-button:hover 
+.ant-input-search-button:focus
+.ant-input-search-button:active {
+	background-color: #1D3557 !important;
+	border-color: #1D3557 !important;
+}
+
+.ant-menu-item-selected {
+	background-color: #A8DADC !important;
+	border-left: 5px #1D3557 solid !important;
+	color: #1D3557 !important;
+}
+
+.ant-menu-item:hover {
+	background-color: #A8DADC !important;
+	border-left: 5px #1D3557 solid !important;
+}

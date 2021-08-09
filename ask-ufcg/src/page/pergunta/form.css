@@ -1,0 +1,40 @@
+.new-ask-page {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.new-ask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+	background-color: #FAFAFA;
+}
+
+.new-ask-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  border-radius: 5px;
+  border: 1px solid #E5E5E5;
+  padding: 1.5rem;
+  width: 50%;
+  background-color: #FFF;
+}
+
+.new-ask-form h4 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.ant-select {
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.style-button:focus {
+  background-color: #E63946; 
+}
