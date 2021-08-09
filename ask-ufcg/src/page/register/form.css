@@ -4,14 +4,38 @@
 
 .subtitle {
   font-weight: normal;
+  margin: 1rem 0;
 }
 
-/* Ant */
+.register-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.register-content {
+  margin-top: 4rem;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ant-form {
+  width: 100%;
+}
+
+.register-content a {
+  font-weight: bold;
+}
+
 .site-layout-content {
   min-height: 280px;
   padding: 24px;
   background: #fff;
 }
+
 #components-layout-demo-top .logo {
   float: left;
   width: 120px;
@@ -19,13 +43,10 @@
   margin: 16px 24px 16px 0;
   background: rgba(255, 255, 255, 0.3);
 }
+
 .ant-row-rtl #components-layout-demo-top .logo {
   float: right;
   margin: 16px 0 16px 24px;
-}
-
-.hl-input:disabled {
-  color: #555 !important;
 }
 
 .center-content {
@@ -47,3 +68,4 @@
 .style-button:hover {
   background-color: #890000;
 }
+
