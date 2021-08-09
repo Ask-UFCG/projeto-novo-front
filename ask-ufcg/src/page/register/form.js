@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import './form.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Row, Input, Button, Form, Col, Divider } from 'antd';
+import { Layout, Input, Button, Form, Divider } from 'antd';
 import User from '../../domain/user';
 import UserService from '../../services/user';
 import RegisterFormStore from '../../stores/register/form';
