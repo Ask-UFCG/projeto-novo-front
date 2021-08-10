@@ -35,6 +35,10 @@
   border-radius: 2px;
 }
 
-.style-button:focus {
-  background-color: #E63946; 
+.ant-input {
+  height: 2rem;
+}
+
+.ant-select-selection-overflow{
+  height: 1.7rem;
 }

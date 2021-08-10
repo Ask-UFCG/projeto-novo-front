@@ -30,3 +30,25 @@
   font-weight: bold;
 }
 
+.ant-input-affix-wrapper {
+  border: 1px solid #000;
+  padding: 0 11px;
+}
+
+.ant-input-affix-wrapper:hover {
+  border-color: #000;
+}
+
+.ant-input {
+  font-size: 1rem;
+  height: 1rem;
+}
+
+.style-button:hover {
+	background-color: #1D3557 !important;
+}
+
+.style-button:focus {
+  background-color: #1D3557 !important;
+}
+

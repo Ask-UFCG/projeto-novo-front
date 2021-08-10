@@ -13,6 +13,8 @@ import User from '../../domain/user.js';
 import UserService from '../../services/user.js';
 import ProfileFormStore from '../../stores/profile/form.js';
 
+const { Search } = Input;
+
 @observer
 class ProfileForm extends React.Component {
   constructor() {
@@ -43,9 +45,12 @@ class ProfileForm extends React.Component {
               alt={`Profile image of ...`}
               className='profile-image'
             />
-            <button className='button-change'>
-              <ChangeImageIcon className='image-button-change' /> Alterar Imagem
-            </button>
+            <Search
+              placeholder="Link para nova imagem"
+              allowClear
+              enterButton="Enviar"
+              size="large"
+            />
           </div>
           <div className='profile-informations-change'>
             <Form onFinish={this.onFinish} onFinishFailed={this.onFinishFailed}>
@@ -70,20 +75,6 @@ class ProfileForm extends React.Component {
                   onChange={(value) =>
                     this.store.updateAttributeDecoratorKeyEventValue(
                       'lastName',
-                      value
-                    )
-                  }
-                />
-              </Form.Item>
-
-              <Form.Item>
-                <Input
-                  size='large'
-                  placeholder='E-mail'
-                  className='input-info'
-                  onChange={(value) =>
-                    this.store.updateAttributeDecoratorKeyEventValue(
-                      'email',
                       value
                     )
                   }
@@ -117,7 +108,7 @@ class ProfileForm extends React.Component {
               </Form.Item>
               <Form.Item>
                 <Button
-                  className='button-change button-change-extra-margin'
+                  className='button-change button-change-extra-margin style-button'
                   type='primary'
                   htmlType='submit'
                 >

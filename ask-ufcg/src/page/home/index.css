@@ -8,7 +8,7 @@
   padding-top: 3rem;
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 65%;
   align-items: center;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .home-asks-container {
-  width: 80%;
+  width: 90%;
   margin: 2rem 0;
 
   display: flex;
@@ -131,10 +131,6 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #1D3557; 
-}
-
-.right-menu {
-  width: 25vw;
 }
 
 .card-right-menu {
