@@ -62,7 +62,7 @@
 .style-button {
   width: 100%;
   background-color: #E63946;
-  border-color: #E63946;
+  height: 2rem;
 }
 
 .style-button:hover {
