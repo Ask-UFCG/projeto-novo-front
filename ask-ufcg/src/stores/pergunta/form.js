@@ -15,7 +15,6 @@ class PerguntaFormStore {
 
   @action
   updateAttributeDecoratorKeyEventValue(key, event) {
-    console.log(event);
     this.object[key] = event.target.value;
   }
 

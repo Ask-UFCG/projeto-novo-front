@@ -16,24 +16,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {
-        name: 'teste',
-        avatar:
-          'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      },
+      user: undefined,
+      token: undefined,
     };
 
     this.logout = this.logout.bind(this);
+    this.login = this.login.bind(this);
   }
 
   logout() {
-    this.setState({ user: undefined });
+    this.setState({ user: undefined, token: undefined });
+  }
+
+  login(response) {
+    const { user, token } = response;
+    this.setState({ user, token }, console.log(user));
   }
 
   render() {
     const value = {
       user: this.state.user,
       logoutUser: this.logout,
+      loginUser: this.login,
     };
     return (
       <Router>

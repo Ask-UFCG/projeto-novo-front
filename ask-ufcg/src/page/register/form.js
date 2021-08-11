@@ -2,24 +2,25 @@ import { observer } from 'mobx-react';
 import './form.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Input, Button, Form, Divider } from 'antd';
+import { Input, Button, Form, Divider } from 'antd';
 import User from '../../domain/user';
 import UserService from '../../services/user';
 import RegisterFormStore from '../../stores/register/form';
-const { Content } = Layout;
 
 @observer
 class RegisterForm extends React.Component {
+  formRef = React.createRef();
   constructor() {
     super();
     this.store = new RegisterFormStore(User, UserService, 'User');
   }
-  onFinish = (values) => {
-    this.store.save();
+
+  goToLoginPage = () => {
+    this.props.history.push('/login');
   };
 
-  onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  onFinish = () => {
+    this.store.save(this.goToLoginPage);
   };
 
   componentDidMount() {
@@ -36,42 +37,79 @@ class RegisterForm extends React.Component {
             <br />
             ingressando na comunidade mais útil
           </h3>
-          <Form onFinish={this.onFinish} onFinishFailed={this.onFinishFailed}>
-            <Form.Item>
+          <Form layout={'vertical'} ref={this.formRef} onFinish={this.onFinish}>
+            <Form.Item
+              label='Nome'
+              name='name'
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your name!',
+                },
+              ]}
+            >
               <Input
-                placeholder={'Usuário'}
+                placeholder={'Nome'}
                 onChange={(value) =>
                   this.store.updateAttributeDecoratorKeyEventValue(
-                    'usuario',
+                    'firstName',
                     value
                   )
                 }
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item
+              label='Sobrenome'
+              name='sobrenome'
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your last name!',
+                },
+              ]}
+            >
+              <Input
+                placeholder={'Sobrenome'}
+                onChange={(value) =>
+                  this.store.updateAttributeDecoratorKeyEventValue(
+                    'lastName',
+                    value
+                  )
+                }
+              />
+            </Form.Item>
+            <Form.Item
+              label='E-mail'
+              name='email'
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your E-mail!',
+                },
+              ]}
+            >
               <Input
                 placeholder={'E-mail'}
                 onChange={(value) =>
-                  this.store.updateAttributeDecoratorKeyValue('email', value)
-                }
-              />
-            </Form.Item>
-            <Form.Item>
-              <Input.Password
-                placeholder={'Senha'}
-                onChange={(value) =>
                   this.store.updateAttributeDecoratorKeyEventValue(
-                    'password',
+                    'email',
                     value
                   )
                 }
-                maxLength={12}
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item
+              name='senha'
+              label='senha'
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password!',
+                },
+              ]}
+            >
               <Input.Password
-                placeholder={'Repita a senha'}
-                disabled={!this.store.object.password}
+                placeholder={'Senha'}
                 onChange={(value) =>
                   this.store.updateAttributeDecoratorKeyEventValue(
                     'password',

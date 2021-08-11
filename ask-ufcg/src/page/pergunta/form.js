@@ -7,7 +7,7 @@ import Pergunta from '../../domain/pergunta';
 import PerguntaService from '../../services/pergunta';
 import TextArea from 'antd/lib/input/TextArea';
 import DadosEstaticosService from '../../utils/dadosEstaticosService';
-import LeftMenu from '../../components/LeftMenu/index.js'
+import LeftMenu from '../../components/LeftMenu/index.js';
 
 @observer
 class PerguntaForm extends React.Component {
@@ -15,13 +15,9 @@ class PerguntaForm extends React.Component {
     super();
     this.store = new PerguntaFormStore(Pergunta, PerguntaService, 'Pergunta');
   }
-  onFinish = (values) => {
-    console.log('Success:', values);
-  };
+  onFinish = (values) => {};
 
-  onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+  onFinishFailed = (errorInfo) => {};
 
   componentDidMount() {
     this.store.init();
@@ -41,28 +37,20 @@ class PerguntaForm extends React.Component {
               options={DadosEstaticosService.getLabelsDisciplinas()}
               maxTagCount={5}
               onChange={(e) => {
-                this.store.updateAttributeDecoratorKeyValue(
-                  'tags',
-                  e
-                );
+                this.store.updateAttributeDecoratorKeyValue('tags', e);
               }}
               listHeight={160}
             />
             <Input
               placeholder={'Escreva um titulo que chama atenção'}
               onChange={(value) =>
-              this.store.updateAttributeDecoratorKeyEventValue(
-                'email',
-                value
-              )}
+                this.store.updateAttributeDecoratorKeyEventValue('email', value)
+              }
             />
             <TextArea
               placeholder={'Escreva um titulo que chama atenção'}
               onChange={(value) =>
-                this.store.updateAttributeDecoratorKeyEventValue(
-                  'email',
-                  value
-                )
+                this.store.updateAttributeDecoratorKeyEventValue('email', value)
               }
               autosize={{ maxRows: 20, minRows: 20 }}
               style={{

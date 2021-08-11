@@ -6,7 +6,6 @@ import { Image, Button, Input, Form } from 'antd';
 import LeftMenu from '../../components/LeftMenu/index.js';
 
 import imagePic from '../../assets/profile.jpg';
-import { ReactComponent as ChangeImageIcon } from '../../assets/changeImage.svg';
 
 import './form.css';
 import User from '../../domain/user.js';
@@ -26,13 +25,9 @@ class ProfileForm extends React.Component {
     this.store.init();
   }
 
-  onFinish = (values) => {
-    console.log('Success:', values);
-  };
+  onFinish = (values) => {};
 
-  onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+  onFinishFailed = (errorInfo) => {};
 
   render() {
     return (
@@ -46,10 +41,10 @@ class ProfileForm extends React.Component {
               className='profile-image'
             />
             <Search
-              placeholder="Link para nova imagem"
+              placeholder='Link para nova imagem'
               allowClear
-              enterButton="Enviar"
-              size="large"
+              enterButton='Enviar'
+              size='large'
             />
           </div>
           <div className='profile-informations-change'>

@@ -2,23 +2,26 @@ import { observer } from 'mobx-react';
 import './form.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Row, Input, Button, Form, Col, Divider } from 'antd';
+import { Input, Button, Form, Divider } from 'antd';
 import User from '../../domain/user';
 import UserService from '../../services/user';
 import LoginFormStore from '../../stores/login/form';
-const { Content } = Layout;
+import { userContext } from '../../userContext';
+
 @observer
 class LoginForm extends React.Component {
+  formRef = React.createRef();
+
   constructor() {
     super();
     this.store = new LoginFormStore(User, UserService, 'User');
   }
-  onFinish = (values) => {
-    console.log('Success:', values);
+  onFinish = (loginUser) => {
+    this.store.login(loginUser, this.goToHomePage);
   };
 
-  onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  goToHomePage = () => {
+    this.props.history.push('/');
   };
 
   componentDidMount() {
@@ -27,55 +30,78 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className='login-page'>
-        <div className='login-content'>
-          <h1 className='title-login'>Sentimos Sua Falta!</h1>
-          <h3 className='subtitle-login'>
-            Vamos em busca do conhecimento coletivo
-          </h3>
-          <Form
-            onFinish={this.onFinish}
-            onFinishFailed={this.onFinishFailed}
-          >
-            <Form.Item>
-              <Input
-                placeholder={'E-mail'}
-                onChange={(value) =>
-                  this.store.updateAttributeDecoratorKeyEventValue(
-                    'email',
-                    value
-                  )
-                }
-              />
-            </Form.Item>
-            <Form.Item>
-              <Input.Password
-                placeholder={'Senha'}
-                onChange={(value) =>
-                  this.store.updateAttributeDecoratorKeyEventValue(
-                    'password',
-                    value
-                  )
-                }
-              />
-            </Form.Item>
-            <Form.Item>
-              <Button
-                type='primary'
-                htmlType='submit'
-                className='style-button'
-                size={'large'}
-              >
-                Entrar
-              </Button>
-            </Form.Item>
-            <Divider />
-          </Form>
-          <Link to='/register'>
-            Não é registrado? Registre-se aqui!
-          </Link>
-        </div>
-      </div>
+      <userContext.Consumer>
+        {({ user, logoutUser, loginUser }) => {
+          return (
+            <div className='login-page'>
+              <div className='login-content'>
+                <h1 className='title-login'>Sentimos Sua Falta!</h1>
+                <h3 className='subtitle-login'>
+                  Vamos em busca do conhecimento coletivo
+                </h3>
+                <Form
+                  onFinish={() => this.onFinish(loginUser)}
+                  ref={this.formRef}
+                  layout='vertical'
+                >
+                  <Form.Item
+                    name='email'
+                    label='E-mail'
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please input your email!',
+                      },
+                    ]}
+                  >
+                    <Input
+                      placeholder={'E-mail'}
+                      onChange={(value) =>
+                        this.store.updateAttributeDecoratorKeyEventValue(
+                          'email',
+                          value
+                        )
+                      }
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name='senha'
+                    label='Senha'
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please input your password!',
+                      },
+                    ]}
+                  >
+                    <Input.Password
+                      placeholder={'Senha'}
+                      onChange={(value) =>
+                        this.store.updateAttributeDecoratorKeyEventValue(
+                          'password',
+                          value
+                        )
+                      }
+                    />
+                  </Form.Item>
+                  <Form.Item>
+                    <Button
+                      type='primary'
+                      htmlType='submit'
+                      className='style-button'
+                      size={'large'}
+                    >
+                      Entrar
+                    </Button>
+                  </Form.Item>
+                  <Divider />
+                </Form>
+                <Link to='/register'>Não é registrado? Registre-se aqui!</Link>
+              </div>
+            </div>
+          );
+        }}
+      </userContext.Consumer>
     );
   }
 }

@@ -1,5 +1,5 @@
-import { action, observable } from 'mobx';
-import User from '../../domain/user';
+import { action, observable, runInAction, toJS } from 'mobx';
+import { showErrorApiNotification } from '../../utils/notification';
 
 class LoginFormStore {
   @observable object = null;
@@ -15,7 +15,6 @@ class LoginFormStore {
 
   @action
   updateAttributeDecoratorKeyEventValue(key, event) {
-    console.log(event);
     this.object[key] = event.target.value;
   }
 
@@ -25,12 +24,29 @@ class LoginFormStore {
   }
 
   @action
-  init(id, callback) {
+  init() {
+    this.object = new this.entity();
+  }
+
+  @action
+  login(loginUser, goToHomePage) {
     this.loading = true;
-    this.object = new User();
-    if (callback) {
-      callback();
-    }
+    this.service
+      .login(toJS(this.object))
+      .then((response) => {
+        runInAction(`Login User`, () => {
+          const content = response && response.data;
+          loginUser(content);
+          goToHomePage();
+          this.loading = false;
+        });
+      })
+      .catch((error) => {
+        runInAction(`error on Login User`, () => {
+          this.loading = false;
+          showErrorApiNotification(error);
+        });
+      });
   }
 }
 

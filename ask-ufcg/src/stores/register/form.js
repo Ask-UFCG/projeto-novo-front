@@ -1,6 +1,4 @@
-import { action, observable, runInAction } from 'mobx';
-import User from '../../domain/user';
-import UserService from '../../services/user';
+import { action, observable, runInAction, toJS } from 'mobx';
 import { showErrorApiNotification } from '../../utils/notification';
 
 class RegisterFormStore {
@@ -11,6 +9,7 @@ class RegisterFormStore {
     this.entity = entity;
     this.service = service;
     this.entityName = entityName;
+
     this.updateAttributeDecoratorKeyValue =
       this.updateAttributeDecoratorKeyValue.bind(this);
 
@@ -29,23 +28,20 @@ class RegisterFormStore {
   }
 
   @action
-  init(id, callback) {
+  init() {
     this.loading = true;
-    this.object = new User();
-    if (callback) {
-      callback();
-    }
+    this.object = new this.entity();
   }
 
   @action
-  save() {
+  save(goToLoginPage) {
     this.loading = true;
-    UserService.registerUser(this.object)
-      .then((response) => {
+    this.service
+      .registerUser(toJS(this.object))
+      .then(() => {
         runInAction(`Save User`, () => {
-          debugger;
-          const content = response && response.data;
           this.loading = false;
+          goToLoginPage();
         });
       })
       .catch((error) => {
