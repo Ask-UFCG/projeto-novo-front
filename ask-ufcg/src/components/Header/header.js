@@ -48,6 +48,9 @@ class Header extends React.Component {
   }
 
   render() {
+    const title = DadosEstaticosService.getTitlesHeaders().filter((value) => {
+      return value.route === window.location.pathname ?? value
+    })[0]
     return (
       <userContext.Consumer>
         {({ user }) => {
@@ -61,13 +64,7 @@ class Header extends React.Component {
                   Ask-<span className="logo-UFCG">UFCG</span>
                 </p>
               </div>
-              <div className="title-header">
-                {
-                  DadosEstaticosService.getTitlesHeaders().filter((value) => {
-                    return value.route === window.location.pathname ?? value
-                  })[0].text
-                }
-              </div>
+              <div className="title-header">{title ? title.text : ''}</div>
               <div className="user-links">
                 {user ? this._renderUserLinks(user.avatar) : this._renderButtonsLoginRegister()}
               </div>
