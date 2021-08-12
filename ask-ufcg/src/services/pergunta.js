@@ -1,8 +1,7 @@
-import axios from 'axios';
+import axios from 'axios'
 
 class PerguntaService {
   createQuestion = (userId, question, token) => {
-    debugger;
     return axios.post(
       `http://localhost:8081/questions/users/${encodeURI(userId)}/questions`,
       question,
@@ -11,10 +10,10 @@ class PerguntaService {
           Authorization: `Bearer ${token}`,
         },
       }
-    );
-  };
+    )
+  }
 }
 
-const instance = new PerguntaService();
+const instance = new PerguntaService()
 
-export default instance;
+export default instance

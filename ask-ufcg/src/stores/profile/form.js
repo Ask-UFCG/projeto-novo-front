@@ -38,7 +38,6 @@ class ProfileFormStore {
       .then((response) => {
         runInAction(`Save User`, () => {
           const content = response && response.data
-          debugger
           setUser({ user: new this.entity(content) })
           showNotification('success', null, 'Usuário salvo com sucesso')
           this.loading = false

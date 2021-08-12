@@ -27,6 +27,16 @@ class ProfileForm extends React.Component {
   }
 
   render() {
+    const rulesURL = [
+      {
+        max: 255,
+        message: 'O link para o avatar deve ter no máximo 255 caracteres.',
+      },
+      {
+        type: 'url',
+        message: 'Este campo deve ser um URL válido.',
+      },
+    ]
     return (
       <userContext.Consumer>
         {({ user, token, setUser }) => {
@@ -43,12 +53,12 @@ class ProfileForm extends React.Component {
                   >
                     <div className="profile-image-content">
                       <Image
-                        src={this.store.object.linkAvatar ? this.store.object.linkAvatar : imagePic}
+                        src={this.store.object.linkAvatar || imagePic}
                         alt={`Profile image of ...`}
                         className="profile-image"
                       />
                     </div>
-                    <Form.Item name="avatar" label="Link Avatar">
+                    <Form.Item name="avatar" label="Link Avatar" rules={rulesURL}>
                       <Input
                         defaultValue={this.store.object.linkAvatar}
                         size="large"
@@ -59,7 +69,12 @@ class ProfileForm extends React.Component {
                         }
                       />
                     </Form.Item>
-                    <Form.Item name="nome" label="Nome">
+                    <Form.Item
+                      name="nome"
+                      label="Nome"
+                      rules={[{ required: true, message: 'Por favor insira seu nome!' }]}
+                      initialValue={this.store.object.firstName}
+                    >
                       <Input
                         defaultValue={this.store.object.firstName}
                         size="large"
@@ -70,7 +85,12 @@ class ProfileForm extends React.Component {
                         }
                       />
                     </Form.Item>
-                    <Form.Item name="sobrenome" label="Sobrenome">
+                    <Form.Item
+                      name="sobrenome"
+                      label="Sobrenome"
+                      rules={[{ required: true, message: 'Por favor insira seu sobrenome!' }]}
+                      initialValue={this.store.object.lastName}
+                    >
                       <Input
                         defaultValue={this.store.object.lastName}
                         size="large"
@@ -81,7 +101,7 @@ class ProfileForm extends React.Component {
                         }
                       />
                     </Form.Item>
-                    <Form.Item name="github" label="Github">
+                    <Form.Item name="github" label="Github" rules={rulesURL}>
                       <Input
                         defaultValue={this.store.object.linkGithub}
                         size="large"
@@ -92,7 +112,7 @@ class ProfileForm extends React.Component {
                         }
                       />
                     </Form.Item>
-                    <Form.Item name="linkedin" label="Linkedin">
+                    <Form.Item name="linkedin" label="Linkedin" rules={rulesURL}>
                       <Input
                         defaultValue={this.store.object.linkLinkedin}
                         size="large"
