@@ -21,7 +21,6 @@ class PerguntaFormStore {
   @action
   updateAttributeDecoratorKeyValue(key, value) {
     this.object[key] = value
-    console.log(value)
   }
 
   @action
@@ -36,14 +35,14 @@ class PerguntaFormStore {
     this.service
       .createQuestion(user.id, toJS(this.object), token)
       .then(() => {
-        runInAction(`Save User`, () => {
+        runInAction(`Save Question`, () => {
           showNotification('success', null, 'Questão criada com sucesso')
           goToHomePage()
           this.loading = false
         })
       })
       .catch((error) => {
-        runInAction(`error on Save User`, () => {
+        runInAction(`error on Save Question`, () => {
           this.loading = false
           showErrorApiNotification(error)
         })

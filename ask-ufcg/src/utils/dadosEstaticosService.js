@@ -1,4 +1,8 @@
 const DadosEstaticosService = {
+  getURLServidor() {
+    return 'https://api-ask-ufcg.herokuapp.com'
+  },
+
   getLabelsDisciplinas() {
     return [
       { label: 'Matematica', value: '1' },
@@ -9,7 +13,7 @@ const DadosEstaticosService = {
       { label: 'bbb', value: '6' },
       { label: 'ccc', value: '7' },
       { label: 'ddd', value: '8' },
-    ];
+    ]
   },
 
   getTitlesHeaders() {
@@ -20,8 +24,8 @@ const DadosEstaticosService = {
       { route: '/register', text: 'Registrar' },
       { route: '/new-ask', text: 'Faça Uma Pergunta' },
       { route: '/rules', text: 'Regras da Comunidade' },
-    ];
+    ]
   },
-};
+}
 
-export default DadosEstaticosService;
+export default DadosEstaticosService

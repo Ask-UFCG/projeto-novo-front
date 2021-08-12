@@ -1,27 +1,25 @@
-import axios from 'axios';
+import axios from 'axios'
+import DadosEstaticosService from '../utils/dadosEstaticosService'
 
+const api = DadosEstaticosService.getURLServidor()
 class UserService {
   registerUser(body) {
-    return axios.post(`http://localhost:8081/users`, body);
+    return axios.post(`${api}/users`, body)
   }
 
   login(body) {
-    return axios.post(`http://localhost:8081/login`, body);
+    return axios.post(`${api}/login`, body)
   }
 
   update = (user, token) => {
-    return axios.put(
-      `http://localhost:8081/users/${encodeURI(user.id)}`,
-      user,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-  };
+    return axios.put(`${api}/users/${encodeURI(user.id)}`, user, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+  }
 }
 
-const instance = new UserService();
+const instance = new UserService()
 
-export default instance;
+export default instance
