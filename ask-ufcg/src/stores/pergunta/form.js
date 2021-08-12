@@ -1,36 +1,36 @@
-import { action, observable } from 'mobx';
-import Pergunta from '../../domain/pergunta';
+import { action, observable } from 'mobx'
+import Pergunta from '../../domain/pergunta'
 
 class PerguntaFormStore {
-  @observable object = null;
-  @observable loading = false;
+  @observable object = null
+  @observable loading = false
 
   constructor(entity, service, entityName) {
-    this.entity = entity;
-    this.service = service;
-    this.entityName = entityName;
-    this.updateAttributeDecoratorKeyValue =
-      this.updateAttributeDecoratorKeyValue.bind(this);
+    this.entity = entity
+    this.service = service
+    this.entityName = entityName
+    this.updateAttributeDecoratorKeyValue = this.updateAttributeDecoratorKeyValue.bind(this)
   }
 
   @action
   updateAttributeDecoratorKeyEventValue(key, event) {
-    this.object[key] = event.target.value;
+    this.object[key] = event.target.value
   }
 
   @action
   updateAttributeDecoratorKeyValue(key, value) {
-    this.object[key] = value;
+    this.object[key] = value
   }
 
   @action
   init(id, callback) {
-    this.loading = true;
-    this.object = new Pergunta();
+    this.loading = true
+    this.object = new Pergunta()
     if (callback) {
-      callback();
+      callback()
     }
+    this.loading = false
   }
 }
 
-export default PerguntaFormStore;
+export default PerguntaFormStore
