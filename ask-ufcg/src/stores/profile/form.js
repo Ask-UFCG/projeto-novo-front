@@ -1,5 +1,6 @@
-import { action, observable } from 'mobx';
+import { action, observable, runInAction, toJS } from 'mobx';
 import User from '../../domain/user';
+import { showErrorApiNotification } from '../../utils/notification';
 
 class ProfileFormStore {
   @observable object = {};
@@ -27,12 +28,30 @@ class ProfileFormStore {
   }
 
   @action
-  init(id, callback) {
+  init(user) {
     this.loading = true;
-    this.object = new User();
-    if (callback) {
-      callback();
-    }
+    this.object = new this.entity(user);
+    console.log(this.object);
+  }
+
+  @action
+  save(loginUser) {
+    this.loading = true;
+    this.service
+      .login(toJS(this.object))
+      .then((response) => {
+        runInAction(`Save User`, () => {
+          const content = response && response.data;
+          loginUser(content);
+          this.loading = false;
+        });
+      })
+      .catch((error) => {
+        runInAction(`error on Save User`, () => {
+          this.loading = false;
+          showErrorApiNotification(error);
+        });
+      });
   }
 }
 

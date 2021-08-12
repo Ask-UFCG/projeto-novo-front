@@ -29,14 +29,14 @@ class LoginFormStore {
   }
 
   @action
-  login(loginUser, goToHomePage) {
+  login(setUser, goToHomePage) {
     this.loading = true;
     this.service
       .login(toJS(this.object))
       .then((response) => {
         runInAction(`Login User`, () => {
           const content = response && response.data;
-          loginUser(content);
+          setUser(content);
           goToHomePage();
           this.loading = false;
         });
