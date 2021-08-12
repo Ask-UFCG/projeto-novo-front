@@ -17,8 +17,8 @@ class LoginForm extends React.Component {
     this.store = new LoginFormStore(User, UserService, 'User');
   }
 
-  onFinish = (setUser) => {
-    this.store.login(setUser, this.goToHomePage);
+  onFinish = (loginUser) => {
+    this.store.login(loginUser, this.goToHomePage);
   };
 
   goToHomePage = () => {
@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
   render() {
     return (
       <userContext.Consumer>
-        {({ setUser }) => {
+        {({ loginUser }) => {
           return (
             <div className='login-page'>
               <div className='login-content'>
@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
                   Vamos em busca do conhecimento coletivo
                 </h3>
                 <Form
-                  onFinish={() => this.onFinish(setUser)}
+                  onFinish={() => this.onFinish(loginUser)}
                   ref={this.formRef}
                   layout='vertical'
                 >
