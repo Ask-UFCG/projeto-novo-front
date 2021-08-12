@@ -3,7 +3,7 @@ import { UserOutlined } from '@ant-design/icons'
 import React from 'react'
 import SessionStore from '../../stores/common/indexStore'
 import { Link } from 'react-router-dom'
-import { HOME, NEW_ASK, REGISTER, SIGN_IN } from '../../stores/common/UrlRouter'
+import { HOME, NEW_ASK, PROFILE, REGISTER, SIGN_IN } from '../../stores/common/UrlRouter'
 import { ReactComponent as AskUFCGLogo } from '../../assets/logo.svg'
 import './header.css'
 import { observer } from 'mobx-react'
@@ -42,7 +42,9 @@ class Header extends React.Component {
             {NEW_ASK.text}
           </Button>
         </Link>
-        <Avatar size="large" {...link} />
+        <Link to={PROFILE.route}>
+          <Avatar size="large" {...link} />
+        </Link>
       </>
     )
   }
