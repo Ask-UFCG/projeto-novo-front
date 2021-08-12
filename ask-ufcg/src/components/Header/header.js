@@ -40,7 +40,6 @@ class Header extends React.Component {
   };
 
   _renderUserLinks = (avatar) => {
-    debugger;
     const link = avatar ? { src: avatar } : { icon: <UserOutlined /> };
     return (
       <>
