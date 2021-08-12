@@ -13,8 +13,6 @@ import UserService from '../../services/user.js';
 import ProfileFormStore from '../../stores/profile/form.js';
 import { userContext } from '../../userContext';
 
-const { Search } = Input;
-
 @observer
 class ProfileForm extends React.Component {
   formRef = React.createRef();

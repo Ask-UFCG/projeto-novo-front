@@ -40,6 +40,7 @@ class Header extends React.Component {
   };
 
   _renderUserLinks = (avatar) => {
+    debugger;
     const link = avatar ? { src: avatar } : { icon: <UserOutlined /> };
     return (
       <>
@@ -78,7 +79,7 @@ class Header extends React.Component {
               <div className='title-header'>{title ? title.text : ''}</div>
               <div className='user-links'>
                 {user
-                  ? this._renderUserLinks(user.avatar)
+                  ? this._renderUserLinks(user.linkAvatar)
                   : this._renderButtonsLoginRegister()}
               </div>
             </div>

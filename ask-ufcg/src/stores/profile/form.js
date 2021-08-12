@@ -1,5 +1,4 @@
 import { action, observable, runInAction, toJS } from 'mobx';
-import User from '../../domain/user';
 import {
   showErrorApiNotification,
   showNotification,
@@ -32,9 +31,7 @@ class ProfileFormStore {
 
   @action
   init(user) {
-    this.loading = true;
     this.object = new this.entity(user);
-    this.loading = false;
   }
 
   @action
