@@ -2,11 +2,13 @@ import { action, observable, runInAction } from 'mobx'
 import DadosEstaticosService from '../../utils/dadosEstaticosService'
 import { showErrorApiNotification } from '../../utils/notification'
 import imagePic from '../../assets/perfil_not_found.png'
+import imageNotFound from '../../assets/link_not_valid.jpg'
 
 class HomeIndexStore {
   @observable object = null
   @observable loading = false
   @observable allAsks = []
+  @observable allAsksForCards = []
   LENGTH_MAX = 60
 
   constructor(entity, service, entityName) {
@@ -31,6 +33,12 @@ class HomeIndexStore {
     this.loadAllAsks()
   }
 
+  _checkImgOnline = (imageUrl) => {
+    var img = new Image()
+    img.src = imageUrl
+    return img.height > 0
+  }
+
   @action
   loadAllAsks = () => {
     this.loading = true
@@ -39,8 +47,9 @@ class HomeIndexStore {
       .then((response) => {
         runInAction(`Load All Asks`, () => {
           const content = response && response.data && response.data ? response.data : []
-          if (content) {
-            this.allAsks = content.map((ask) => {
+          if (content.length > 0) {
+            this.allAsks = content
+            this.allAsksForCards = content.map((ask) => {
               const askTitle = ask.title
                 ? ask.title.length >= this.LENGTH_MAX
                   ? ask.title.substring(0, this.LENGTH_MAX)
@@ -61,9 +70,13 @@ class HomeIndexStore {
                 })
                 return result
               })
+              const linkAvatar =
+                !ask.author.linkAvatar || this._checkImgOnline(ask.author.linkAvatar)
+                  ? ask.author.linkAvatar || imagePic
+                  : imageNotFound
 
               return {
-                userphoto: ask.author.linkAvatar || imagePic,
+                userphoto: linkAvatar,
                 username: ask.author.firstName,
                 title: askTitle,
                 description: askDescription,

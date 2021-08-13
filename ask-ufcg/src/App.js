@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import Layout, { Footer } from 'antd/lib/layout/layout'
 import Header from './components/Header/header'
 import LoginForm from './page/login/form'
@@ -36,6 +36,11 @@ class App extends React.Component {
     this.setState({ user })
   }
 
+  _isUserLogged = (route) => {
+    debugger
+    return this.state.user ? <Redirect to={HOME.route} /> : <Redirect to={route} />
+  }
+
   render() {
     const value = {
       user: this.state.user,
@@ -53,8 +58,15 @@ class App extends React.Component {
               <Route path={HOME.route} exact component={HomeIndex} />
               <Route path={SIGN_IN.route} component={LoginForm} />
               <Route path={REGISTER.route} component={RegisterForm} />
-              <Route path={PROFILE.route} component={ProfileForm} />
-              <Route path={NEW_ASK.route} component={PerguntaForm} />
+              {this.state.user ? (
+                <>
+                  <Route path={PROFILE.route} component={ProfileForm} />
+                  <Route path={NEW_ASK.route} component={PerguntaForm} />
+                </>
+              ) : (
+                <Redirect to={HOME.route} />
+              )}
+
               <Route path={RULES.route} component={RegrasComunidadeForm} />
             </Switch>
           </userContext.Provider>

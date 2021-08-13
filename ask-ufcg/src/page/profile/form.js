@@ -6,6 +6,7 @@ import { Image, Button, Input, Form } from 'antd'
 import LeftMenu from '../../components/LeftMenu/index.js'
 
 import imagePic from '../../assets/perfil_not_found.png'
+import imageNotFound from '../../assets/link_not_valid.jpg'
 
 import './form.css'
 import User from '../../domain/user.js'
@@ -36,15 +37,39 @@ class ProfileForm extends React.Component {
         type: 'url',
         message: 'Este campo deve ser um URL válido.',
       },
+      {
+        pattern: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/,
+        message: 'Este campo deve ser um URL válido e com os tipos (jpg|gif|png)',
+      },
     ]
     return (
       <userContext.Consumer>
-        {({ user, token, setUser }) => {
+        {({ user, token, setUser, logoutUser }) => {
           this.store.init(user)
           return (
             <div className="profile-page">
               <LeftMenu />
               <div className="content">
+                {user ? (
+                  <Button
+                    type="primary"
+                    style={{
+                      marginLeft: '93%',
+                      marginTop: '10px',
+                      backgroundColor: '#1D3557',
+                      color: 'white',
+                      borderRadius: '5px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontWeight: 'bold',
+                    }}
+                    onClick={logoutUser}
+                  >
+                    Sair
+                  </Button>
+                ) : (
+                  ''
+                )}
                 <div className="profile-informations-change">
                   <Form
                     onFinish={() => this.onFinish(setUser, token)}
@@ -54,6 +79,7 @@ class ProfileForm extends React.Component {
                     <div className="profile-image-content">
                       <Image
                         src={this.store.object.linkAvatar || imagePic}
+                        fallback={imageNotFound}
                         alt={`Profile image of ...`}
                         className="profile-image"
                       />

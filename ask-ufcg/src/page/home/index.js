@@ -48,7 +48,7 @@ class homeIndex extends React.Component {
             {this.store.loading ? (
               <Spin />
             ) : (
-              this.store.allAsks.map((ask2, index) => {
+              this.store.allAsksForCards.map((ask2, index) => {
                 return <HomeAskCard ask={ask2} key={index} />
               })
             )}
