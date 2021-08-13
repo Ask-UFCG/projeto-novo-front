@@ -65,7 +65,16 @@ class RegisterForm extends React.Component {
             <Form.Item
               label="E-mail"
               name="email"
-              rules={[{ required: true, message: 'Por favor insira seu E-mail!' }]}
+              rules={[
+                {
+                  required: true,
+                  message: 'Por favor insira seu E-mail!',
+                },
+                {
+                  type: 'email',
+                  message: 'Por favor insira um E-mail válido!',
+                },
+              ]}
             >
               <Input
                 placeholder={'E-mail'}
@@ -76,7 +85,7 @@ class RegisterForm extends React.Component {
             </Form.Item>
             <Form.Item
               name="senha"
-              label="senha"
+              label="Senha"
               rules={[{ required: true, message: 'Por favor insira sua senha!' }]}
             >
               <Input.Password
