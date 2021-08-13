@@ -1,18 +1,19 @@
 const DadosEstaticosService = {
   getURLServidor() {
+    // return 'http://localhost:8081'
     return 'https://api-ask-ufcg.herokuapp.com'
   },
 
   getLabelsDisciplinas() {
     return [
-      { label: 'Matematica', value: '1' },
-      { label: 'Portugues', value: '2' },
-      { label: 'Ciencia', value: '3' },
-      { label: 'Filosofia', value: '4' },
-      { label: 'aaaa', value: '5' },
-      { label: 'bbb', value: '6' },
-      { label: 'ccc', value: '7' },
-      { label: 'ddd', value: '8' },
+      { label: 'Programação I', value: '1' },
+      { label: 'Cálculo I', value: '2' },
+      { label: 'Estrutura de Dados', value: '3' },
+      { label: 'Teoria dos Grafos', value: '4' },
+      { label: 'Lógica', value: '5' },
+      { label: 'Estatística Aplicada', value: '6' },
+      { label: 'Optativa Específica', value: '7' },
+      { label: 'Optativa Geral', value: '8' },
     ]
   },
 

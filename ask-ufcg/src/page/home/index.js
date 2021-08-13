@@ -1,38 +1,27 @@
-import React from 'react';
-
-import { observer } from 'mobx-react';
-
-import './index.css';
-
-import HomeIndexStore from '../../stores/home';
-import LeftMenu from '../../components/LeftMenu/';
-import RightMenu from '../../components/RightMenu/';
+import React from 'react'
+import { observer } from 'mobx-react'
+import './index.css'
+import HomeIndexStore from '../../stores/home'
+import LeftMenu from '../../components/LeftMenu/'
+import RightMenu from '../../components/RightMenu/'
 import HomeAskCard from '../../components/HomeAskCard/'
-
-import { ReactComponent as ClockIcon } from '../../assets/clock.svg';
-import { ReactComponent as ArrowUpRightIcon } from '../../assets/arrow-up-right.svg';
-import { ReactComponent as FireIcon } from '../../assets/whh_hot.svg';
-import { ReactComponent as CheckCircleIcon } from '../../assets/check-circle.svg';
-
-import photoPic from '../../assets/profile.jpg';
-
-const ask = {
-  userphoto: photoPic,
-  username: 'Aleksandra Zaryanova',
-  title: 'Como levantar um halter na academia?',
-  description: 'To querendo ficar blindão mas não faço a mínima ideia de como levantar uma halter na academia. Qual a densidade de um barra de ferro com volume de 12cm cubicos e massa de 600g?',
-  tags: ['halter', 'academia', 'fitness', 'instagram', 'saudavel']
-}
+import { ReactComponent as ClockIcon } from '../../assets/clock.svg'
+import { ReactComponent as ArrowUpRightIcon } from '../../assets/arrow-up-right.svg'
+import { ReactComponent as FireIcon } from '../../assets/whh_hot.svg'
+import { ReactComponent as CheckCircleIcon } from '../../assets/check-circle.svg'
+import HomeService from '../../services/home'
+import User from '../../domain/user'
+import { Spin } from 'antd'
 
 @observer
 class homeIndex extends React.Component {
   constructor() {
-    super();
-    this.store = new HomeIndexStore();
+    super()
+    this.store = new HomeIndexStore(User, HomeService, 'User')
   }
 
   componentDidMount() {
-    this.store.init();
+    this.store.init()
   }
 
   render() {
@@ -51,19 +40,24 @@ class homeIndex extends React.Component {
               <FireIcon className="tag-icon" /> Relevante
             </button>
             <button className="home-tag-button other-tag">
-              <CheckCircleIcon className="tag-icon" />Fechadas
+              <CheckCircleIcon className="tag-icon" />
+              Fechadas
             </button>
           </div>
           <div className="home-asks-container">
-            {[ask, ask, ask, ask, ask].map((ask2, index) => { 
-              return <HomeAskCard ask={ask2} key={index} /> 
-            })}
+            {this.store.loading ? (
+              <Spin />
+            ) : (
+              this.store.allAsks.map((ask2, index) => {
+                return <HomeAskCard ask={ask2} key={index} />
+              })
+            )}
           </div>
         </div>
         <RightMenu />
       </div>
-    );
+    )
   }
 }
 
-export default homeIndex;
+export default homeIndex
