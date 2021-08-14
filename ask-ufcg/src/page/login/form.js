@@ -12,8 +12,8 @@ import { userContext } from '../../userContext'
 class LoginForm extends React.Component {
   formRef = React.createRef()
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.store = new LoginFormStore(User, UserService, 'User')
   }
 

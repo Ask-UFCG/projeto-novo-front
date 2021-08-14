@@ -1,7 +1,6 @@
 import { Button, Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import React from 'react'
-import SessionStore from '../../stores/common/indexStore'
 import { Link } from 'react-router-dom'
 import { HOME, NEW_ASK, PROFILE, REGISTER, SIGN_IN } from '../../stores/common/UrlRouter'
 import { ReactComponent as AskUFCGLogo } from '../../assets/logo.svg'
@@ -10,15 +9,13 @@ import './header.css'
 import { observer } from 'mobx-react'
 import { userContext } from '../../userContext'
 import DadosEstaticosService from '../../utils/dadosEstaticosService'
+import { observable } from 'mobx'
 @observer
 class Header extends React.Component {
-  constructor(props) {
-    super(props)
-    this.store = new SessionStore()
-  }
+  @observable title = undefined
 
   _checkImgOnline = (imageUrl) => {
-    var img = new Image()
+    const img = new Image()
     img.src = imageUrl
     return img.height > 0 ? imageUrl : imageNotFound
   }
@@ -57,7 +54,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const title = DadosEstaticosService.getTitlesHeaders().filter((value) => {
+    this.title = DadosEstaticosService.getTitlesHeaders().filter((value) => {
       return value.route === window.location.pathname ?? value
     })[0]
     return (
@@ -73,7 +70,7 @@ class Header extends React.Component {
                   Ask-<span className="logo-UFCG">UFCG</span>
                 </p>
               </div>
-              <div className="title-header">{title ? title.text : ''}</div>
+              <div className="title-header">{this.title ? this.title.text : ''}</div>
               <div className="user-links">
                 {user ? this._renderUserLinks(user.linkAvatar) : this._renderButtonsLoginRegister()}
               </div>

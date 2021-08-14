@@ -22,23 +22,28 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const user = JSON.parse(localStorage.getItem('user')) || undefined
+    const token = JSON.parse(localStorage.getItem('token')) || undefined
+    this.setState({ user, token })
+  }
+
   logout = () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
     this.setState({ user: undefined, token: undefined })
   }
 
   login = (response) => {
     const { user, token } = response
+    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('token', JSON.stringify(token))
     this.setState({ user, token })
   }
 
   setUser = (response) => {
     const { user } = response
     this.setState({ user })
-  }
-
-  _isUserLogged = (route) => {
-    debugger
-    return this.state.user ? <Redirect to={HOME.route} /> : <Redirect to={route} />
   }
 
   render() {
@@ -56,17 +61,50 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route path={HOME.route} exact component={HomeIndex} />
-              <Route path={SIGN_IN.route} component={LoginForm} />
-              <Route path={REGISTER.route} component={RegisterForm} />
-              {this.state.user ? (
-                <>
-                  <Route path={PROFILE.route} component={ProfileForm} />
-                  <Route path={NEW_ASK.route} component={PerguntaForm} />
-                </>
-              ) : (
-                <Redirect to={HOME.route} />
-              )}
-
+              <Route
+                path={REGISTER.route}
+                exact
+                render={() =>
+                  this.state.user ? (
+                    <Redirect to={HOME.route} />
+                  ) : (
+                    <Route path={REGISTER.route} exact component={RegisterForm} />
+                  )
+                }
+              />
+              <Route
+                path={SIGN_IN.route}
+                exact
+                render={() =>
+                  this.state.user ? (
+                    <Redirect to={HOME.route} />
+                  ) : (
+                    <Route path={SIGN_IN.route} exact component={LoginForm} />
+                  )
+                }
+              />
+              <Route
+                path={PROFILE.route}
+                exact
+                render={() =>
+                  this.state.user ? (
+                    <Route path={PROFILE.route} exact component={ProfileForm} />
+                  ) : (
+                    <Redirect to={SIGN_IN.route} />
+                  )
+                }
+              />
+              <Route
+                path={NEW_ASK.route}
+                exact
+                render={() =>
+                  this.state.user ? (
+                    <Route path={NEW_ASK.route} exact component={PerguntaForm} />
+                  ) : (
+                    <Redirect to={SIGN_IN.route} />
+                  )
+                }
+              />
               <Route path={RULES.route} component={RegrasComunidadeForm} />
             </Switch>
           </userContext.Provider>
