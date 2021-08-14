@@ -7,6 +7,7 @@ import LoginForm from './page/login/form';
 import RegisterForm from './page/register/form';
 import ProfileForm from './page/profile/form';
 import PerguntaForm from './page/pergunta/form';
+import Visualizacao from './page/visualizacao/form'
 import { observer } from 'mobx-react';
 import RegrasComunidadeForm from './page/regras/form';
 import HomeIndex from './page/home/index';
@@ -47,6 +48,7 @@ class App extends React.Component {
               <Route path='/profile' component={ProfileForm} />
               <Route path='/new-ask' component={PerguntaForm} />
               <Route path='/rules' component={RegrasComunidadeForm} />
+              <Route path='/ask' component={Visualizacao} />
             </Switch>
           </userContext.Provider>
           <Footer style={{ textAlign: 'center' }}>
