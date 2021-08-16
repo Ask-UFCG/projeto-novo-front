@@ -25,6 +25,7 @@ const DadosEstaticosService = {
       { route: '/register', text: 'Registrar' },
       { route: '/new-ask', text: 'Faça Uma Pergunta' },
       { route: '/rules', text: 'Regras da Comunidade' },
+      { route: '/ask', text: 'Pergunta' },
     ]
   },
 }

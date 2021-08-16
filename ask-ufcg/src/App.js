@@ -7,11 +7,12 @@ import LoginForm from './page/login/form'
 import RegisterForm from './page/register/form'
 import ProfileForm from './page/profile/form'
 import PerguntaForm from './page/pergunta/form'
+import Visualizacao from './page/visualizacao/form'
 import { observer } from 'mobx-react'
 import RegrasComunidadeForm from './page/regras/form'
 import HomeIndex from './page/home/index'
 import { userContext } from './userContext'
-import { HOME, NEW_ASK, PROFILE, REGISTER, RULES, SIGN_IN } from './stores/common/UrlRouter'
+import { ASK, HOME, NEW_ASK, PROFILE, REGISTER, RULES, SIGN_IN } from './stores/common/UrlRouter'
 @observer
 class App extends React.Component {
   constructor(props) {
@@ -106,6 +107,7 @@ class App extends React.Component {
                 }
               />
               <Route path={RULES.route} component={RegrasComunidadeForm} />
+              <Route path={ASK.route} component={Visualizacao} />
             </Switch>
           </userContext.Provider>
           <Footer style={{ textAlign: 'center' }}>
