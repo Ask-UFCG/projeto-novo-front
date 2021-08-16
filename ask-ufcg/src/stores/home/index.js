@@ -3,6 +3,8 @@ import DadosEstaticosService from '../../utils/dadosEstaticosService'
 import { showErrorApiNotification } from '../../utils/notification'
 import imagePic from '../../assets/perfil_not_found.png'
 import imageNotFound from '../../assets/link_not_valid.jpg'
+import User from '../../domain/user'
+import HomeService from '../../services/home'
 
 class HomeIndexStore {
   @observable object = null
@@ -29,7 +31,7 @@ class HomeIndexStore {
 
   @action
   init = () => {
-    this.object = new this.entity()
+    this.object = this.entity
     this.loadAllAsks()
   }
 
@@ -42,8 +44,7 @@ class HomeIndexStore {
   @action
   loadAllAsks = () => {
     this.loading = true
-    this.service
-      .getAllAsks()
+    HomeService.getAllAsks()
       .then((response) => {
         runInAction(`Load All Asks`, () => {
           const content = response && response.data && response.data ? response.data : []

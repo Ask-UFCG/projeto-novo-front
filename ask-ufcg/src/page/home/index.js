@@ -17,7 +17,7 @@ import { Spin } from 'antd'
 class homeIndex extends React.Component {
   constructor() {
     super()
-    this.store = new HomeIndexStore(User, HomeService, 'User')
+    this.store = new HomeIndexStore(new User(), HomeService, 'User')
   }
 
   componentDidMount() {

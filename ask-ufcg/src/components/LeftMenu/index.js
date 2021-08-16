@@ -10,7 +10,7 @@ import { ReactComponent as HelpIcon } from '../../assets/help-circle.svg'
 import { ReactComponent as MessageIcon } from '../../assets/message-circle.svg'
 import { Input } from 'antd'
 import { Link } from 'react-router-dom'
-import { HOME } from '../../stores/common/UrlRouter'
+import { ASK, HOME } from '../../stores/common/UrlRouter'
 const { Search } = Input
 
 class LeftMenu extends React.Component {
@@ -33,9 +33,11 @@ class LeftMenu extends React.Component {
           </Menu.Item>
 
           <p className="menu-left-bar-text">Navegação Pessoal</p>
-          <Menu.Item {...emDesenvolvimento} key="5" icon={<HeartIcon />}>
-            Suas questões
-          </Menu.Item>
+          <Link to={ASK.route}>
+            <Menu.Item {...emDesenvolvimento} key="5" icon={<HeartIcon />}>
+              Suas questões
+            </Menu.Item>
+          </Link>
           <Menu.Item {...emDesenvolvimento} key="6" icon={<HelpIcon />}>
             Suas respostas
           </Menu.Item>
