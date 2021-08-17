@@ -20,4 +20,17 @@
 	font-size: 1rem;
 	max-height: 85vh;
 	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 }
+
+.rules-text h3 {
+	font-weight: bold;
+}
+
+.rules-text p {
+	margin: 0;
+	text-align: justify;
+}
+
