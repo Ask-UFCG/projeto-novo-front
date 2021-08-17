@@ -62,14 +62,14 @@ class Header extends React.Component {
         {({ user }) => {
           return (
             <div className="header">
-              <div className="logo-header">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to={HOME.route}>
-                  <AskUFCGLogo className="logo-ask" />
-                </Link>
-                <p>
-                  Ask-<span className="logo-UFCG">UFCG</span>
-                </p>
-              </div>
+              <Link className="link-logo" to={HOME.route}>
+                <div className="logo-header">
+                    <AskUFCGLogo className="logo-ask" />
+                  <p>
+                    Ask-<span className="logo-UFCG">UFCG</span>
+                  </p>
+                </div>
+              </Link>
               <div className="title-header">{this.title ? this.title.text : ''}</div>
               <div className="user-links">
                 {user ? this._renderUserLinks(user.linkAvatar) : this._renderButtonsLoginRegister()}

@@ -66,3 +66,11 @@
 .button-user-links:hover {
   background-color: #1D3557; 
 }
+
+.link-logo {
+  display: flex;
+}
+
+.link-logo:visited {
+  color: #1D3557;
+}
