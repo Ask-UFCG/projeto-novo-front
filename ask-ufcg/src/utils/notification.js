@@ -68,22 +68,17 @@ const _getMensagemErro = (error) => {
 const _gerarMensagemErro500 = (error, status) => {
   let mensagem = ''
 
-  if (_existeMensagemRegraNegocioDoBanco(error.response.data.error)) {
-    mensagem = _capturarMensagemRegraNegocioDoBanco(error.response.data.error)
-  } else if (error.response.data.error.indexOf('Could not get JDBC Connection') !== -1) {
+  if (_existeMensagemRegraNegocioDoBanco(error.response.data)) {
+    mensagem = _capturarMensagemRegraNegocioDoBanco(error.response.data)
+  } else if (error.response.data.indexOf('Could not get JDBC Connection') !== -1) {
     mensagem = 'Ocorreu um erro na comunicação com o banco de dados'
   } else if (
-    error.response.data.error.indexOf('Already exists a object with the same identifier') !== -1
+    error.response.data.indexOf('Already exists a object with the same identifier') !== -1
   ) {
     mensagem = 'Já existe um objeto com a mesma identificação'
-  } else if (
-    error.response &&
-    error.response.data &&
-    error.response.data.error &&
-    typeof error.response.data.error === 'string'
-  ) {
+  } else if (error.response && error.response.data && typeof error.response.data === 'string') {
     if (status !== 503) {
-      mensagem = error.response.data.error
+      mensagem = error.response.data
     }
   }
   return mensagem

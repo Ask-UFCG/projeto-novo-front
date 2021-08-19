@@ -6,6 +6,7 @@ import { Input, Button, Form, Divider } from 'antd'
 import User from '../../domain/user'
 import UserService from '../../services/user'
 import RegisterFormStore from '../../stores/register/form'
+import { REGISTER } from '../../stores/common/UrlRouter'
 
 @observer
 class RegisterForm extends React.Component {
@@ -24,6 +25,8 @@ class RegisterForm extends React.Component {
   }
 
   componentDidMount() {
+    const { setTitle } = this.props
+    setTitle(REGISTER.text)
     this.store.init()
   }
 

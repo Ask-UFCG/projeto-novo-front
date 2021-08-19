@@ -1,33 +1,36 @@
-import { observer } from 'mobx-react';
-import './form.css';
-import React from 'react';
-import { Input, Button, Select, Form } from 'antd';
-import PerguntaFormStore from '../../stores/pergunta/form';
-import Pergunta from '../../domain/pergunta';
-import PerguntaService from '../../services/pergunta';
-import TextArea from 'antd/lib/input/TextArea';
-import DadosEstaticosService from '../../utils/dadosEstaticosService';
-import LeftMenu from '../../components/LeftMenu/index.js';
-import { userContext } from '../../userContext';
+import { observer } from 'mobx-react'
+import './form.css'
+import React from 'react'
+import { Input, Button, Select, Form } from 'antd'
+import PerguntaFormStore from '../../stores/pergunta/form'
+import Pergunta from '../../domain/pergunta'
+import PerguntaService from '../../services/pergunta'
+import TextArea from 'antd/lib/input/TextArea'
+import DadosEstaticosService from '../../utils/dadosEstaticosService'
+import LeftMenu from '../../components/LeftMenu/index.js'
+import { userContext } from '../../userContext'
+import { NEW_ASK } from '../../stores/common/UrlRouter'
 
 @observer
 class PerguntaForm extends React.Component {
-  formRef = React.createRef();
+  formRef = React.createRef()
 
   constructor() {
-    super();
-    this.store = new PerguntaFormStore(Pergunta, PerguntaService, 'Pergunta');
+    super()
+    this.store = new PerguntaFormStore(Pergunta, PerguntaService, 'Pergunta')
   }
   onFinish = (user, token) => {
-    this.store.saveQuestion(user, token, this.goToHomePage);
-  };
+    this.store.saveQuestion(user, token, this.goToHomePage)
+  }
 
   goToHomePage = () => {
-    this.props.history.push('/');
-  };
+    this.props.history.push('/')
+  }
 
   componentDidMount() {
-    this.store.init();
+    const { setTitle } = this.props
+    setTitle(NEW_ASK.text)
+    this.store.init()
   }
 
   render() {
@@ -35,19 +38,19 @@ class PerguntaForm extends React.Component {
       <userContext.Consumer>
         {({ user, token }) => {
           return (
-            <div className='new-ask-page'>
+            <div className="new-ask-page">
               <LeftMenu />
-              <div className='new-ask'>
-                <div className='new-ask-form'>
+              <div className="new-ask">
+                <div className="new-ask-form">
                   <h4>Crie uma nova pergunta para a comunidade</h4>
                   <Form
                     onFinish={() => this.onFinish(user, token)}
                     ref={this.formRef}
-                    layout='vertical'
+                    layout="vertical"
                   >
                     <Form.Item
-                      name='categorias'
-                      label='Categorias'
+                      name="categorias"
+                      label="Categorias"
                       rules={[
                         {
                           required: true,
@@ -56,23 +59,20 @@ class PerguntaForm extends React.Component {
                       ]}
                     >
                       <Select
-                        mode='multiple'
+                        mode="multiple"
                         style={{ width: '100%' }}
-                        placeholder='Escolha as categorias'
+                        placeholder="Escolha as categorias"
                         options={DadosEstaticosService.getLabelsDisciplinas()}
                         maxTagCount={5}
                         onChange={(e) => {
-                          this.store.updateAttributeDecoratorKeyValue(
-                            'tags',
-                            e
-                          );
+                          this.store.updateAttributeDecoratorKeyValue('tags', e)
                         }}
                         listHeight={160}
                       />
                     </Form.Item>
                     <Form.Item
-                      name='titulo'
-                      label='Titulo'
+                      name="titulo"
+                      label="Titulo"
                       rules={[
                         {
                           required: true,
@@ -83,16 +83,13 @@ class PerguntaForm extends React.Component {
                       <Input
                         placeholder={'Escreva um titulo que chame atenção'}
                         onChange={(value) =>
-                          this.store.updateAttributeDecoratorKeyEventValue(
-                            'title',
-                            value
-                          )
+                          this.store.updateAttributeDecoratorKeyEventValue('title', value)
                         }
                       />
                     </Form.Item>
                     <Form.Item
-                      name='descricao'
-                      label='Descrição'
+                      name="descricao"
+                      label="Descrição"
                       rules={[
                         {
                           required: true,
@@ -103,10 +100,7 @@ class PerguntaForm extends React.Component {
                       <TextArea
                         placeholder={'Escreva uma descrição detalhada'}
                         onChange={(value) =>
-                          this.store.updateAttributeDecoratorKeyEventValue(
-                            'content',
-                            value
-                          )
+                          this.store.updateAttributeDecoratorKeyEventValue('content', value)
                         }
                         autosize={{ maxRows: 20, minRows: 20 }}
                         style={{
@@ -117,9 +111,9 @@ class PerguntaForm extends React.Component {
                       />
                     </Form.Item>
                     <Button
-                      type='primary'
-                      htmlType='submit'
-                      className='style-button'
+                      type="primary"
+                      htmlType="submit"
+                      className="style-button"
                       size={'large'}
                     >
                       Cadastrar nova pergunta
@@ -128,11 +122,11 @@ class PerguntaForm extends React.Component {
                 </div>
               </div>
             </div>
-          );
+          )
         }}
       </userContext.Consumer>
-    );
+    )
   }
 }
 
-export default PerguntaForm;
+export default PerguntaForm

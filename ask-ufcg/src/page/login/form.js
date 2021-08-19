@@ -7,6 +7,7 @@ import User from '../../domain/user'
 import UserService from '../../services/user'
 import LoginFormStore from '../../stores/login/form'
 import { userContext } from '../../userContext'
+import { SIGN_IN } from '../../stores/common/UrlRouter'
 
 @observer
 class LoginForm extends React.Component {
@@ -26,6 +27,8 @@ class LoginForm extends React.Component {
   }
 
   componentDidMount() {
+    const { setTitle } = this.props
+    setTitle(SIGN_IN.text)
     this.store.init()
   }
 

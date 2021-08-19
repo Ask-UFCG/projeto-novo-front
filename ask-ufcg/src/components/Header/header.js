@@ -59,18 +59,18 @@ class Header extends React.Component {
     })[0]
     return (
       <userContext.Consumer>
-        {({ user }) => {
+        {({ user, title }) => {
           return (
             <div className="header">
               <Link className="link-logo" to={HOME.route}>
                 <div className="logo-header">
-                    <AskUFCGLogo className="logo-ask" />
+                  <AskUFCGLogo className="logo-ask" />
                   <p>
                     Ask-<span className="logo-UFCG">UFCG</span>
                   </p>
                 </div>
               </Link>
-              <div className="title-header">{this.title ? this.title.text : ''}</div>
+              <div className="title-header">{title}</div>
               <div className="user-links">
                 {user ? this._renderUserLinks(user.linkAvatar) : this._renderButtonsLoginRegister()}
               </div>

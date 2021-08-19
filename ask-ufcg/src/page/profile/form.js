@@ -13,6 +13,7 @@ import User from '../../domain/user.js'
 import UserService from '../../services/user.js'
 import ProfileFormStore from '../../stores/profile/form.js'
 import { userContext } from '../../userContext'
+import { PROFILE } from '../../stores/common/UrlRouter.js'
 
 @observer
 class ProfileForm extends React.Component {
@@ -25,6 +26,11 @@ class ProfileForm extends React.Component {
 
   onFinish = (setUser, token) => {
     this.store.save(setUser, token)
+  }
+
+  componentDidMount() {
+    const { setTitle } = this.props
+    setTitle(PROFILE.text)
   }
 
   render() {

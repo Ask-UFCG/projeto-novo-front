@@ -12,6 +12,7 @@ import { ReactComponent as CheckCircleIcon } from '../../assets/check-circle.svg
 import HomeService from '../../services/home'
 import User from '../../domain/user'
 import { Spin } from 'antd'
+import { HOME } from '../../stores/common/UrlRouter'
 
 @observer
 class homeIndex extends React.Component {
@@ -21,6 +22,8 @@ class homeIndex extends React.Component {
   }
 
   componentDidMount() {
+    const { setTitle } = this.props
+    setTitle(HOME.text)
     this.store.init()
   }
 

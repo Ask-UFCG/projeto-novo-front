@@ -13,8 +13,10 @@ import RegrasComunidadeForm from './page/regras/form'
 import HomeIndex from './page/home/index'
 import { userContext } from './userContext'
 import { ASK, HOME, NEW_ASK, PROFILE, REGISTER, RULES, SIGN_IN } from './stores/common/UrlRouter'
+import { observable } from 'mobx'
 @observer
 class App extends React.Component {
+  @observable title = ''
   constructor(props) {
     super(props)
     this.state = {
@@ -26,6 +28,7 @@ class App extends React.Component {
   componentDidMount() {
     const user = JSON.parse(localStorage.getItem('user')) || undefined
     const token = JSON.parse(localStorage.getItem('token')) || undefined
+    this.title = HOME.text
     this.setState({ user, token })
   }
 
@@ -47,10 +50,18 @@ class App extends React.Component {
     this.setState({ user })
   }
 
+  setTitle = (title = '') => {
+    if (title !== this.title) {
+      this.title = title
+    }
+  }
+
   render() {
     const value = {
       user: this.state.user,
       token: this.state.token,
+      title: this.title,
+      setTitle: this.setTitle,
       logoutUser: this.logout,
       loginUser: this.login,
       setUser: this.setUser,
@@ -61,7 +72,11 @@ class App extends React.Component {
           <userContext.Provider value={value}>
             <Header />
             <Switch>
-              <Route path={HOME.route} exact component={HomeIndex} />
+              <Route
+                path={HOME.route}
+                exact
+                render={(routeProps) => <HomeIndex {...routeProps} setTitle={this.setTitle} />}
+              />
               <Route
                 path={REGISTER.route}
                 exact
@@ -69,7 +84,13 @@ class App extends React.Component {
                   this.state.user ? (
                     <Redirect to={HOME.route} />
                   ) : (
-                    <Route path={REGISTER.route} exact component={RegisterForm} />
+                    <Route
+                      path={REGISTER.route}
+                      exact
+                      render={(routeProps) => (
+                        <RegisterForm {...routeProps} setTitle={this.setTitle} />
+                      )}
+                    />
                   )
                 }
               />
@@ -80,7 +101,13 @@ class App extends React.Component {
                   this.state.user ? (
                     <Redirect to={HOME.route} />
                   ) : (
-                    <Route path={SIGN_IN.route} exact component={LoginForm} />
+                    <Route
+                      path={SIGN_IN.route}
+                      exact
+                      render={(routeProps) => (
+                        <LoginForm {...routeProps} setTitle={this.setTitle} />
+                      )}
+                    />
                   )
                 }
               />
@@ -89,7 +116,13 @@ class App extends React.Component {
                 exact
                 render={() =>
                   this.state.user ? (
-                    <Route path={PROFILE.route} exact component={ProfileForm} />
+                    <Route
+                      path={PROFILE.route}
+                      exact
+                      render={(routeProps) => (
+                        <ProfileForm {...routeProps} setTitle={this.setTitle} />
+                      )}
+                    />
                   ) : (
                     <Redirect to={SIGN_IN.route} />
                   )
@@ -100,14 +133,28 @@ class App extends React.Component {
                 exact
                 render={() =>
                   this.state.user ? (
-                    <Route path={NEW_ASK.route} exact component={PerguntaForm} />
+                    <Route
+                      path={NEW_ASK.route}
+                      exact
+                      render={(routeProps) => (
+                        <PerguntaForm {...routeProps} setTitle={this.setTitle} />
+                      )}
+                    />
                   ) : (
                     <Redirect to={SIGN_IN.route} />
                   )
                 }
               />
-              <Route path={RULES.route} component={RegrasComunidadeForm} />
-              <Route path={ASK.route} component={Visualizacao} />
+              <Route
+                path={RULES.route}
+                render={(routeProps) => (
+                  <RegrasComunidadeForm {...routeProps} setTitle={this.setTitle} />
+                )}
+              />
+              <Route
+                path={ASK.route}
+                render={(routeProps) => <Visualizacao {...routeProps} setTitle={this.setTitle} />}
+              />
             </Switch>
           </userContext.Provider>
           <Footer style={{ textAlign: 'center' }}>

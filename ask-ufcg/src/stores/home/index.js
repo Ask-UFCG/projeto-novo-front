@@ -3,7 +3,6 @@ import DadosEstaticosService from '../../utils/dadosEstaticosService'
 import { showErrorApiNotification } from '../../utils/notification'
 import imagePic from '../../assets/perfil_not_found.png'
 import imageNotFound from '../../assets/link_not_valid.jpg'
-import User from '../../domain/user'
 import HomeService from '../../services/home'
 
 class HomeIndexStore {
