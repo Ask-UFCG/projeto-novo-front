@@ -54,3 +54,12 @@
   align-items: center;
   justify-content: center;
 }
+
+
+.ask-link {
+  color: black;
+}
+
+.ask-link:hover {
+  color: #457B9D;
+}

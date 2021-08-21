@@ -9,6 +9,9 @@ class Pergunta {
   @observable createAt;
   @observable answered;
   @observable tags;
+  @observable author;
+  @observable answers;
+  @observable comments;
 
   constructor(response) {
     if (response) {
