@@ -123,7 +123,12 @@ class Visualizacao extends React.Component {
 
                     {this.store.object.answers ? (
                       this.store.object.answers.map((answer) => {
-                        return <Answer content={answer} />;
+                        return (
+                          <Answer
+                            content={answer}
+                            questionId={this.store.object.id}
+                          />
+                        );
                       })
                     ) : (
                       <p className='answer-title'>Sem Respostas :(</p>

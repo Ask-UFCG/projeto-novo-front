@@ -1,11 +1,16 @@
 import { action, observable, runInAction, toJS } from 'mobx';
 import Answer from '../../domain/answer';
+import commentService from '../../services/comment';
+import Comment from '../../domain/comment';
+import {
+  showErrorApiNotification,
+  showNotification,
+} from '../../utils/notification';
 
 class AnswerFormStore {
-  @observable object = null;
+  @observable object;
   @observable loading = false;
-  @observable answer = new Answer();
-  @observable askTags;
+  @observable comment;
 
   constructor(entity, service, entityName) {
     this.entity = entity;
@@ -21,6 +26,11 @@ class AnswerFormStore {
   }
 
   @action
+  updateAttributeDecoratorKeyCommentEventValue(key, event) {
+    this.comment[key] = event.target.value;
+  }
+
+  @action
   updateAttributeDecoratorKeyValue(key, value) {
     this.object[key] = value;
   }
@@ -28,6 +38,35 @@ class AnswerFormStore {
   @action
   init(content) {
     this.object = new Answer(content);
+    this.comment = new Comment();
+  }
+
+  @action
+  addComment(user, token) {
+    if (this.comment && this.comment.content) {
+      this.comment.author = user;
+      this.comment.createdAt = new Date();
+      commentService
+        .addComment(toJS(this.comment), user.id, this.object.id, token)
+        .then(() => {
+          runInAction(`Save Comment`, () => {
+            showNotification(
+              'success',
+              null,
+              'Comentário adicionado com sucesso'
+            );
+            this.comment = new Comment();
+            this.loading = false;
+          });
+        })
+        .catch((error) => {
+          runInAction(`error on Save Comment`, () => {
+            this.loading = false;
+            showErrorApiNotification(error);
+          });
+        });
+    } else {
+    }
   }
 }
 

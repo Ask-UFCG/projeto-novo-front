@@ -4,28 +4,22 @@ import { Divider } from 'antd';
 import './index.css';
 import { observer } from 'mobx-react';
 
-const comment = {
-  description: 'Acho que essa é uma boa ideia, Soldado.',
-  userName: '@soldado76',
-};
-
 @observer
 class Comment extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    debugger;
+    this.content = this.props.content;
   }
-
-  componentDidMount() {};
 
   render() {
     return (
-      <div className="answer-comment-card">
-        <p className="comment-description">
-          {comment.description}
-        </p>
+      <div className='answer-comment-card'>
+        <p className='comment-description'>{this.content.content}</p>
         <Divider />
-        <p className="user-comment">
-          Comentado por {comment.userName}
+        <p className='user-comment'>
+          Comentado por{' '}
+          {this.content.author.firstName + ' ' + this.content.author.lastName}
         </p>
       </div>
     );
