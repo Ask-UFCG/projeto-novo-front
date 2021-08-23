@@ -1,13 +1,11 @@
 import React from 'react';
-import { ASK, HOME, PROFILE } from '../../stores/common/UrlRouter';
-
+import { ASK } from '../../stores/common/UrlRouter';
 import './index.css';
 
 class HomeAskCard extends React.Component {
   constructor(props) {
     super(props);
     this.ask = this.props.ask;
-    this.props = this.props;
   }
 
   goToAskPage = () => {

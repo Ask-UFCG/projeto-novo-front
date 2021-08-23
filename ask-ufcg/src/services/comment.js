@@ -5,7 +5,6 @@ const api = DadosEstaticosService.getURLServidor();
 
 class CommentService {
   addComment = (commentRequest, userId, answeredId, token) => {
-    debugger;
     return axios.post(
       `${api}/comments/answers/${encodeURI(answeredId)}/users/${encodeURI(
         userId

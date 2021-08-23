@@ -1,15 +1,12 @@
 import React from 'react';
 
 import { observer } from 'mobx-react';
-
 import './form.css';
-
 import LeftMenu from '../../components/LeftMenu/';
 import RightMenu from '../../components/RightMenu/';
 import Answer from '../../components/Answer/answer.js';
 import { Form, Input, Button, Spin, Avatar } from 'antd';
 import imageNotFound from '../../assets/link_not_valid.jpg';
-import photoPic from '../../assets/profile.jpg';
 import { ReactComponent as MessageIcon } from '../../assets/message-square.svg';
 import { ASK } from '../../stores/common/UrlRouter';
 import VisualizacaoFormStore from '../../stores/visualizacao/form';
@@ -17,16 +14,6 @@ import Pergunta from '../../domain/pergunta';
 import PerguntaService from '../../services/pergunta';
 import { userContext } from '../../userContext';
 import { UserOutlined } from '@ant-design/icons';
-
-const ask = {
-  userphoto: photoPic,
-  username: 'Aleksandra Zaryanova',
-  title: 'Como levantar um halter na academia?',
-  description:
-    'To querendo ficar blindão mas não faço a mínima ideia de como levantar uma halter na academia. Qual a densidade de um barra de ferro com volume de 12cm cubicos e massa de 600g?',
-  tags: ['halter', 'academia', 'fitness', 'instagram', 'saudavel'],
-};
-
 @observer
 class Visualizacao extends React.Component {
   formRef = React.createRef();
@@ -68,9 +55,9 @@ class Visualizacao extends React.Component {
                       <div className='user-ask-card'>
                         <Avatar size='large' {...link} />
                         <p>
-                          {this.store.object.author.firstName ??
-                            '' + ' ' + this.store.object.author.lastName ??
-                            ''}
+                          {this.store.object.author.firstName +
+                            ' ' +
+                            this.store.object.author.lastName}
                         </p>
                       </div>
                       <p className='ask-title'>

@@ -8,7 +8,6 @@ import { observer } from 'mobx-react';
 class Comment extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
     this.content = this.props.content;
   }
 
