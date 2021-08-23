@@ -1,13 +1,16 @@
 import { action, observable, runInAction, toJS } from 'mobx';
+import AnswerService from '../../services/answer';
 import Pergunta from '../../domain/pergunta';
-import {
-  showErrorApiNotification,
-  showNotification,
-} from '../../utils/notification';
+import Answer from '../../domain/answer';
+
+import { showErrorApiNotification } from '../../utils/notification';
+import DadosEstaticosService from '../../utils/dadosEstaticosService';
 
 class VisualizacaoFormStore {
   @observable object = null;
   @observable loading = false;
+  @observable answer = new Answer();
+  @observable askTags;
 
   constructor(entity, service, entityName) {
     this.entity = entity;
@@ -23,6 +26,11 @@ class VisualizacaoFormStore {
   }
 
   @action
+  updateAttributeAnswerDecoratorKeyEventValue(key, event) {
+    this.answer[key] = event.target.value;
+  }
+
+  @action
   updateAttributeDecoratorKeyValue(key, value) {
     this.object[key] = value;
   }
@@ -35,7 +43,39 @@ class VisualizacaoFormStore {
       .then((response) => {
         runInAction(`Get Question`, () => {
           this.object = new Pergunta(response && (response.data ?? undefined));
+          const tags = this.object.tags ?? [];
+          this.askTags = tags.map((item) => {
+            let result = undefined;
+            DadosEstaticosService.getLabelsDisciplinas().forEach(
+              (disciplina) => {
+                if (disciplina.value === item) {
+                  result = disciplina.label;
+                }
+              }
+            );
+            return result;
+          });
           this.loading = false;
+        });
+      })
+      .catch((error) => {
+        runInAction(`error on Save Question`, () => {
+          this.loading = false;
+          showErrorApiNotification(error);
+        });
+      });
+  }
+
+  @action
+  addAnswer(token, user) {
+    this.loading = true;
+    AnswerService.addAnswer(toJS(this.answer), user.id, this.object.id, token)
+      .then((response) => {
+        runInAction(`addAnswer`, () => {
+          this.loading = false;
+          this.object.answers = !this.object.answers
+            ? [response]
+            : this.object.answers.push(response);
         });
       })
       .catch((error) => {
