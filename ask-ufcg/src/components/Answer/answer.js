@@ -12,6 +12,7 @@ import './answer.css';
 import AnswerFormStore from '../../stores/answer/form';
 import { userContext } from '../../userContext';
 import { getValueDateWithHours } from '../../utils/date';
+import imageNotFound from '../../assets/perfil_not_found.png';
 
 @observer
 class AnswerComponent extends React.Component {
@@ -37,7 +38,7 @@ class AnswerComponent extends React.Component {
                 <div className='answer-card'>
                   <div className='user-answer-card'>
                     <img
-                      src={this.store.object.author.linkAvatar}
+                      src={this.store.object.author.linkAvatar ?? imageNotFound}
                       alt='nome do usuario'
                     />
                     <p>

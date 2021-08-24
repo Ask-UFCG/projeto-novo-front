@@ -2,6 +2,7 @@ import React from 'react';
 import { ASK } from '../../stores/common/UrlRouter';
 import './index.css';
 import { getValueDateWithHours } from '../../utils/date';
+import imageNotFound from '../../assets/perfil_not_found.png';
 
 class HomeAskCard extends React.Component {
   constructor(props) {
@@ -17,7 +18,11 @@ class HomeAskCard extends React.Component {
     return (
       <div className='home-ask-card'>
         <div className='user-home-ask-card'>
-          <img src={this.ask.userphoto} alt='abc' className='image-user-ask' />
+          <img
+            src={this.ask.userphoto ?? imageNotFound}
+            alt='abc'
+            className='image-user-ask'
+          />
           <p>{this.ask.username}</p>
         </div>
         <a className='ask-link' onClick={() => this.goToAskPage()}>
