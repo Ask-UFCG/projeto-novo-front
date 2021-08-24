@@ -76,7 +76,6 @@ class VisualizacaoFormStore {
       .then((response) => {
         runInAction(`addAnswer`, () => {
           this.loading = false;
-          debugger;
           this.object.answers.push(new Answer(response.data));
         });
         showNotification('success', null, 'Resposta adicionada com sucesso!');
