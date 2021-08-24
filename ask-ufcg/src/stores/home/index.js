@@ -121,6 +121,7 @@ class HomeIndexStore {
                   ? ask.content.substring(0, this.LENGTH_MAX)
                   : ask.content
                 : '';
+              const askCreatedAt = ask.createdAt;
               const tags = ask.tags ?? [];
               const askTags = tags.map((item) => {
                 let result = undefined;
@@ -145,6 +146,7 @@ class HomeIndexStore {
                 title: askTitle,
                 description: askDescription,
                 tags: askTags,
+                createdAt: askCreatedAt,
                 id: ask.id,
               };
             });

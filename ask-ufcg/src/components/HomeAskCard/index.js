@@ -1,6 +1,7 @@
 import React from 'react';
 import { ASK } from '../../stores/common/UrlRouter';
 import './index.css';
+import { getValueDateWithHours } from '../../utils/date';
 
 class HomeAskCard extends React.Component {
   constructor(props) {
@@ -27,6 +28,9 @@ class HomeAskCard extends React.Component {
           {this.ask.tags.map((tag) => {
             return <button className='ask-tag'>{tag}</button>;
           })}
+        </div>
+        <div className='date-align'>
+          {'Postada em: ' + getValueDateWithHours(this.ask.createdAt)}
         </div>
       </div>
     );

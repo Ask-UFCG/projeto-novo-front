@@ -63,3 +63,10 @@
 .ask-link:hover {
   color: #457B9D;
 }
+
+.date-align {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin-top: 2rem;
+}
