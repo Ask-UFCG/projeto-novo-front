@@ -97,8 +97,27 @@ class VisualizacaoFormStore {
   }
 
   @action
-  markAsResolved(token, user) {
+  markAsSolved(token) {
     this.loading = true;
+    this.service
+      .updateQuestion(this.object, token)
+      .then((response) => {
+        runInAction(`Mark Solved`, () => {
+          showNotification(
+            'success',
+            null,
+            'Questão marcada como solucionada com sucesso!'
+          );
+          this.object = new Pergunta(response.data);
+          this.loading = false;
+        });
+      })
+      .catch((error) => {
+        runInAction(`error on Mark Solved`, () => {
+          this.loading = false;
+          showErrorApiNotification(error);
+        });
+      });
   }
 }
 

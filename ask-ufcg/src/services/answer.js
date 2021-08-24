@@ -19,7 +19,6 @@ class AnswerService {
   };
 
   updateAnswer = (answerRequest, token) => {
-    debugger;
     const body = {
       content: answerRequest.content,
       qtdLikes: answerRequest.qtdLikes,

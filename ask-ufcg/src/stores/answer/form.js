@@ -47,7 +47,7 @@ class AnswerFormStore {
   }
 
   @action
-  markAsSolution(token, callback) {
+  markAsSolution(token) {
     this.loading = true;
     this.service
       .updateAnswer(this.object, token)
@@ -58,11 +58,7 @@ class AnswerFormStore {
             null,
             'Resposta marcada como solução com sucesso!'
           );
-          debugger;
           this.object = new Answer(response.data);
-          if (callback) {
-            callback();
-          }
           this.loading = false;
         });
       })

@@ -5,7 +5,7 @@ import './form.css';
 import LeftMenu from '../../components/LeftMenu/';
 import RightMenu from '../../components/RightMenu/';
 import Answer from '../../components/Answer/answer.js';
-import { Form, Input, Button, Spin } from 'antd';
+import { Form, Input, Button, Spin, Tooltip } from 'antd';
 import { ReactComponent as MessageIcon } from '../../assets/message-square.svg';
 import { ASK } from '../../stores/common/UrlRouter';
 import VisualizacaoFormStore from '../../stores/visualizacao/form';
@@ -60,16 +60,26 @@ class Visualizacao extends React.Component {
                         </p>
                         <div className='main-answer-card-solved'>
                           {this.store.object.answered ? (
-                            <CheckCircleOutlined twoToneColor='#52c41a' />
-                          ) : (
+                            <Tooltip title='Questão resolvida'>
+                              <CheckCircleOutlined
+                                style={{ color: 'green', fontSize: '200%' }}
+                              ></CheckCircleOutlined>
+                            </Tooltip>
+                          ) : this.store.object.author.id === user.id ? (
                             <Button
                               style={{ backgroundColor: '#47ff85' }}
-                              onChange={() =>
-                                this.store.markAsResolved(token, user)
-                              }
+                              onClick={() => {
+                                this.store.updateAttributeDecoratorKeyValue(
+                                  'answered',
+                                  true
+                                );
+                                this.store.markAsSolved(token);
+                              }}
                             >
-                              Marcar como resolvida
+                              Marcar como solução
                             </Button>
+                          ) : (
+                            ''
                           )}
                         </div>
                       </div>

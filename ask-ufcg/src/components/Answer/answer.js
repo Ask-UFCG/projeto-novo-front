@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Divider, Form, Input, Checkbox } from 'antd';
+import { Button, Divider, Form, Input, Tooltip } from 'antd';
 import { observer } from 'mobx-react';
 import Answer from '../../domain/answer';
 import AnswerService from '../../services/answer';
@@ -50,9 +50,11 @@ class AnswerComponent extends React.Component {
                     </p>
                     <div className='user-answer-card-solved'>
                       {this.store.object.solution ? (
-                        <CheckCircleOutlined
-                          style={{ color: 'green', fontSize: '200%' }}
-                        />
+                        <Tooltip title='Solução para pergunta'>
+                          <CheckCircleOutlined
+                            style={{ color: 'green', fontSize: '200%' }}
+                          />
+                        </Tooltip>
                       ) : this.idAuthorQuestion === user.id ? (
                         <Button
                           style={{ backgroundColor: '#47ff85' }}
@@ -61,10 +63,7 @@ class AnswerComponent extends React.Component {
                               'solution',
                               true
                             );
-                            this.store.markAsSolution(
-                              token,
-                              this.forceUpdate()
-                            );
+                            this.store.markAsSolution(token);
                           }}
                         >
                           Marcar como solução
