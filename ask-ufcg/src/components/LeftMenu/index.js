@@ -8,11 +8,8 @@ import { ReactComponent as TagIcon } from '../../assets/tag.svg';
 import { ReactComponent as HeartIcon } from '../../assets/heart.svg';
 import { ReactComponent as HelpIcon } from '../../assets/help-circle.svg';
 import { ReactComponent as MessageIcon } from '../../assets/message-circle.svg';
-import { Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { ASK, HOME } from '../../stores/common/UrlRouter';
-const { Search } = Input;
-
 class LeftMenu extends React.Component {
   render() {
     const emDesenvolvimento = { disabled: true, title: 'Em Desenvolvimento' };

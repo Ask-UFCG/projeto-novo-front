@@ -1,4 +1,4 @@
-import { action, observable, runInAction, toJS } from 'mobx';
+import { action, observable, runInAction } from 'mobx';
 import Answer from '../../domain/answer';
 import commentService from '../../services/comment';
 import Comment from '../../domain/comment';
