@@ -15,6 +15,8 @@ import { userContext } from '../../userContext';
 import { ReactComponent as LikeIcon } from '../../assets/thumbs-up.svg';
 import { ReactComponent as UnlikeIcon } from '../../assets/thumbs-down.svg';
 import { getValueDateWithHours } from '../../utils/date';
+import imageNotFound from '../../assets/perfil_not_found.png';
+
 @observer
 class Visualizacao extends React.Component {
   formRef = React.createRef();
@@ -46,7 +48,9 @@ class Visualizacao extends React.Component {
                     <div className='ask-card'>
                       <div className='user-ask-card'>
                         <img
-                          src={this.store.object.author.linkAvatar}
+                          src={
+                            this.store.object.author.linkAvatar ?? imageNotFound
+                          }
                           alt='nome do usuario'
                         />
                         <p>
