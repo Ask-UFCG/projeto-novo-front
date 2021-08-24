@@ -5,15 +5,11 @@ const api = DadosEstaticosService.getURLServidor();
 
 class PerguntaService {
   createQuestion = (userId, question, token) => {
-    return axios.post(
-      `${api}/questions/users/${encodeURI(userId)}/questions`,
-      question,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    return axios.post(`${api}/questions/users/${encodeURI(userId)}`, question, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   };
 
   getQuestion = (questionId) => {
