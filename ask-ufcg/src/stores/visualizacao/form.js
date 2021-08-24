@@ -39,6 +39,11 @@ class VisualizacaoFormStore {
   }
 
   @action
+  updateAttributeDecoratorKeycheckedValue(key, event) {
+    this.object[key] = event.target.checked;
+  }
+
+  @action
   init(id) {
     this.loading = true;
     this.service
@@ -89,6 +94,11 @@ class VisualizacaoFormStore {
           showErrorApiNotification(error);
         });
       });
+  }
+
+  @action
+  markAsResolved(token, user) {
+    this.loading = true;
   }
 }
 

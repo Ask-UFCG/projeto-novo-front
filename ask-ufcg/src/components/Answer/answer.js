@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Divider, Form, Input } from 'antd';
+import { Button, Divider, Form, Input, Checkbox } from 'antd';
 import { observer } from 'mobx-react';
 import Answer from '../../domain/answer';
 import AnswerService from '../../services/answer';
@@ -13,6 +13,7 @@ import AnswerFormStore from '../../stores/answer/form';
 import { userContext } from '../../userContext';
 import { getValueDateWithHours } from '../../utils/date';
 import imageNotFound from '../../assets/perfil_not_found.png';
+import { CheckCircleOutlined } from '@ant-design/icons';
 
 @observer
 class AnswerComponent extends React.Component {
@@ -21,6 +22,7 @@ class AnswerComponent extends React.Component {
   constructor(props) {
     super(props);
     this.store = new AnswerFormStore(Answer, AnswerService, 'Resposta ');
+    this.idAuthorQuestion = this.props.idAuthorQuestion;
   }
 
   componentDidMount() {
@@ -46,8 +48,34 @@ class AnswerComponent extends React.Component {
                         ' ' +
                         this.store.object.author.lastName}
                     </p>
+                    <div className='user-answer-card-solved'>
+                      {this.store.object.solution ? (
+                        <CheckCircleOutlined
+                          style={{ color: 'green', fontSize: '200%' }}
+                        />
+                      ) : this.idAuthorQuestion === user.id ? (
+                        <Button
+                          style={{ backgroundColor: '#47ff85' }}
+                          onClick={() => {
+                            this.store.updateAttributeDecoratorKeyValue(
+                              'solution',
+                              true
+                            );
+                            this.store.markAsSolution(
+                              token,
+                              this.forceUpdate()
+                            );
+                          }}
+                        >
+                          Marcar como solução
+                        </Button>
+                      ) : (
+                        ''
+                      )}
+                    </div>
                   </div>
-                  <p clasName='answer-description'>
+
+                  <p className='answer-description'>
                     {this.store.object.content}
                   </p>
                   <Divider />

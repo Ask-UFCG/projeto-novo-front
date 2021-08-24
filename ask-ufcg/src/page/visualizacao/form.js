@@ -16,7 +16,7 @@ import { ReactComponent as LikeIcon } from '../../assets/thumbs-up.svg';
 import { ReactComponent as UnlikeIcon } from '../../assets/thumbs-down.svg';
 import { getValueDateWithHours } from '../../utils/date';
 import imageNotFound from '../../assets/perfil_not_found.png';
-
+import { CheckCircleOutlined } from '@ant-design/icons';
 @observer
 class Visualizacao extends React.Component {
   formRef = React.createRef();
@@ -58,6 +58,20 @@ class Visualizacao extends React.Component {
                             ' ' +
                             this.store.object.author.lastName}
                         </p>
+                        <div className='main-answer-card-solved'>
+                          {this.store.object.answered ? (
+                            <CheckCircleOutlined twoToneColor='#52c41a' />
+                          ) : (
+                            <Button
+                              style={{ backgroundColor: '#47ff85' }}
+                              onChange={() =>
+                                this.store.markAsResolved(token, user)
+                              }
+                            >
+                              Marcar como resolvida
+                            </Button>
+                          )}
+                        </div>
                       </div>
                       <p className='ask-title'>
                         {this.store.object.title ?? ''}
@@ -129,7 +143,7 @@ class Visualizacao extends React.Component {
                         return (
                           <Answer
                             content={answer}
-                            questionId={this.store.object.id}
+                            idAuthorQuestion={this.store.object.author.id}
                           />
                         );
                       })

@@ -26,6 +26,11 @@ class AnswerFormStore {
   }
 
   @action
+  updateAttributeDecoratorKeycheckedValue(key, event) {
+    this.object[key] = event.target.checked;
+  }
+
+  @action
   updateAttributeDecoratorKeyCommentEventValue(key, event) {
     this.comment[key] = event.target.value;
   }
@@ -39,6 +44,34 @@ class AnswerFormStore {
   init(content) {
     this.object = new Answer(content);
     this.comment = new Comment();
+  }
+
+  @action
+  markAsSolution(token, callback) {
+    this.loading = true;
+    this.service
+      .updateAnswer(this.object, token)
+      .then((response) => {
+        runInAction(`Mark Solution`, () => {
+          showNotification(
+            'success',
+            null,
+            'Resposta marcada como solução com sucesso!'
+          );
+          debugger;
+          this.object = new Answer(response.data);
+          if (callback) {
+            callback();
+          }
+          this.loading = false;
+        });
+      })
+      .catch((error) => {
+        runInAction(`error on Mark Solution`, () => {
+          this.loading = false;
+          showErrorApiNotification(error);
+        });
+      });
   }
 
   @action

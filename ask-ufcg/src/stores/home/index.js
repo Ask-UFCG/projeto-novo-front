@@ -62,6 +62,7 @@ class HomeIndexStore {
                   : ask.content
                 : '';
               const tags = ask.tags ?? [];
+              const askCreatedAt = ask.createdAt;
               const askTags = tags.map((item) => {
                 let result = undefined;
                 DadosEstaticosService.getLabelsDisciplinas().forEach(
@@ -85,6 +86,7 @@ class HomeIndexStore {
                 title: askTitle,
                 description: askDescription,
                 tags: askTags,
+                createdAt: askCreatedAt,
                 id: ask.id,
               };
             });

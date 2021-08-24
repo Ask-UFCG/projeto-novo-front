@@ -202,6 +202,11 @@
   margin: 0;
 }
 
+.main-answer-card-solved {
+  text-align: left;
+  margin-left: auto;
+}
+
 .input-answer-card {
   width: 90%;
   padding: 1.5rem 1.5rem 0 1.5rem;

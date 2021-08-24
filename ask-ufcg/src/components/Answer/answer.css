@@ -23,6 +23,11 @@
   gap: 1.5rem;
 }
 
+.user-answer-card-solved {
+  text-align: left;
+  margin-left: auto;
+}
+
 .user-answer-card img {
   height: 3rem;
   width: 3rem;
