@@ -167,3 +167,11 @@
 .link-right-menu {
   margin-left: 1.5rem;
 }
+
+.menu-search {
+	margin-top: 3rem !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center;
+	width: 100%;
+}

@@ -11,8 +11,9 @@ import { ReactComponent as FireIcon } from '../../assets/whh_hot.svg';
 import { ReactComponent as CheckCircleIcon } from '../../assets/check-circle.svg';
 import HomeService from '../../services/home';
 import User from '../../domain/user';
-import { Spin } from 'antd';
+import { Spin, Input } from 'antd';
 import { HOME } from '../../stores/common/UrlRouter';
+const { Search } = Input;
 
 @observer
 class homeIndex extends React.Component {
@@ -47,7 +48,15 @@ class homeIndex extends React.Component {
               Fechadas
             </button>
           </div>
+
           <div className='home-asks-container'>
+            <div className='menu-search'>
+              <Search
+                placeholder='Pesquise uma pergunta'
+                enterButton
+                onSearch={(title) => this.store.searchQuestions(title)}
+              />
+            </div>
             {this.store.loading ? (
               <Spin />
             ) : (
