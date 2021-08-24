@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Button, Divider, Form, Input, Tooltip } from 'antd';
 import { observer } from 'mobx-react';
 import Answer from '../../domain/answer';
@@ -23,7 +22,7 @@ class AnswerComponent extends React.Component {
     super(props);
     this.store = new AnswerFormStore(Answer, AnswerService, 'Resposta ');
     this.idAuthorQuestion = this.props.idAuthorQuestion;
-    this.state = { showInputAnswer: false };
+    this.state = { showInputComment: false };
   }
 
   componentDidMount() {
@@ -31,9 +30,9 @@ class AnswerComponent extends React.Component {
     this.store.init(content);
   }
 
-  _handleShowInputAnswer() {
+  _handleShowInputComment() {
     this.setState((oldState) => ({
-      showInputAnswer: !this.state.showInputAnswer,
+      showInputComment: !this.state.showInputComment,
     }));
   }
 
@@ -101,10 +100,10 @@ class AnswerComponent extends React.Component {
                         type='primary'
                         htmlType='submit'
                         className='style-button'
-                        onClick={() => this._handleShowInputAnswer()}
+                        onClick={() => this._handleShowInputComment()}
                       >
                         <MessageIcon className='sent-icon-answer' />
-                        {this.state.showInputAnswer
+                        {this.state.showInputComment
                           ? 'Cancelar'
                           : 'Adicionar um Comentário'}
                       </Button>
@@ -118,7 +117,9 @@ class AnswerComponent extends React.Component {
                   : ''}
                 <div
                   className='input-comment-card'
-                  style={!this.state.showInputAnswer ? { display: 'none' } : {}}
+                  style={
+                    !this.state.showInputComment ? { display: 'none' } : {}
+                  }
                 >
                   <Form
                     onFinish={() => this.onFinish(user, token)}
