@@ -27,12 +27,19 @@ class Visualizacao extends React.Component {
       PerguntaService,
       'Questão '
     );
+    this.state = { showInputAnswer: false };
   }
 
   componentDidMount() {
     const { setTitle } = this.props;
     setTitle(ASK.text);
     this.store.init(this.props.match.params.id);
+  }
+
+  _handleShowInputAnswer() {
+    this.setState((oldState) => ({
+      showInputAnswer: !this.state.showInputAnswer,
+    }));
   }
 
   render() {
@@ -44,82 +51,108 @@ class Visualizacao extends React.Component {
               <div className='ask-page'>
                 <LeftMenu />
                 <div className='main-ask-content'>
-                  <div className='ask-container'>
-                    <div className='ask-card'>
-                      <div className='user-ask-card'>
-                        <img
-                          src={
-                            this.store.object.author.linkAvatar ?? imageNotFound
-                          }
-                          alt='nome do usuario'
-                        />
-                        <p>
-                          {this.store.object.author.firstName +
-                            ' ' +
-                            this.store.object.author.lastName}
+                  <Form layout='vertical' ref={this.formRef}>
+                    <div className='ask-container'>
+                      <div className='ask-card'>
+                        <div className='user-ask-card'>
+                          <img
+                            src={
+                              this.store.object.author.linkAvatar ??
+                              imageNotFound
+                            }
+                            alt='nome do usuario'
+                          />
+                          <p>
+                            {this.store.object.author.firstName +
+                              ' ' +
+                              this.store.object.author.lastName}
+                          </p>
+                          <div className='main-answer-card-solved'>
+                            {this.store.object.answered ? (
+                              <Tooltip title='Questão resolvida'>
+                                <CheckCircleOutlined
+                                  style={{ color: 'green', fontSize: '200%' }}
+                                ></CheckCircleOutlined>
+                              </Tooltip>
+                            ) : this.store.object.author.id === user.id ? (
+                              <Button
+                                style={{ backgroundColor: '#47ff85' }}
+                                onClick={() => {
+                                  this.store.updateAttributeDecoratorKeyValue(
+                                    'answered',
+                                    true
+                                  );
+                                  this.store.markAsSolved(token);
+                                }}
+                              >
+                                Marcar como solução
+                              </Button>
+                            ) : (
+                              ''
+                            )}
+                          </div>
+                        </div>
+                        <p className='ask-title'>
+                          {this.store.object.title ?? ''}
                         </p>
-                        <div className='main-answer-card-solved'>
-                          {this.store.object.answered ? (
-                            <Tooltip title='Questão resolvida'>
-                              <CheckCircleOutlined
-                                style={{ color: 'green', fontSize: '200%' }}
-                              ></CheckCircleOutlined>
-                            </Tooltip>
-                          ) : this.store.object.author.id === user.id ? (
+                        <p className='ask-description'>
+                          {this.store.object.content ?? ''}
+                        </p>
+                        <div className='ask-tags'>
+                          {this.store.askTags.map((tag) => {
+                            return <button className='ask-tag'>{tag}</button>;
+                          })}
+                          <div className='main-answer-card-solved'>
                             <Button
-                              style={{ backgroundColor: '#47ff85' }}
-                              onClick={() => {
-                                this.store.updateAttributeDecoratorKeyValue(
-                                  'answered',
-                                  true
-                                );
-                                this.store.markAsSolved(token);
-                              }}
+                              type='primary'
+                              htmlType='submit'
+                              className='style-button'
+                              onClick={() => this._handleShowInputAnswer()}
                             >
-                              Marcar como solução
+                              <MessageIcon className='sent-icon-answer' />
+                              {this.state.showInputAnswer
+                                ? 'Cancelar'
+                                : 'Adicionar uma Resposta'}
                             </Button>
-                          ) : (
-                            ''
-                          )}
-                        </div>
-                      </div>
-                      <p className='ask-title'>
-                        {this.store.object.title ?? ''}
-                      </p>
-                      <p className='ask-description'>
-                        {this.store.object.content ?? ''}
-                      </p>
-                      <div className='ask-tags'>
-                        {this.store.askTags.map((tag) => {
-                          return <button className='ask-tag'>{tag}</button>;
-                        })}
-                      </div>
-                      {this.store.object.author.id === user.id ? (
-                        ''
-                      ) : (
-                        <div>
-                          <div className='vote-div'>
-                            <button className='answer-tag-button'>
-                              <LikeIcon className='tag-icon' /> {'12'}
-                            </button>
-                            <button className='answer-tag-button'>
-                              <UnlikeIcon className='tag-icon' /> {'1'}
-                            </button>
-                          </div>
-                          <div className='date-align'>
-                            {'Postado em: ' +
-                              getValueDateWithHours(
-                                this.store.object.createdAt
-                              )}
                           </div>
                         </div>
-                      )}
-                    </div>
 
-                    <p className='answer-title'>Adicione uma resposta</p>
+                        {this.store.object.author.id === user.id ? (
+                          ''
+                        ) : (
+                          <div>
+                            <div className='vote-div'>
+                              <button className='answer-tag-button'>
+                                <LikeIcon className='tag-icon' /> {'12'}
+                              </button>
+                              <button className='answer-tag-button'>
+                                <UnlikeIcon className='tag-icon' /> {'1'}
+                              </button>
+                            </div>
+                            <div className='date-align'>
+                              {'Postado em: ' +
+                                getValueDateWithHours(
+                                  this.store.object.createdAt
+                                )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
 
-                    <div className='input-answer-card'>
-                      <Form layout='vertical' ref={this.formRef}>
+                      <p
+                        style={
+                          !this.state.showInputAnswer ? { display: 'none' } : {}
+                        }
+                        className='answer-title'
+                      >
+                        Adicione uma resposta
+                      </p>
+                      <div
+                        style={
+                          !this.state.showInputAnswer ? { display: 'none' } : {}
+                        }
+                        className='input-answer-card'
+                      >
                         <Form.Item>
                           <Input
                             onChange={(value) =>
@@ -142,25 +175,25 @@ class Visualizacao extends React.Component {
                             }
                           >
                             <MessageIcon className='sent-icon-answer' />
-                            Enviar Resposta
+                            responder
                           </Button>
                         </Form.Item>
-                      </Form>
-                    </div>
+                      </div>
 
-                    {this.store.object.answers ? (
-                      this.store.object.answers.map((answer) => {
-                        return (
-                          <Answer
-                            content={answer}
-                            idAuthorQuestion={this.store.object.author.id}
-                          />
-                        );
-                      })
-                    ) : (
-                      <p className='answer-title'>Sem Respostas :(</p>
-                    )}
-                  </div>
+                      {this.store.object.answers ? (
+                        this.store.object.answers.map((answer) => {
+                          return (
+                            <Answer
+                              content={answer}
+                              idAuthorQuestion={this.store.object.author.id}
+                            />
+                          );
+                        })
+                      ) : (
+                        <p className='answer-title'>Sem Respostas :(</p>
+                      )}
+                    </div>
+                  </Form>
                 </div>
                 <RightMenu />
               </div>
