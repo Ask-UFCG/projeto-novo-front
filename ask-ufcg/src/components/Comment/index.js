@@ -12,16 +12,19 @@ class Comment extends React.Component {
   }
 
   render() {
-    return (
-      <div className='answer-comment-card'>
-        <p className='comment-description'>{this.content.content}</p>
-        <Divider />
-        <p className='user-comment'>
-          Comentado por{' '}
-          {this.content.author.firstName + ' ' + this.content.author.lastName}
-        </p>
-      </div>
-    );
+    if (this.content) {
+      return (
+        <div className='answer-comment-card'>
+          <p className='comment-description'>{this.content.content}</p>
+          <Divider />
+          <p className='user-comment'>
+            Comentado por{' '}
+            {this.content.author.firstName + ' ' + this.content.author.lastName}
+          </p>
+        </div>
+      );
+    }
+    return 'Sem comentários';
   }
 }
 

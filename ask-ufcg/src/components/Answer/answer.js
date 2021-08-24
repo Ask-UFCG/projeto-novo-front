@@ -72,6 +72,7 @@ class AnswerComponent extends React.Component {
                   >
                     <Form.Item>
                       <Input
+                        value={this.store.comment.content}
                         onChange={(value) => {
                           this.store.updateAttributeDecoratorKeyCommentEventValue(
                             'content',
@@ -85,7 +86,11 @@ class AnswerComponent extends React.Component {
                         type='primary'
                         htmlType='submit'
                         className='style-button'
-                        onClick={() => this.store.addComment(user, token)}
+                        onClick={() =>
+                          this.store.addComment(user, token, () =>
+                            this.forceUpdate()
+                          )
+                        }
                       >
                         <MessageIcon className='sent-icon-answered' />
                         Enviar Comentário
@@ -98,9 +103,8 @@ class AnswerComponent extends React.Component {
           }}
         </userContext.Consumer>
       );
-    } else {
-      return <Spin />;
     }
+    return '';
   }
 }
 

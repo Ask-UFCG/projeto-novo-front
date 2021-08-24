@@ -42,13 +42,13 @@ class AnswerFormStore {
   }
 
   @action
-  addComment(user, token) {
+  addComment(user, token, callback) {
     if (this.comment && this.comment.content) {
       this.comment.author = user;
       this.comment.createdAt = new Date();
       commentService
         .addComment(toJS(this.comment), user.id, this.object.id, token)
-        .then(() => {
+        .then((response) => {
           runInAction(`Save Comment`, () => {
             showNotification(
               'success',
@@ -56,6 +56,10 @@ class AnswerFormStore {
               'Comentário adicionado com sucesso'
             );
             this.comment = new Comment();
+            this.object.comments.push(new Comment(response.data));
+            if (callback) {
+              callback();
+            }
             this.loading = false;
           });
         })
@@ -65,7 +69,6 @@ class AnswerFormStore {
             showErrorApiNotification(error);
           });
         });
-    } else {
     }
   }
 }
