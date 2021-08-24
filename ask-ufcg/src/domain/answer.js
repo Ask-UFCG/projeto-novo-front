@@ -5,7 +5,7 @@ class Answer {
   @observable content;
   @observable qtdLikes = 0;
   @observable qtdDislikes = 0;
-  @observable createAt;
+  @observable createdAt;
   @observable solution = false;
   @observable author;
   @observable question;

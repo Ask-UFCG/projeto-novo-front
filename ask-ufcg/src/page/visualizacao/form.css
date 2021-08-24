@@ -159,7 +159,7 @@
 
 .user-ask-card img {
   height: 3rem;
-  width: auto;
+  width: 3rem;
   border-radius: 50%;
 }
 
@@ -171,8 +171,15 @@
 .vote-div {
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
+  margin-top: 2rem;
+}
+
+.date-align {
+  display: flex;
+  justify-content: left;
+  align-items: left;
   margin-top: 2rem;
 }
 

@@ -1,6 +1,6 @@
 const DadosEstaticosService = {
   getURLServidor() {
-    return 'http://localhost:8081'
+    return 'http://localhost:8081';
     // return 'https://api-ask-ufcg.herokuapp.com'
   },
 
@@ -14,7 +14,7 @@ const DadosEstaticosService = {
       { label: 'Estatística Aplicada', value: '6' },
       { label: 'Optativa Específica', value: '7' },
       { label: 'Optativa Geral', value: '8' },
-    ]
+    ];
   },
 
   getTitlesHeaders() {
@@ -26,8 +26,8 @@ const DadosEstaticosService = {
       { route: '/new-ask', text: 'Faça Uma Pergunta' },
       { route: '/rules', text: 'Regras da Comunidade' },
       { route: '/ask', text: 'Pergunta' },
-    ]
+    ];
   },
-}
+};
 
-export default DadosEstaticosService
+export default DadosEstaticosService;

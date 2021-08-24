@@ -6,7 +6,7 @@ class Pergunta {
   @observable content;
   @observable qtdLikes;
   @observable qtdDislikes;
-  @observable createAt;
+  @observable createdAt;
   @observable answered;
   @observable tags;
   @observable author;

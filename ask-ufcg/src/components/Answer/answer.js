@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Divider, Form, Input, Spin } from 'antd';
+import { Button, Divider, Form, Input } from 'antd';
 import { observer } from 'mobx-react';
 import Answer from '../../domain/answer';
 import AnswerService from '../../services/answer';
@@ -11,6 +11,7 @@ import Comment from '../Comment/index.js';
 import './answer.css';
 import AnswerFormStore from '../../stores/answer/form';
 import { userContext } from '../../userContext';
+import { getValueDateWithHours } from '../../utils/date';
 
 @observer
 class AnswerComponent extends React.Component {
@@ -38,7 +39,6 @@ class AnswerComponent extends React.Component {
                     <img
                       src={this.store.object.author.linkAvatar}
                       alt='nome do usuario'
-                      className='image-user-ask-card'
                     />
                     <p>
                       {this.store.object.author.firstName +
@@ -57,6 +57,10 @@ class AnswerComponent extends React.Component {
                     <button className='answer-tag-button'>
                       <UnlikeIcon className='tag-icon' /> {'1'}
                     </button>
+                  </div>
+                  <div className='date-align'>
+                    {'Postada em: ' +
+                      getValueDateWithHours(this.store.object.createdAt)}
                   </div>
                 </div>
                 {this.store.object.comments

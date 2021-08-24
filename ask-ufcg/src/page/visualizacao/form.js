@@ -5,15 +5,16 @@ import './form.css';
 import LeftMenu from '../../components/LeftMenu/';
 import RightMenu from '../../components/RightMenu/';
 import Answer from '../../components/Answer/answer.js';
-import { Form, Input, Button, Spin, Avatar } from 'antd';
-import imageNotFound from '../../assets/link_not_valid.jpg';
+import { Form, Input, Button, Spin } from 'antd';
 import { ReactComponent as MessageIcon } from '../../assets/message-square.svg';
 import { ASK } from '../../stores/common/UrlRouter';
 import VisualizacaoFormStore from '../../stores/visualizacao/form';
 import Pergunta from '../../domain/pergunta';
 import PerguntaService from '../../services/pergunta';
 import { userContext } from '../../userContext';
-import { UserOutlined } from '@ant-design/icons';
+import { ReactComponent as LikeIcon } from '../../assets/thumbs-up.svg';
+import { ReactComponent as UnlikeIcon } from '../../assets/thumbs-down.svg';
+import { getValueDateWithHours } from '../../utils/date';
 @observer
 class Visualizacao extends React.Component {
   formRef = React.createRef();
@@ -32,17 +33,8 @@ class Visualizacao extends React.Component {
     this.store.init(this.props.match.params.id);
   }
 
-  _checkImgOnline = (avatar) => {
-    const img = new Image();
-    img.src = avatar;
-    return img.height > 0 ? avatar : imageNotFound;
-  };
-
   render() {
     if (this.store.object) {
-      const link = this.store.object.author.linkAvatar
-        ? { src: this._checkImgOnline(this.store.object.author.linkAvatar) }
-        : { icon: <UserOutlined /> };
       return (
         <userContext.Consumer>
           {({ user, token }) => {
@@ -53,7 +45,10 @@ class Visualizacao extends React.Component {
                   <div className='ask-container'>
                     <div className='ask-card'>
                       <div className='user-ask-card'>
-                        <Avatar size='large' {...link} />
+                        <img
+                          src={this.store.object.author.linkAvatar}
+                          alt='nome do usuario'
+                        />
                         <p>
                           {this.store.object.author.firstName +
                             ' ' +
@@ -74,8 +69,21 @@ class Visualizacao extends React.Component {
                       {this.store.object.author.id === user.id ? (
                         ''
                       ) : (
-                        <div className='vote-div'>
-                          <button className='ask-vote-button'>Curtir</button>
+                        <div>
+                          <div className='vote-div'>
+                            <button className='answer-tag-button'>
+                              <LikeIcon className='tag-icon' /> {'12'}
+                            </button>
+                            <button className='answer-tag-button'>
+                              <UnlikeIcon className='tag-icon' /> {'1'}
+                            </button>
+                          </div>
+                          <div className='date-align'>
+                            {'Postado em: ' +
+                              getValueDateWithHours(
+                                this.store.object.createdAt
+                              )}
+                          </div>
                         </div>
                       )}
                     </div>
