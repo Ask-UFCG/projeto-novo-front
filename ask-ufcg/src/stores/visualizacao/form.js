@@ -3,7 +3,10 @@ import AnswerService from '../../services/answer';
 import Pergunta from '../../domain/pergunta';
 import Answer from '../../domain/answer';
 
-import { showErrorApiNotification } from '../../utils/notification';
+import {
+  showErrorApiNotification,
+  showNotification,
+} from '../../utils/notification';
 import DadosEstaticosService from '../../utils/dadosEstaticosService';
 
 class VisualizacaoFormStore {
@@ -67,16 +70,19 @@ class VisualizacaoFormStore {
   }
 
   @action
-  addAnswer(token, user) {
+  addAnswer(token, user, callback) {
     this.loading = true;
     AnswerService.addAnswer(toJS(this.answer), user.id, this.object.id, token)
       .then((response) => {
         runInAction(`addAnswer`, () => {
           this.loading = false;
-          this.object.answers = !this.object.answers
-            ? [response]
-            : this.object.answers.push(response);
+          debugger;
+          this.object.answers.push(new Answer(response.data));
         });
+        showNotification('success', null, 'Resposta adicionada com sucesso!');
+        if (callback) {
+          callback();
+        }
       })
       .catch((error) => {
         runInAction(`error on Save Question`, () => {

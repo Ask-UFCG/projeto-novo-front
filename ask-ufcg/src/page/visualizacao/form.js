@@ -99,7 +99,11 @@ class Visualizacao extends React.Component {
                             type='primary'
                             htmlType='submit'
                             className='style-button'
-                            onClick={() => this.store.addAnswer(token, user)}
+                            onClick={() =>
+                              this.store.addAnswer(token, user, () =>
+                                this.forceUpdate()
+                              )
+                            }
                           >
                             <MessageIcon className='sent-icon-answer' />
                             Enviar Resposta
