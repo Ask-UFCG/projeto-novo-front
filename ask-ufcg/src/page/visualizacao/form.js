@@ -102,41 +102,37 @@ class Visualizacao extends React.Component {
                           {this.store.askTags.map((tag) => {
                             return <button className='ask-tag'>{tag}</button>;
                           })}
-                          <div className='main-answer-card-solved'>
-                            <Button
-                              type='primary'
-                              htmlType='submit'
-                              className='style-button'
-                              onClick={() => this._handleShowInputAnswer()}
-                            >
-                              <MessageIcon className='sent-icon-answer' />
-                              {this.state.showInputAnswer
-                                ? 'Cancelar'
-                                : 'Adicionar uma Resposta'}
-                            </Button>
-                          </div>
                         </div>
 
-                        {this.store.object.author.id === user.id ? (
-                          ''
-                        ) : (
-                          <div>
-                            <div className='vote-div'>
-                              <button className='answer-tag-button'>
-                                <LikeIcon className='tag-icon' /> {'12'}
-                              </button>
-                              <button className='answer-tag-button'>
-                                <UnlikeIcon className='tag-icon' /> {'1'}
-                              </button>
-                            </div>
-                            <div className='date-align'>
-                              {'Postado em: ' +
-                                getValueDateWithHours(
-                                  this.store.object.createdAt
-                                )}
+                        <div>
+                          <div className='vote-div'>
+                            <button className='answer-tag-button'>
+                              <LikeIcon className='tag-icon' /> {'12'}
+                            </button>
+                            <button className='answer-tag-button'>
+                              <UnlikeIcon className='tag-icon' /> {'1'}
+                            </button>
+                          </div>
+                          <div className='date-align'>
+                            {'Postado em: ' +
+                              getValueDateWithHours(
+                                this.store.object.createdAt
+                              )}
+                            <div className='main-question-add-answer'>
+                              <Button
+                                type='primary'
+                                htmlType='submit'
+                                className='style-button'
+                                onClick={() => this._handleShowInputAnswer()}
+                              >
+                                <MessageIcon className='sent-icon-answer' />
+                                {this.state.showInputAnswer
+                                  ? 'Cancelar'
+                                  : 'Adicionar uma Resposta'}
+                              </Button>
                             </div>
                           </div>
-                        )}
+                        </div>
                       </div>
 
                       <p
@@ -170,7 +166,7 @@ class Visualizacao extends React.Component {
                             className='style-button'
                             onClick={() =>
                               this.store.addAnswer(token, user, () =>
-                                this.forceUpdate()
+                                this._handleShowInputAnswer()
                               )
                             }
                           >

@@ -23,11 +23,18 @@ class AnswerComponent extends React.Component {
     super(props);
     this.store = new AnswerFormStore(Answer, AnswerService, 'Resposta ');
     this.idAuthorQuestion = this.props.idAuthorQuestion;
+    this.state = { showInputAnswer: false };
   }
 
   componentDidMount() {
     const { content } = this.props;
     this.store.init(content);
+  }
+
+  _handleShowInputAnswer() {
+    this.setState((oldState) => ({
+      showInputAnswer: !this.state.showInputAnswer,
+    }));
   }
 
   render() {
@@ -89,6 +96,19 @@ class AnswerComponent extends React.Component {
                   <div className='date-align'>
                     {'Postada em: ' +
                       getValueDateWithHours(this.store.object.createdAt)}
+                    <div className='main-answer-add-comment'>
+                      <Button
+                        type='primary'
+                        htmlType='submit'
+                        className='style-button'
+                        onClick={() => this._handleShowInputAnswer()}
+                      >
+                        <MessageIcon className='sent-icon-answer' />
+                        {this.state.showInputAnswer
+                          ? 'Cancelar'
+                          : 'Adicionar um Comentário'}
+                      </Button>
+                    </div>
                   </div>
                 </div>
                 {this.store.object.comments
@@ -96,7 +116,10 @@ class AnswerComponent extends React.Component {
                       <Comment content={comment} />
                     ))
                   : ''}
-                <div className='input-comment-card'>
+                <div
+                  className='input-comment-card'
+                  style={!this.state.showInputAnswer ? { display: 'none' } : {}}
+                >
                   <Form
                     onFinish={() => this.onFinish(user, token)}
                     layout='vertical'
@@ -118,14 +141,10 @@ class AnswerComponent extends React.Component {
                         type='primary'
                         htmlType='submit'
                         className='style-button'
-                        onClick={() =>
-                          this.store.addComment(user, token, () =>
-                            this.forceUpdate()
-                          )
-                        }
+                        onClick={() => this.store.addComment(user, token)}
                       >
                         <MessageIcon className='sent-icon-answered' />
-                        Enviar Comentário
+                        Comentar
                       </Button>
                     </Form.Item>
                   </Form>

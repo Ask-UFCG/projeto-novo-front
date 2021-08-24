@@ -28,6 +28,11 @@
   margin-left: auto;
 }
 
+.main-answer-add-comment {
+  text-align: left;
+  margin-left: auto;
+}
+
 .user-answer-card img {
   height: 3rem;
   width: 3rem;

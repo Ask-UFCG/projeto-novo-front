@@ -82,11 +82,11 @@ class VisualizacaoFormStore {
         runInAction(`addAnswer`, () => {
           this.loading = false;
           this.object.answers.push(new Answer(response.data));
+          showNotification('success', null, 'Resposta adicionado com sucesso!');
+          if (callback) {
+            callback();
+          }
         });
-        showNotification('success', null, 'Resposta adicionada com sucesso!');
-        if (callback) {
-          callback();
-        }
       })
       .catch((error) => {
         runInAction(`error on Save Question`, () => {

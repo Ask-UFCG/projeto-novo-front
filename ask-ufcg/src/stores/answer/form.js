@@ -71,12 +71,13 @@ class AnswerFormStore {
   }
 
   @action
-  addComment(user, token, callback) {
+  addComment(user, token) {
     if (this.comment && this.comment.content) {
+      this.loading = true;
       this.comment.author = user;
       this.comment.createdAt = new Date();
       commentService
-        .addComment(toJS(this.comment), user.id, this.object.id, token)
+        .addComment(this.comment, user.id, this.object.id, token)
         .then((response) => {
           runInAction(`Save Comment`, () => {
             showNotification(
@@ -86,9 +87,6 @@ class AnswerFormStore {
             );
             this.comment = new Comment();
             this.object.comments.push(new Comment(response.data));
-            if (callback) {
-              callback();
-            }
             this.loading = false;
           });
         })
