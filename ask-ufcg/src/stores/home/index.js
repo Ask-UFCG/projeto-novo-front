@@ -8,7 +8,7 @@ import HomeService from '../../services/home'
 class HomeIndexStore {
   @observable object = null
   @observable loading = false
-  @observable filterAsks = 'NEW'
+  @observable filterAsks = 'new'
   @observable allAsksForCards = []
   LENGTH_MAX = 60
 
@@ -66,7 +66,7 @@ class HomeIndexStore {
   @action
   searchQuestions = (title) => {
     this.loading = true
-    HomeService.getAllAsksBySearch(title)
+    HomeService.getAllAsksBySearch(title, this.filterAsks)
       .then((response) => {
         runInAction(`Load All Asks`, () => {
           const content = response && response.data && response.data ? response.data : []

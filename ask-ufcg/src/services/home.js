@@ -1,18 +1,18 @@
-import axios from 'axios';
-import DadosEstaticosService from '../utils/dadosEstaticosService';
+import axios from 'axios'
+import DadosEstaticosService from '../utils/dadosEstaticosService'
 
-const api = DadosEstaticosService.getURLServidor();
+const api = DadosEstaticosService.getURLServidor()
 
 class HomeService {
   getAllAsks = () => {
-    return axios.get(`${api}/search`);
-  };
+    return axios.get(`${api}/search`)
+  }
 
-  getAllAsksBySearch = (title) => {
-    return axios.get(`${api}/search?title=${title}`);
-  };
+  getAllAsksBySearch = (title, filter = 'new') => {
+    return axios.get(`${api}/search?title=${title}&filter=${filter}`)
+  }
 }
 
-const instance = new HomeService();
+const instance = new HomeService()
 
-export default instance;
+export default instance

@@ -155,6 +155,10 @@ class App extends React.Component {
                 path={ASK.route}
                 render={(routeProps) => <Visualizacao {...routeProps} setTitle={this.setTitle} />}
               />
+              <Route
+                path="/*"
+                render={(routeProps) => <HomeIndex {...routeProps} setTitle={this.setTitle} />}
+              />
             </Switch>
           </userContext.Provider>
           <Footer style={{ textAlign: 'center' }}>

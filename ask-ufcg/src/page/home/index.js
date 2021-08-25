@@ -36,31 +36,31 @@ class homeIndex extends React.Component {
           <div className="buttons-home">
             <button
               className="home-tag-button new-tag"
-              id="NEW"
-              onClick={() => this.store.updateFilterAsks('NEW')}
+              id="new"
+              onClick={() => this.store.updateFilterAsks('new')}
             >
               <ClockIcon className="tag-icon" /> Novo
             </button>
             <button
               className="home-tag-button other-tag"
-              id="VOTES"
-              onClick={() => this.store.updateFilterAsks('VOTES')}
+              id="vote"
+              onClick={() => this.store.updateFilterAsks('vote')}
               disabled
             >
               <ArrowUpRightIcon className="tag-icon" /> Mais Votadas
             </button>
             <button
               className="home-tag-button other-tag"
-              id="RELEVANT"
-              onClick={() => this.store.updateFilterAsks('RELEVANT')}
+              id="relevant"
+              onClick={() => this.store.updateFilterAsks('relevant')}
               disabled
             >
               <FireIcon className="tag-icon" /> Relevante
             </button>
             <button
               className="home-tag-button other-tag"
-              id="CLOSED"
-              onClick={() => this.store.updateFilterAsks('CLOSED')}
+              id="answered"
+              onClick={() => this.store.updateFilterAsks('answered')}
             >
               <CheckCircleIcon className="tag-icon" />
               Fechadas
@@ -77,14 +77,10 @@ class homeIndex extends React.Component {
             {this.store.loading ? (
               <Spin />
             ) : (
-              this.store.allAsksForCards
-                .sort(function (a, b) {
-                  return new Date(b.createdAt) - new Date(a.createdAt)
-                })
-                .map((question, index) => {
-                  debugger
-                  return <HomeAskCard ask={question} key={index} {...this.props} />
-                })
+              this.store.allAsksForCards.map((question, index) => {
+                debugger
+                return <HomeAskCard ask={question} key={index} {...this.props} />
+              })
             )}
           </div>
         </div>
