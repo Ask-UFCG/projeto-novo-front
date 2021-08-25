@@ -35,6 +35,32 @@ class PerguntaService {
       }
     );
   };
+
+  addLike = (questionId, userId, token) => {
+    return axios.put(
+      `${api}/questions/${encodeURI(questionId)}/users/${encodeURI(
+        userId
+      )}/like`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
+
+  addDislike = (questionId, userId, token) => {
+    return axios.put(
+      `${api}/questions/${encodeURI(questionId)}/users/${encodeURI(
+        userId
+      )}/dislike`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
 }
 
 const instance = new PerguntaService();

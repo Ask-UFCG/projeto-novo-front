@@ -12,6 +12,8 @@ class Pergunta {
   @observable author;
   @observable answers;
   @observable comments;
+  @observable usersLike;
+  @observable usersDislike;
 
   constructor(response) {
     if (response) {
