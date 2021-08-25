@@ -78,7 +78,6 @@ class homeIndex extends React.Component {
               <Spin />
             ) : (
               this.store.allAsksForCards.map((question, index) => {
-                debugger
                 return <HomeAskCard ask={question} key={index} {...this.props} />
               })
             )}

@@ -43,7 +43,6 @@ class Visualizacao extends React.Component {
       return (
         <userContext.Consumer>
           {({ user, token }) => {
-            debugger
             return (
               <div className="ask-page">
                 <LeftMenu />
