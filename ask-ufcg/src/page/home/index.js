@@ -1,77 +1,97 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import './index.css';
-import HomeIndexStore from '../../stores/home';
-import LeftMenu from '../../components/LeftMenu/';
-import RightMenu from '../../components/RightMenu/';
-import HomeAskCard from '../../components/HomeAskCard/';
-import { ReactComponent as ClockIcon } from '../../assets/clock.svg';
-import { ReactComponent as ArrowUpRightIcon } from '../../assets/arrow-up-right.svg';
-import { ReactComponent as FireIcon } from '../../assets/whh_hot.svg';
-import { ReactComponent as CheckCircleIcon } from '../../assets/check-circle.svg';
-import HomeService from '../../services/home';
-import User from '../../domain/user';
-import { Spin, Input } from 'antd';
-import { HOME } from '../../stores/common/UrlRouter';
-const { Search } = Input;
+import React from 'react'
+import { observer } from 'mobx-react'
+import './index.css'
+import HomeIndexStore from '../../stores/home'
+import LeftMenu from '../../components/LeftMenu/'
+import RightMenu from '../../components/RightMenu/'
+import HomeAskCard from '../../components/HomeAskCard/'
+import { ReactComponent as ClockIcon } from '../../assets/clock.svg'
+import { ReactComponent as ArrowUpRightIcon } from '../../assets/arrow-up-right.svg'
+import { ReactComponent as FireIcon } from '../../assets/whh_hot.svg'
+import { ReactComponent as CheckCircleIcon } from '../../assets/check-circle.svg'
+import HomeService from '../../services/home'
+import User from '../../domain/user'
+import { Spin, Input } from 'antd'
+import { HOME } from '../../stores/common/UrlRouter'
+const { Search } = Input
 
 @observer
 class homeIndex extends React.Component {
   constructor() {
-    super();
-    this.store = new HomeIndexStore(new User(), HomeService, 'User');
+    super()
+    this.store = new HomeIndexStore(new User(), HomeService, 'User')
   }
 
   componentDidMount() {
-    const { setTitle } = this.props;
-    setTitle(HOME.text);
-    this.store.init();
+    const { setTitle } = this.props
+    setTitle(HOME.text)
+    this.store.init()
   }
 
   render() {
     return (
-      <div className='home-page'>
+      <div className="home-page">
         <LeftMenu />
-        <div className='main-home-content'>
-          <div className='buttons-home'>
-            <button className='home-tag-button new-tag'>
-              <ClockIcon className='tag-icon' /> Novo
+        <div className="main-home-content">
+          <div className="buttons-home">
+            <button
+              className="home-tag-button new-tag"
+              id="NEW"
+              onClick={() => this.store.updateFilterAsks('NEW')}
+            >
+              <ClockIcon className="tag-icon" /> Novo
             </button>
-            <button className='home-tag-button other-tag'>
-              <ArrowUpRightIcon className='tag-icon' /> Mais Votadas
+            <button
+              className="home-tag-button other-tag"
+              id="VOTES"
+              onClick={() => this.store.updateFilterAsks('VOTES')}
+              disabled
+            >
+              <ArrowUpRightIcon className="tag-icon" /> Mais Votadas
             </button>
-            <button className='home-tag-button other-tag'>
-              <FireIcon className='tag-icon' /> Relevante
+            <button
+              className="home-tag-button other-tag"
+              id="RELEVANT"
+              onClick={() => this.store.updateFilterAsks('RELEVANT')}
+              disabled
+            >
+              <FireIcon className="tag-icon" /> Relevante
             </button>
-            <button className='home-tag-button other-tag'>
-              <CheckCircleIcon className='tag-icon' />
+            <button
+              className="home-tag-button other-tag"
+              id="CLOSED"
+              onClick={() => this.store.updateFilterAsks('CLOSED')}
+            >
+              <CheckCircleIcon className="tag-icon" />
               Fechadas
             </button>
           </div>
-
-          <div className='home-asks-container'>
-            <div className='menu-search'>
-              <Search
-                placeholder='Pesquise uma pergunta'
-                enterButton
-                onSearch={(title) => this.store.searchQuestions(title)}
-              />
-            </div>
+          <div className="menu-search">
+            <Search
+              placeholder="Pesquise uma pergunta"
+              enterButton
+              onSearch={(title) => this.store.searchQuestions(title)}
+            />
+          </div>
+          <div className="home-asks-container">
             {this.store.loading ? (
               <Spin />
             ) : (
-              this.store.allAsksForCards.map((question, index) => {
-                return (
-                  <HomeAskCard ask={question} key={index} {...this.props} />
-                );
-              })
+              this.store.allAsksForCards
+                .sort(function (a, b) {
+                  return new Date(b.createdAt) - new Date(a.createdAt)
+                })
+                .map((question, index) => {
+                  debugger
+                  return <HomeAskCard ask={question} key={index} {...this.props} />
+                })
             )}
           </div>
         </div>
         <RightMenu />
       </div>
-    );
+    )
   }
 }
 
-export default homeIndex;
+export default homeIndex

@@ -1,6 +1,6 @@
 .home-page {
   display: flex;
-	background-color: #FAFAFA;
+  background-color: #fafafa;
   width: 100%;
 }
 
@@ -24,19 +24,23 @@
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.2rem 0.5rem;
-  color: #FFF;
+  color: #fff;
   border: 0px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
 }
 
+.home-tag-button:disabled {
+  cursor: not-allowed;
+}
+
 .new-tag {
-  background-color: #1D3557; 
+  background-color: #1d3557;
 }
 
 .other-tag {
-  background-color: #457B9D;
+  background-color: #457b9d;
 }
 
 .tag-icon {
@@ -65,8 +69,8 @@
   padding: 1.5rem;
 
   border-radius: 5px;
-  border: 1px solid #EAEAEA;
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  border: 1px solid #eaeaea;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .user-home-ask-card {
@@ -94,7 +98,7 @@
 }
 
 .ask-description {
-  font-size: 1rem; 
+  font-size: 1rem;
 }
 
 .ask-tags {
@@ -109,8 +113,8 @@
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.2rem 0.5rem;
-  background-color: #457B9D;
-  color: #FFF;
+  background-color: #457b9d;
+  color: #fff;
   border: 0px;
   cursor: pointer;
   align-items: center;
@@ -122,20 +126,20 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAFAFA; 
+  background: #fafafa;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: #457B9D; 
+  background: #457b9d;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1D3557; 
+  background: #1d3557;
 }
 
 .card-right-menu {
-  border: 1px solid #EAEAEA;
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  border: 1px solid #eaeaea;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -169,9 +173,10 @@
 }
 
 .menu-search {
-	margin-top: 3rem !important;
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center;
-	width: 100%;
+  margin-top: 3rem !important;
+  margin-bottom: 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center;
+  width: 100%;
 }

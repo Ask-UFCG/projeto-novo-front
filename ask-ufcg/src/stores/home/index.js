@@ -1,84 +1,102 @@
-import { action, observable, runInAction } from 'mobx';
-import DadosEstaticosService from '../../utils/dadosEstaticosService';
-import { showErrorApiNotification } from '../../utils/notification';
-import imagePic from '../../assets/perfil_not_found.png';
-import imageNotFound from '../../assets/link_not_valid.jpg';
-import HomeService from '../../services/home';
+import { action, observable, runInAction } from 'mobx'
+import DadosEstaticosService from '../../utils/dadosEstaticosService'
+import { showErrorApiNotification } from '../../utils/notification'
+import imagePic from '../../assets/perfil_not_found.png'
+import imageNotFound from '../../assets/link_not_valid.jpg'
+import HomeService from '../../services/home'
 
 class HomeIndexStore {
-  @observable object = null;
-  @observable loading = false;
-  @observable allAsks = [];
-  @observable allAsksForCards = [];
-  LENGTH_MAX = 60;
+  @observable object = null
+  @observable loading = false
+  @observable filterAsks = 'NEW'
+  @observable allAsksForCards = []
+  LENGTH_MAX = 60
 
   constructor(entity, service, entityName) {
-    this.entity = entity;
-    this.service = service;
-    this.entityName = entityName;
+    this.entity = entity
+    this.service = service
+    this.entityName = entityName
+  }
+
+  @action
+  updateFilterAsks = (value) => {
+    this._toggleButtonColor(value)
+    this.filterAsks = value
+  }
+
+  _toggleButtonColor = (value) => {
+    const button = document.getElementById(value)
+    if (!button.classList.contains('new-tag')) {
+      const buttons = document.getElementsByClassName('home-tag-button')
+      for (let i = 0; i < buttons.length; i++) {
+        if (buttons[i].id !== value) {
+          buttons[i].classList.remove('new-tag')
+          if (!buttons[i].classList.contains('other-tag')) {
+            buttons[i].classList.add('other-tag')
+          }
+        }
+      }
+      button.classList.remove('other-tag')
+      button.classList.add('new-tag')
+    }
   }
 
   @action
   updateAttributeDecoratorKeyEventValue = (key, event) => {
-    this.object[key] = event.target.value;
-  };
+    this.object[key] = event.target.value
+  }
 
   @action
   updateAttributeDecoratorKeyValue = (key, value) => {
-    this.object[key] = value;
-  };
+    this.object[key] = value
+  }
 
   @action
   init = () => {
-    this.object = this.entity;
-    this.loadAllAsks();
-  };
+    this.object = this.entity
+    this.loadAllAsks()
+  }
 
   _checkImgOnline = (imageUrl) => {
-    var img = new Image();
-    img.src = imageUrl;
-    return img.height > 0;
-  };
+    var img = new Image()
+    img.src = imageUrl
+    return img.height > 0
+  }
 
   @action
   searchQuestions = (title) => {
-    this.loading = true;
+    this.loading = true
     HomeService.getAllAsksBySearch(title)
       .then((response) => {
         runInAction(`Load All Asks`, () => {
-          const content =
-            response && response.data && response.data ? response.data : [];
+          const content = response && response.data && response.data ? response.data : []
           if (content.length > 0) {
-            this.allAsks = content;
             this.allAsksForCards = content.map((ask) => {
               const askTitle = ask.title
                 ? ask.title.length >= this.LENGTH_MAX
                   ? ask.title.substring(0, this.LENGTH_MAX)
                   : ask.title
-                : '';
+                : ''
               const askDescription = ask.content
                 ? ask.content.length >= this.LENGTH_MAX
                   ? ask.content.substring(0, this.LENGTH_MAX)
                   : ask.content
-                : '';
-              const tags = ask.tags ?? [];
-              const askCreatedAt = ask.createdAt;
+                : ''
+              const tags = ask.tags ?? []
+              const askCreatedAt = ask.createdAt
               const askTags = tags.map((item) => {
-                let result = undefined;
-                DadosEstaticosService.getLabelsDisciplinas().forEach(
-                  (disciplina) => {
-                    if (disciplina.value === item) {
-                      result = disciplina.label;
-                    }
+                let result = undefined
+                DadosEstaticosService.getLabelsDisciplinas().forEach((disciplina) => {
+                  if (disciplina.value === item) {
+                    result = disciplina.label
                   }
-                );
-                return result;
-              });
+                })
+                return result
+              })
               const linkAvatar =
-                !ask.author.linkAvatar ||
-                this._checkImgOnline(ask.author.linkAvatar)
+                !ask.author.linkAvatar || this._checkImgOnline(ask.author.linkAvatar)
                   ? ask.author.linkAvatar || imagePic
-                  : imageNotFound;
+                  : imageNotFound
 
               return {
                 userphoto: linkAvatar,
@@ -88,59 +106,54 @@ class HomeIndexStore {
                 tags: askTags,
                 createdAt: askCreatedAt,
                 id: ask.id,
-              };
-            });
+              }
+            })
           }
-          this.loading = false;
-        });
+          this.loading = false
+        })
       })
       .catch((error) => {
         runInAction(`Error on load All Asks`, () => {
-          this.loading = false;
-          showErrorApiNotification(error);
-        });
-      });
-  };
+          this.loading = false
+          showErrorApiNotification(error)
+        })
+      })
+  }
 
   @action
   loadAllAsks = () => {
-    this.loading = true;
+    this.loading = true
     HomeService.getAllAsks()
       .then((response) => {
         runInAction(`Load All Asks`, () => {
-          const content =
-            response && response.data && response.data ? response.data : [];
+          const content = response && response.data && response.data ? response.data : []
           if (content.length > 0) {
-            this.allAsks = content;
+            this.allAsks = content
             this.allAsksForCards = content.map((ask) => {
               const askTitle = ask.title
                 ? ask.title.length >= this.LENGTH_MAX
                   ? ask.title.substring(0, this.LENGTH_MAX)
                   : ask.title
-                : '';
+                : ''
               const askDescription = ask.content
                 ? ask.content.length >= this.LENGTH_MAX
                   ? ask.content.substring(0, this.LENGTH_MAX)
                   : ask.content
-                : '';
-              const askCreatedAt = ask.createdAt;
-              const tags = ask.tags ?? [];
+                : ''
+              const tags = ask.tags ?? []
               const askTags = tags.map((item) => {
-                let result = undefined;
-                DadosEstaticosService.getLabelsDisciplinas().forEach(
-                  (disciplina) => {
-                    if (disciplina.value === item) {
-                      result = disciplina.label;
-                    }
+                let result = undefined
+                DadosEstaticosService.getLabelsDisciplinas().forEach((disciplina) => {
+                  if (disciplina.value === item) {
+                    result = disciplina.label
                   }
-                );
-                return result;
-              });
+                })
+                return result
+              })
               const linkAvatar =
-                !ask.author.linkAvatar ||
-                this._checkImgOnline(ask.author.linkAvatar)
+                !ask.author.linkAvatar || this._checkImgOnline(ask.author.linkAvatar)
                   ? ask.author.linkAvatar || imagePic
-                  : imageNotFound;
+                  : imageNotFound
 
               return {
                 userphoto: linkAvatar,
@@ -148,21 +161,25 @@ class HomeIndexStore {
                 title: askTitle,
                 description: askDescription,
                 tags: askTags,
-                createdAt: askCreatedAt,
+                createdAt: ask.createdAt,
                 id: ask.id,
-              };
-            });
+                answered: ask.answered,
+                answers: ask.answers,
+                qtdDislikes: ask.qtdDislikes,
+                qtdLikes: ask.qtdLikes,
+              }
+            })
           }
-          this.loading = false;
-        });
+          this.loading = false
+        })
       })
       .catch((error) => {
         runInAction(`Error on load All Asks`, () => {
-          this.loading = false;
-          showErrorApiNotification(error);
-        });
-      });
-  };
+          this.loading = false
+          showErrorApiNotification(error)
+        })
+      })
+  }
 }
 
-export default HomeIndexStore;
+export default HomeIndexStore
