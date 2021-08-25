@@ -37,7 +37,7 @@ class PerguntaService {
   };
 
   addLike = (questionId, userId, token) => {
-    return axios.put(
+    return axios.get(
       `${api}/questions/${encodeURI(questionId)}/users/${encodeURI(
         userId
       )}/like`,
@@ -50,7 +50,7 @@ class PerguntaService {
   };
 
   addDislike = (questionId, userId, token) => {
-    return axios.put(
+    return axios.get(
       `${api}/questions/${encodeURI(questionId)}/users/${encodeURI(
         userId
       )}/dislike`,
