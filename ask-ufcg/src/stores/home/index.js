@@ -22,6 +22,7 @@ class HomeIndexStore {
   updateFilterAsks = (value) => {
     this._toggleButtonColor(value)
     this.filterAsks = value
+    this.getAllAsksByFilter()
   }
 
   _toggleButtonColor = (value) => {
@@ -71,6 +72,7 @@ class HomeIndexStore {
         runInAction(`Load All Asks`, () => {
           const content = response && response.data && response.data ? response.data : []
           if (content.length > 0) {
+            this.allAsks = content
             this.allAsksForCards = content.map((ask) => {
               const askTitle = ask.title
                 ? ask.title.length >= this.LENGTH_MAX
@@ -108,15 +110,83 @@ class HomeIndexStore {
                 id: ask.id,
               }
             })
+          } else {
+            this.allAsks = content
+            this.allAsksForCards = content
+            return this.allAsksForCards
           }
-          this.loading = false
         })
       })
       .catch((error) => {
         runInAction(`Error on load All Asks`, () => {
-          this.loading = false
           showErrorApiNotification(error)
         })
+      })
+      .finally(() => {
+        this.loading = false
+      })
+  }
+
+  @action
+  getAllAsksByFilter = () => {
+    this.loading = true
+    HomeService.getAllAsksByFilter(this.filterAsks)
+      .then((response) => {
+        runInAction(`Load All Asks`, () => {
+          const content = response && response.data && response.data ? response.data : []
+          if (content.length > 0) {
+            this.allAsks = content
+            this.allAsksForCards = content.map((ask) => {
+              const askTitle = ask.title
+                ? ask.title.length >= this.LENGTH_MAX
+                  ? ask.title.substring(0, this.LENGTH_MAX)
+                  : ask.title
+                : ''
+              const askDescription = ask.content
+                ? ask.content.length >= this.LENGTH_MAX
+                  ? ask.content.substring(0, this.LENGTH_MAX)
+                  : ask.content
+                : ''
+              const tags = ask.tags ?? []
+              const askCreatedAt = ask.createdAt
+              const askTags = tags.map((item) => {
+                let result = undefined
+                DadosEstaticosService.getLabelsDisciplinas().forEach((disciplina) => {
+                  if (disciplina.value === item) {
+                    result = disciplina.label
+                  }
+                })
+                return result
+              })
+              const linkAvatar =
+                !ask.author.linkAvatar || this._checkImgOnline(ask.author.linkAvatar)
+                  ? ask.author.linkAvatar || imagePic
+                  : imageNotFound
+
+              return {
+                userphoto: linkAvatar,
+                username: ask.author.firstName,
+                title: askTitle,
+                description: askDescription,
+                tags: askTags,
+                createdAt: askCreatedAt,
+                id: ask.id,
+              }
+            })
+          } else {
+            this.allAsks = content
+            this.allAsksForCards = content
+            return this.allAsksForCards
+          }
+        })
+      })
+      .catch((error) => {
+        runInAction(`Error on load All Asks`, () => {
+          showErrorApiNotification(error)
+        })
+      })
+      .finally(() => {
+        this.loading = false
       })
   }
 
@@ -169,15 +239,20 @@ class HomeIndexStore {
                 qtdLikes: ask.qtdLikes,
               }
             })
+          } else {
+            this.allAsks = content
+            this.allAsksForCards = content
+            return this.allAsksForCards
           }
-          this.loading = false
         })
       })
       .catch((error) => {
         runInAction(`Error on load All Asks`, () => {
-          this.loading = false
           showErrorApiNotification(error)
         })
+      })
+      .finally(() => {
+        this.loading = false
       })
   }
 }

@@ -8,6 +8,10 @@ class HomeService {
     return axios.get(`${api}/search`)
   }
 
+  getAllAsksByFilter = (filter = 'new') => {
+    return axios.get(`${api}/search?filter=${filter}`)
+  }
+
   getAllAsksBySearch = (title, filter = 'new') => {
     return axios.get(`${api}/search?title=${title}&filter=${filter}`)
   }

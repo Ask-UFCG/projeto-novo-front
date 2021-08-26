@@ -45,7 +45,6 @@ class homeIndex extends React.Component {
               className="home-tag-button other-tag"
               id="vote"
               onClick={() => this.store.updateFilterAsks('vote')}
-              disabled
             >
               <ArrowUpRightIcon className="tag-icon" /> Mais Votadas
             </button>
@@ -53,7 +52,6 @@ class homeIndex extends React.Component {
               className="home-tag-button other-tag"
               id="relevant"
               onClick={() => this.store.updateFilterAsks('relevant')}
-              disabled
             >
               <FireIcon className="tag-icon" /> Relevante
             </button>
