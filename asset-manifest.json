@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/projeto-novo-front/ask-ufcg/static/css/main.396d9c25.chunk.css",
+    "main.js": "/projeto-novo-front/ask-ufcg/static/js/main.41f9f3b3.chunk.js",
+    "main.js.map": "/projeto-novo-front/ask-ufcg/static/js/main.41f9f3b3.chunk.js.map",
+    "runtime-main.js": "/projeto-novo-front/ask-ufcg/static/js/runtime-main.ecc3682d.js",
+    "runtime-main.js.map": "/projeto-novo-front/ask-ufcg/static/js/runtime-main.ecc3682d.js.map",
+    "static/css/2.81b0985c.chunk.css": "/projeto-novo-front/ask-ufcg/static/css/2.81b0985c.chunk.css",
+    "static/js/2.c61cd2d7.chunk.js": "/projeto-novo-front/ask-ufcg/static/js/2.c61cd2d7.chunk.js",
+    "static/js/2.c61cd2d7.chunk.js.map": "/projeto-novo-front/ask-ufcg/static/js/2.c61cd2d7.chunk.js.map",
+    "index.html": "/projeto-novo-front/ask-ufcg/index.html",
+    "static/css/2.81b0985c.chunk.css.map": "/projeto-novo-front/ask-ufcg/static/css/2.81b0985c.chunk.css.map",
+    "static/css/main.396d9c25.chunk.css.map": "/projeto-novo-front/ask-ufcg/static/css/main.396d9c25.chunk.css.map",
+    "static/js/2.c61cd2d7.chunk.js.LICENSE.txt": "/projeto-novo-front/ask-ufcg/static/js/2.c61cd2d7.chunk.js.LICENSE.txt",
+    "static/media/arrow-up-right.4fd553c0.svg": "/projeto-novo-front/ask-ufcg/static/media/arrow-up-right.4fd553c0.svg",
+    "static/media/check-circle.a3517c89.svg": "/projeto-novo-front/ask-ufcg/static/media/check-circle.a3517c89.svg",
+    "static/media/clock.b50bc672.svg": "/projeto-novo-front/ask-ufcg/static/media/clock.b50bc672.svg",
+    "static/media/heart.7007842d.svg": "/projeto-novo-front/ask-ufcg/static/media/heart.7007842d.svg",
+    "static/media/help-circle.9481defe.svg": "/projeto-novo-front/ask-ufcg/static/media/help-circle.9481defe.svg",
+    "static/media/link.dd370b1b.svg": "/projeto-novo-front/ask-ufcg/static/media/link.dd370b1b.svg",
+    "static/media/link_not_valid.068559ed.jpg": "/projeto-novo-front/ask-ufcg/static/media/link_not_valid.068559ed.jpg",
+    "static/media/list.c5fad1b0.svg": "/projeto-novo-front/ask-ufcg/static/media/list.c5fad1b0.svg",
+    "static/media/logo.4821dc8e.svg": "/projeto-novo-front/ask-ufcg/static/media/logo.4821dc8e.svg",
+    "static/media/message-circle.06df4331.svg": "/projeto-novo-front/ask-ufcg/static/media/message-circle.06df4331.svg",
+    "static/media/message-square.28ab923e.svg": "/projeto-novo-front/ask-ufcg/static/media/message-square.28ab923e.svg",
+    "static/media/perfil_not_found.f5bbe167.png": "/projeto-novo-front/ask-ufcg/static/media/perfil_not_found.f5bbe167.png",
+    "static/media/star.b10f8b46.svg": "/projeto-novo-front/ask-ufcg/static/media/star.b10f8b46.svg",
+    "static/media/tag.064e8961.svg": "/projeto-novo-front/ask-ufcg/static/media/tag.064e8961.svg",
+    "static/media/whh_hot.40bf6ad1.svg": "/projeto-novo-front/ask-ufcg/static/media/whh_hot.40bf6ad1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ecc3682d.js",
+    "static/css/2.81b0985c.chunk.css",
+    "static/js/2.c61cd2d7.chunk.js",
+    "static/css/main.396d9c25.chunk.css",
+    "static/js/main.41f9f3b3.chunk.js"
+  ]
+}
