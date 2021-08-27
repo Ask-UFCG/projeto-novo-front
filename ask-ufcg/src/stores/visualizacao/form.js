@@ -102,20 +102,37 @@ class VisualizacaoFormStore {
   addLikeToQuestion(user, token) {
     if (user) {
       this.loading = true;
-      this.service
-        .addLike(this.object.id, user.id, token)
-        .then((response) => {
-          runInAction(`add like`, () => {
-            this.object = response.data;
-            this.loading = false;
+      if (this.checkIfUserIdInUsersLikedQuestion(user.id)) {
+        this.service
+          .removeLike(this.object.id, user.id, token)
+          .then((response) => {
+            runInAction(`add like`, () => {
+              this.object = response.data;
+              this.loading = false;
+            });
+          })
+          .catch((error) => {
+            runInAction(`error on add like`, () => {
+              this.loading = false;
+              showErrorApiNotification(error);
+            });
           });
-        })
-        .catch((error) => {
-          runInAction(`error on add like`, () => {
-            this.loading = false;
-            showErrorApiNotification(error);
+      } else {
+        this.service
+          .addLike(this.object.id, user.id, token)
+          .then((response) => {
+            runInAction(`add like`, () => {
+              this.object = response.data;
+              this.loading = false;
+            });
+          })
+          .catch((error) => {
+            runInAction(`error on add like`, () => {
+              this.loading = false;
+              showErrorApiNotification(error);
+            });
           });
-        });
+      }
     } else {
       showNotification(
         'error',
@@ -129,20 +146,38 @@ class VisualizacaoFormStore {
   addDislikeToQuestion(user, token) {
     if (user) {
       this.loading = true;
-      this.service
-        .addDislike(this.object.id, user.id, token)
-        .then((response) => {
-          runInAction(`add like`, () => {
-            this.object = response.data;
-            this.loading = false;
+
+      if (this.checkIfUserIdInUsersDislikedQuestion(user.id)) {
+        this.service
+          .removeDislike(this.object.id, user.id, token)
+          .then((response) => {
+            runInAction(`add like`, () => {
+              this.object = response.data;
+              this.loading = false;
+            });
+          })
+          .catch((error) => {
+            runInAction(`error on add dislike`, () => {
+              this.loading = false;
+              showErrorApiNotification(error);
+            });
           });
-        })
-        .catch((error) => {
-          runInAction(`error on add dislike`, () => {
-            this.loading = false;
-            showErrorApiNotification(error);
+      } else {
+        this.service
+          .addDislike(this.object.id, user.id, token)
+          .then((response) => {
+            runInAction(`add like`, () => {
+              this.object = response.data;
+              this.loading = false;
+            });
+          })
+          .catch((error) => {
+            runInAction(`error on add dislike`, () => {
+              this.loading = false;
+              showErrorApiNotification(error);
+            });
           });
-        });
+      }
     } else {
       showNotification(
         'error',

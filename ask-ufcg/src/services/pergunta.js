@@ -49,8 +49,34 @@ class PerguntaService {
     );
   };
 
+  removeLike = (questionId, userId, token) => {
+    return axios.delete(
+      `${api}/questions/${encodeURI(questionId)}/users/${encodeURI(
+        userId
+      )}/like`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
+
   addDislike = (questionId, userId, token) => {
     return axios.get(
+      `${api}/questions/${encodeURI(questionId)}/users/${encodeURI(
+        userId
+      )}/dislike`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
+
+  removeDislike = (questionId, userId, token) => {
+    return axios.delete(
       `${api}/questions/${encodeURI(questionId)}/users/${encodeURI(
         userId
       )}/dislike`,
