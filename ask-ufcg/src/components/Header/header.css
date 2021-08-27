@@ -1,0 +1,76 @@
+.header {
+  background-color: #A8DADC;
+  display: flex;
+  width: 100%;
+  height: 7vh;
+  padding: 0 1rem;
+  gap: 5rem;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-header a {
+  padding: 0;
+  margin: 0;
+}
+
+.logo-UFCG {
+  font-weight: bold;
+}
+
+.logo-ask {
+  margin: 0;
+  height: 2rem;
+  width: auto;
+}
+
+.logo-header p {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.title-header {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.user-links {
+  height: 7vh;
+  display: flex;
+  position: absolute;
+  right: 1.5rem;
+  gap: 2rem;
+  align-items: center;
+}
+
+.button-user-links {
+  background-color: #1D3557; 
+  border-radius: 5px;
+  borderColor: #1D3557;
+  font-weight: bold;
+  height: 2rem;
+}
+
+.button-user-links:focus {
+  background-color: #1D3557; 
+}
+
+.button-user-links:hover {
+  background-color: #1D3557; 
+}
+
+.link-logo {
+  display: flex;
+}
+
+.link-logo:visited {
+  color: #1D3557;
+}
