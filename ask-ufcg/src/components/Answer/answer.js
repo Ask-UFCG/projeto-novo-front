@@ -4,8 +4,6 @@ import { observer } from 'mobx-react';
 import Answer from '../../domain/answer';
 import AnswerService from '../../services/answer';
 import { ReactComponent as MessageIcon } from '../../assets/message-square.svg';
-import { ReactComponent as LikeIcon } from '../../assets/thumbs-up.svg';
-import { ReactComponent as UnlikeIcon } from '../../assets/thumbs-down.svg';
 import Comment from '../Comment/index.js';
 import './answer.css';
 import AnswerFormStore from '../../stores/answer/form';
