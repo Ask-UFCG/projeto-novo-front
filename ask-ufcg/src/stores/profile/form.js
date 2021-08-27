@@ -31,7 +31,6 @@ class ProfileFormStore {
 
   @action
   init(user) {
-    debugger;
     this.object = new this.entity(user);
   }
 
