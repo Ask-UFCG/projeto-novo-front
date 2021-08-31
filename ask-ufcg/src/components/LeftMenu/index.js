@@ -11,6 +11,8 @@ import { ReactComponent as MessageIcon } from '../../assets/message-circle.svg'
 import { Link } from 'react-router-dom'
 import { HOME } from '../../stores/common/UrlRouter'
 import { userContext } from '../../userContext'
+import { GithubOutlined, LinkedinOutlined } from '@ant-design/icons'
+
 class LeftMenu extends React.Component {
   render() {
     const emDesenvolvimento = { disabled: true, title: 'Em Desenvolvimento' }
@@ -32,6 +34,7 @@ class LeftMenu extends React.Component {
 
                 {user ? (
                   <>
+                    <Menu.Divider />
                     <p className="menu-left-bar-text">Navegação Pessoal</p>
                     <Menu.Item {...emDesenvolvimento} key="5" icon={<HeartIcon />}>
                       Suas questões
@@ -42,6 +45,26 @@ class LeftMenu extends React.Component {
                     <Menu.Item {...emDesenvolvimento} key="7" icon={<MessageIcon />}>
                       Suas curtidas e votos
                     </Menu.Item>{' '}
+                    <Menu.Divider />
+                    <p className="menu-left-bar-text"></p>
+                    {user.linkGithub ? (
+                      <a href={user.linkGithub}>
+                        <Menu.Item key="Github" icon={<GithubOutlined />} title={'Github'}>
+                          Github
+                        </Menu.Item>
+                      </a>
+                    ) : (
+                      ''
+                    )}
+                    {user.linkLinkedin ? (
+                      <a href={user.linkLinkedin}>
+                        <Menu.Item key="Linkedin" icon={<LinkedinOutlined />} title={'Linkedin'}>
+                          Linkedin
+                        </Menu.Item>
+                      </a>
+                    ) : (
+                      ''
+                    )}
                   </>
                 ) : (
                   ''

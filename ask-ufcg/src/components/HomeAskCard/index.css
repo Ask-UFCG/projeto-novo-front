@@ -3,8 +3,8 @@
   padding: 1.5rem;
 
   border-radius: 5px;
-  border: 1px solid #EAEAEA;
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  border: 1px solid #eaeaea;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .user-home-ask-card {
@@ -26,13 +26,15 @@
 }
 
 .ask-title {
+  word-break: break-all;
   font-weight: bold;
   font-size: 1rem;
   margin: 1rem 0;
 }
 
 .ask-description {
-  font-size: 1rem; 
+  word-break: break-all;
+  font-size: 1rem;
 }
 
 .ask-tags {
@@ -47,21 +49,20 @@
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.2rem 0.5rem;
-  background-color: #457B9D;
-  color: #FFF;
+  background-color: #457b9d;
+  color: #fff;
   border: 0px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
 }
 
-
 .ask-link {
   color: black;
 }
 
 .ask-link:hover {
-  color: #457B9D;
+  color: #457b9d;
 }
 
 .date-align {
