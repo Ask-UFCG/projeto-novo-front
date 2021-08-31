@@ -45,8 +45,7 @@ class App extends React.Component {
     this.setState({ user, token })
   }
 
-  setUser = (response) => {
-    const { user } = response
+  setUser = (user) => {
     this.setState({ user })
   }
 

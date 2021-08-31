@@ -1,7 +1,7 @@
 const DadosEstaticosService = {
   getURLServidor() {
-    //return 'http://localhost:8081';
-    return 'https://api-ask-ufcg.herokuapp.com';
+    return 'http://localhost:8081'
+    // return 'https://api-ask-ufcg.herokuapp.com';
   },
 
   getLabelsDisciplinas() {
@@ -23,7 +23,7 @@ const DadosEstaticosService = {
       { label: 'Inteligência Artificial', value: '15' },
       { label: 'Optativa Específica', value: '16' },
       { label: 'Optativa Geral', value: '17' },
-    ];
+    ]
   },
 
   getTitlesHeaders() {
@@ -35,8 +35,8 @@ const DadosEstaticosService = {
       { route: '/new-ask', text: 'Faça Uma Pergunta' },
       { route: '/rules', text: 'Regras da Comunidade' },
       { route: '/ask', text: 'Pergunta' },
-    ];
+    ]
   },
-};
+}
 
-export default DadosEstaticosService;
+export default DadosEstaticosService

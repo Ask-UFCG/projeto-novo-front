@@ -36,6 +36,10 @@ const _getMensagemErro = (error) => {
     error.response.data = error.response.data.data
   }
 
+  if (error.response.data.message) {
+    return error.response.data.message
+  }
+
   if (status) {
     switch (status) {
       case 400:
