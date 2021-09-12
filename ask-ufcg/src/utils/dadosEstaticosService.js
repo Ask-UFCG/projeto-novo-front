@@ -1,7 +1,7 @@
 const DadosEstaticosService = {
   getURLServidor() {
-    return 'http://localhost:8081'
-    // return 'https://api-ask-ufcg.herokuapp.com';
+    // return 'http://localhost:8081'
+    return 'https://api-ask-ufcg.herokuapp.com'
   },
 
   getLabelsDisciplinas() {

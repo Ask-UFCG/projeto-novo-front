@@ -4,7 +4,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { HOME, NEW_ASK, PROFILE, REGISTER, SIGN_IN } from '../../stores/common/UrlRouter'
 import { ReactComponent as AskUFCGLogo } from '../../assets/logo.svg'
-import imageNotFound from '../../assets/link_not_valid.jpg'
 import './header.css'
 import { observer } from 'mobx-react'
 import { userContext } from '../../userContext'
@@ -13,12 +12,6 @@ import { observable } from 'mobx'
 @observer
 class Header extends React.Component {
   @observable title = undefined
-
-  _checkImgOnline = (imageUrl) => {
-    const img = new Image()
-    img.src = imageUrl
-    return img.height > 0 ? imageUrl : imageNotFound
-  }
 
   _renderButtonsLoginRegister = () => {
     return (
@@ -38,7 +31,6 @@ class Header extends React.Component {
   }
 
   _renderUserLinks = (avatar) => {
-    const link = avatar ? { src: this._checkImgOnline(avatar) } : { icon: <UserOutlined /> }
     return (
       <>
         <Link to={NEW_ASK.route}>
@@ -47,7 +39,7 @@ class Header extends React.Component {
           </Button>
         </Link>
         <Link to={PROFILE.route}>
-          <Avatar size="large" {...link} />
+          <Avatar size="large" src={avatar} icon={<UserOutlined />} />
         </Link>
       </>
     )

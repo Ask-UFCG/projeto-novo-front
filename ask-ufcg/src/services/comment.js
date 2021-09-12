@@ -1,24 +1,22 @@
-import axios from 'axios';
-import DadosEstaticosService from '../utils/dadosEstaticosService';
+import axios from 'axios'
+import DadosEstaticosService from '../utils/dadosEstaticosService'
 
-const api = DadosEstaticosService.getURLServidor();
+const api = DadosEstaticosService.getURLServidor()
 
 class CommentService {
   addComment = (commentRequest, userId, answeredId, token) => {
     return axios.post(
-      `${api}/comments/answers/${encodeURI(answeredId)}/users/${encodeURI(
-        userId
-      )}`,
+      `${api}/comments/answers/${encodeURI(answeredId)}/users/${encodeURI(userId)}`,
       commentRequest,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
-    );
-  };
+    )
+  }
 }
 
-const instance = new CommentService();
+const instance = new CommentService()
 
-export default instance;
+export default instance

@@ -2,7 +2,7 @@ import { action, observable, runInAction } from 'mobx'
 import DadosEstaticosService from '../../utils/dadosEstaticosService'
 import { showErrorApiNotification } from '../../utils/notification'
 import imagePic from '../../assets/perfil_not_found.png'
-import imageNotFound from '../../assets/link_not_valid.jpg'
+
 import HomeService from '../../services/home'
 
 class HomeIndexStore {
@@ -95,10 +95,7 @@ class HomeIndexStore {
                 })
                 return result
               })
-              const linkAvatar =
-                !ask.author.linkAvatar || this._checkImgOnline(ask.author.linkAvatar)
-                  ? ask.author.linkAvatar || imagePic
-                  : imageNotFound
+              const linkAvatar = ask.author.linkAvatar ? ask.author.linkAvatar : imagePic
 
               return {
                 userphoto: linkAvatar,
@@ -158,10 +155,7 @@ class HomeIndexStore {
                 })
                 return result
               })
-              const linkAvatar =
-                !ask.author.linkAvatar || this._checkImgOnline(ask.author.linkAvatar)
-                  ? ask.author.linkAvatar || imagePic
-                  : imageNotFound
+              const linkAvatar = ask.author.linkAvatar ? ask.author.linkAvatar : imagePic
 
               return {
                 userphoto: linkAvatar,
@@ -220,10 +214,7 @@ class HomeIndexStore {
                 })
                 return result
               })
-              const linkAvatar =
-                !ask.author.linkAvatar || this._checkImgOnline(ask.author.linkAvatar)
-                  ? ask.author.linkAvatar || imagePic
-                  : imageNotFound
+              const linkAvatar = ask.author.linkAvatar ? ask.author.linkAvatar : imagePic
 
               return {
                 userphoto: linkAvatar,

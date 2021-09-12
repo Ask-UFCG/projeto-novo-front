@@ -108,8 +108,8 @@ class AnswerComponent extends React.Component {
                     </div>
                   </div>
                 </div>
-                {this.store.object.comments && this.state.showComments
-                  ? this.store.object.comments.map((comment) => <Comment content={comment} />)
+                {this.store.comments && this.state.showComments
+                  ? this.store.comments.map((comment) => <Comment content={comment} />)
                   : ''}
                 <div
                   className="input-comment-card"
@@ -130,7 +130,10 @@ class AnswerComponent extends React.Component {
                           type="primary"
                           htmlType="submit"
                           className="style-button"
-                          onClick={() => this.store.addComment(user, token)}
+                          onClick={(e) => {
+                            this.formRef.current.resetFields()
+                            this.store.addComment(user, token, e)
+                          }}
                         >
                           <MessageIcon className="sent-icon-answered" />
                           Comentar
